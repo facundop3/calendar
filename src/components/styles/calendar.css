@@ -1,0 +1,6 @@
+.Container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 800px;
+  flex-direction: column;
+}
