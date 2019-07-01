@@ -1,8 +1,8 @@
 import React from "react";
 import DayBox from "./DayBox";
 
-const Week = (props: { days: Date[]; first?: boolean; firstDay?: number }) => {
-  const { days, first, firstDay } = props;
+const Week = (props: { days: Date[]; first?: boolean }) => {
+  const { days, first } = props;
   const weekDays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return (
     <div style={{ display: "flex" }}>
