@@ -4,10 +4,16 @@ const Button = (props: {
   message: string;
   ariaLabel: string;
   type?: string;
+  style?: {};
+  onClick?: () => any;
 }) => {
-  const { ariaLabel, message, type = "primary" } = props;
+  const { ariaLabel, message, type = "primary", ...otherProps } = props;
   return (
-    <button aria-label={ariaLabel} className={`btn btn--${type}`}>
+    <button
+      aria-label={ariaLabel}
+      className={`btn btn--${type}`}
+      {...otherProps}
+    >
       {message}
     </button>
   );

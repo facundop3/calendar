@@ -9,5 +9,8 @@
   outline: none;
   padding: 0.5em;
   border: 0;
+  border-bottom: 1px solid grey;
+}
+.input-container input:focus {
   border-bottom: 1px solid #007bff;
 }

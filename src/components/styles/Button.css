@@ -5,6 +5,11 @@
   color: #fff;
   outline: none;
   margin: 0.25rem;
+  animation-duration: 1s;
+}
+
+.btn:active {
+  transform: scale(0.9);
 }
 
 .btn--primary {
@@ -12,4 +17,9 @@
 }
 .btn--secondary {
   background-color: #6c757d;
+}
+.btn--link {
+  background-color: #fff;
+  color: grey;
+  border: 0;
 }
