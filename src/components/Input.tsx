@@ -4,12 +4,13 @@ const Input = (props: {
   label: string;
   placeholder?: string;
   type: string;
+  required?: boolean;
 }) => {
-  const { label, placeholder, type } = props;
+  const { label, placeholder, type, required } = props;
   return (
     <label className="input-container">
       <small>{label}</small>
-      <input placeholder={placeholder} type={type} />
+      <input placeholder={placeholder} type={type} aria-required={required} />
     </label>
   );
 };

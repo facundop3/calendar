@@ -2,24 +2,14 @@ import React from "react";
 import DayBox from "./DayBox";
 
 const Week = (props: {
-  days: Date[];
-  first?: boolean;
+  days: { value: Date; disabled: boolean }[];
   handleDayClick: (ev: any) => void;
 }) => {
-  const { days, first, handleDayClick } = props;
-  const weekDays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const { days, handleDayClick } = props;
   return (
     <div style={{ display: "flex" }}>
-      {days.map((day: Date, index: number) => {
-        const weekDay: string = first ? weekDays[index] : "";
-        return (
-          <DayBox
-            first={first}
-            weekDay={weekDay}
-            day={day}
-            handleDayClick={handleDayClick}
-          />
-        );
+      {days.map((day: { value: Date; disabled: boolean }) => {
+        return <DayBox day={day} handleDayClick={handleDayClick} />;
       })}
     </div>
   );

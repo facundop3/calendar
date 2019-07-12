@@ -1,16 +1,26 @@
 import React from "react";
 import "./styles/DayBox.css";
 const DayBox = (props: {
-  first?: boolean;
   weekDay?: string;
-  day: Date | string;
+  day: { value: Date; disabled: boolean };
   handleDayClick: (ev: any) => void;
 }) => {
-  const { day, weekDay, handleDayClick } = props;
+  const {
+    day: { value, disabled },
+    weekDay,
+    handleDayClick
+  } = props;
   return (
-    <div className="DayContainer" onClick={handleDayClick}>
+    <div
+      className="DayContainer"
+      onClick={handleDayClick}
+      tabIndex={0}
+      aria-disabled={disabled}
+    >
       <small style={{ color: "grey" }}>{weekDay}</small>
-      <p>{typeof day === "string" ? day : day.getDate()}</p>
+      <p aria-label={!disabled ? value.toDateString() : ""}>
+        {disabled ? value : value.getDate()}
+      </p>
     </div>
   );
 };

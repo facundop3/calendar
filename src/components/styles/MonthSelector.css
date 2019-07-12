@@ -1,0 +1,9 @@
+.monthSelector-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.selected-month {
+  min-width: 100px;
+  text-align: center;
+}
