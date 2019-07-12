@@ -10,12 +10,13 @@ const DayBox = (props: {
     weekDay,
     handleDayClick
   } = props;
+  const tabIndex = disabled ? {} : { tabIndex: 0 };
   return (
     <div
       className="DayContainer"
       onClick={handleDayClick}
-      tabIndex={0}
       aria-disabled={disabled}
+      {...tabIndex}
     >
       <small style={{ color: "grey" }}>{weekDay}</small>
       <p aria-label={!disabled ? value.toDateString() : ""}>
