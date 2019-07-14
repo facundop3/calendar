@@ -2,14 +2,13 @@ import React, { useContext } from "react";
 import { getDaysOnMonth } from "../utils/dates";
 import { chunkArray } from "../utils/arrays";
 import Week from "./Week";
-
 import calendarContext from "../context";
+const uuidv1 = require("uuid/v1");
 
-const Month = (props: { handleDayClick: (ev: any) => void }) => {
+const Month = () => {
   const {
     state: { currentMonth }
   } = useContext(calendarContext);
-  const { handleDayClick } = props;
   const monthDays: { value: Date; disabled: boolean }[] = getDaysOnMonth(
     2019,
     currentMonth
@@ -32,7 +31,7 @@ const Month = (props: { handleDayClick: (ev: any) => void }) => {
     <div>
       {blankFilledWeeks.map(
         (weekDays: { value: Date; disabled: boolean }[]) => (
-          <Week days={weekDays} handleDayClick={handleDayClick} />
+          <Week days={weekDays} key={uuidv1()} />
         )
       )}
     </div>

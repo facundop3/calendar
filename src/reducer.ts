@@ -2,6 +2,11 @@
 
 export default function(state: any, action: { type: string }) {
   switch (action.type) {
+    case "TOGGLE_MODAL":
+      return {
+        ...state,
+        showModal: !state.showModal
+      };
     case "NEXT_MONTH":
       return {
         ...state,

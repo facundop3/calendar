@@ -1,5 +1,5 @@
 import React from "react";
-
+const uuidv1 = require("uuid/v1");
 const container = {
   display: "flex",
   justifyContent: "space-around",
@@ -12,7 +12,7 @@ const WeekHeader = () => {
   return (
     <div style={container}>
       {weekDays.map((day: string) => (
-        <div>{day}</div>
+        <div key={uuidv1()}>{day}</div>
       ))}
     </div>
   );

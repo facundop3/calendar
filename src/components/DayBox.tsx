@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./styles/DayBox.css";
+import calendarContext from "../context";
 const DayBox = (props: {
   weekDay?: string;
   day: { value: Date; disabled: boolean };
-  handleDayClick: (ev: any) => void;
 }) => {
   const {
     day: { value, disabled },
-    weekDay,
-    handleDayClick
+    weekDay
   } = props;
   const tabIndex = disabled ? {} : { tabIndex: 0 };
+  const {
+    state: { showModal },
+    dispatch
+  } = useContext(calendarContext);
+  const toggleModal = (ev: any) => {
+    dispatch({ type: "TOGGLE_MODAL" });
+  };
+  const handleEnterPress = (ev: any) => {
+    if (ev.key === "Enter") {
+      return toggleModal(ev);
+    }
+  };
   return (
     <div
       className="DayContainer"
-      onClick={handleDayClick}
+      onClick={toggleModal}
+      onKeyPress={handleEnterPress}
       aria-disabled={disabled}
       {...tabIndex}
     >
