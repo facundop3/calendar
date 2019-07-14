@@ -1,11 +1,17 @@
 // import calendarI from "./interfaces";
 
-export default function(state: any, action: { type: string }) {
+export default function(state: any, action: { type: string; payload: any }) {
   switch (action.type) {
+    case "SET_MONTH_DAYS":
+      return {
+        ...state,
+        monthDays: action.payload.monthDays
+      };
     case "TOGGLE_MODAL":
       return {
         ...state,
-        showModal: !state.showModal
+        showModal: !state.showModal,
+        currentDayId: action.payload.dayId
       };
     case "NEXT_MONTH":
       return {

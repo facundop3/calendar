@@ -1,21 +1,22 @@
 import React, { useContext } from "react";
 import "./styles/DayBox.css";
 import calendarContext from "../context";
-const DayBox = (props: {
-  weekDay?: string;
-  day: { value: Date; disabled: boolean };
-}) => {
+import { day } from "../interfaces";
+import Modal from "./Modal";
+const DayBox = (props: { weekDay?: string; day: day }) => {
   const {
-    day: { value, disabled },
+    day: { value, disabled, id },
     weekDay
   } = props;
   const tabIndex = disabled ? {} : { tabIndex: 0 };
   const {
-    state: { showModal },
-    dispatch
+    dispatch,
+    state: { currentDayId }
   } = useContext(calendarContext);
   const toggleModal = (ev: any) => {
-    dispatch({ type: "TOGGLE_MODAL" });
+    if (!disabled) {
+      dispatch({ type: "TOGGLE_MODAL", payload: { dayId: id } });
+    }
   };
   const handleEnterPress = (ev: any) => {
     if (ev.key === "Enter") {
@@ -24,6 +25,7 @@ const DayBox = (props: {
   };
   return (
     <div
+      style={{ position: "relative" }}
       className="DayContainer"
       onClick={toggleModal}
       onKeyPress={handleEnterPress}
@@ -34,6 +36,7 @@ const DayBox = (props: {
       <p aria-label={!disabled ? value.toDateString() : ""}>
         {disabled ? value : value.getDate()}
       </p>
+      {!disabled && currentDayId === id && <Modal />}
     </div>
   );
 };

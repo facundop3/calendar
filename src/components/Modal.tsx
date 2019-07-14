@@ -6,7 +6,7 @@ import calendarContext from "../context";
 const Modal = () => {
   const { dispatch } = useContext(calendarContext);
   const toggleModal = () => {
-    dispatch({ type: "TOGGLE_MODAL" });
+    dispatch({ type: "TOGGLE_MODAL", payload: "" });
   };
   return (
     <div className="modal-container">

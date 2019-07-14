@@ -1,5 +1,9 @@
-interface calendarState {
+export interface calendarState {
   currentMonth: number;
 }
 
-export default calendarState;
+export interface day {
+  value: Date;
+  disabled: boolean;
+  id: string;
+}

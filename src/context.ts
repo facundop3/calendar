@@ -3,7 +3,9 @@ import React from "react";
 
 const state: any = {
   currentMonth: new Date().getMonth(),
-  showModal: false
+  showModal: false,
+  currentDayId: "",
+  monthDays: []
 };
 
 const calendarContext = React.createContext(state);
