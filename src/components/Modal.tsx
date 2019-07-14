@@ -3,13 +3,17 @@ import "./styles/Modal.css";
 import Button from "./Button";
 import Input from "./Input";
 import calendarContext from "../context";
-const Modal = () => {
+const Modal = (props: { dayIndex: number }) => {
+  const { dayIndex } = props;
   const { dispatch } = useContext(calendarContext);
   const toggleModal = () => {
     dispatch({ type: "TOGGLE_MODAL", payload: "" });
   };
   return (
-    <div className="modal-container">
+    <div
+      className="modal-container"
+      style={{ left: dayIndex < 3 ? "20vw" : "-20vw" }}
+    >
       <Button
         ariaLabel="close"
         message="close"

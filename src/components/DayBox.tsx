@@ -3,10 +3,11 @@ import "./styles/DayBox.css";
 import calendarContext from "../context";
 import { day } from "../interfaces";
 import Modal from "./Modal";
-const DayBox = (props: { weekDay?: string; day: day }) => {
+const DayBox = (props: { weekDay?: string; day: day; index: number }) => {
   const {
     day: { value, disabled, id },
-    weekDay
+    weekDay,
+    index
   } = props;
   const tabIndex = disabled ? {} : { tabIndex: 0 };
   const {
@@ -36,7 +37,7 @@ const DayBox = (props: { weekDay?: string; day: day }) => {
       <p aria-label={!disabled ? value.toDateString() : ""}>
         {disabled ? value : value.getDate()}
       </p>
-      {!disabled && currentDayId === id && <Modal />}
+      {!disabled && currentDayId === id && <Modal dayIndex={index} />}
     </div>
   );
 };
