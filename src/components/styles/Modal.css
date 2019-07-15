@@ -16,3 +16,11 @@
 p {
   color: #5f6368;
 }
+.modal-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.modal-header h3 {
+  margin: 0;
+}

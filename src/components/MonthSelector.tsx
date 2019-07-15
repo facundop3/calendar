@@ -15,7 +15,6 @@ const MonthSelector = () => {
         .find(({ disabled }: { disabled: boolean }) => !disabled)
         .value.toDateString();
     }
-    console.log(firstDay);
     let month = "",
       year = "";
     if (firstDay) {

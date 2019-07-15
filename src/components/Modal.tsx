@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./styles/Modal.css";
 import Button from "./Button";
 import Input from "./Input";
@@ -14,24 +14,29 @@ const Modal = (props: { dayIndex: number; day: day }) => {
   const stopPropagation = (ev: any) => {
     ev.stopPropagation();
   };
+  const [title, setTitle] = useState<string>("");
   return (
     <div
       className="modal-container"
       style={{ left: dayIndex < 3 ? "100px" : "-100px" }}
       onClick={stopPropagation}
     >
-      <Button
-        ariaLabel="close"
-        message="close"
-        type="link"
-        onClick={toggleModal}
-        style={{ alignSelf: "flex-end", fontSize: ".8em", padding: 0 }}
-      />
+      <div className="modal-header">
+        <h3>{title}</h3>
+        <Button
+          ariaLabel="close"
+          message="close"
+          type="link"
+          onClick={toggleModal}
+          style={{ alignSelf: "flex-end", fontSize: ".8em", padding: 0 }}
+        />
+      </div>
       <p>{day.value.toDateString()}</p>
       <Input
-        label="Add title and hour"
+        label="Add title"
         placeholder="Do important stuff"
         type="text"
+        handleChange={setTitle}
       />
       <Button ariaLabel="Add an hour" message="Add an hour" />
       <div>

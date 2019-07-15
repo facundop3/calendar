@@ -1,8 +1,7 @@
 import React from "react";
-// import calendarI from "./interfaces/index";
-
 const state: any = {
   currentMonth: new Date().getMonth(),
+  currentYear: new Date().getFullYear(),
   showModal: false,
   currentDayId: "",
   monthDays: []

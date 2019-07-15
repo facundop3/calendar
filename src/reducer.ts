@@ -12,17 +12,31 @@ export default function(state: any, action: { type: string; payload: any }) {
         currentDayId: action.payload.dayId
       };
     case "NEXT_MONTH":
-      console.log("next month");
-      return {
-        ...state,
-        currentMonth: (state.currentMonth + 1) % 12
-      };
+      if (state.currentMonth === 11) {
+        return {
+          ...state,
+          currentMonth: 0,
+          currentYear: state.currentYeat + 1
+        };
+      } else {
+        return {
+          ...state,
+          currentMonth: state.currentMonth + 1
+        };
+      }
     case "PREV_MONTH":
-      console.log("prev month");
-      return {
-        ...state,
-        currentMonth: (state.currentMonth - 1 + 12) % 12
-      };
+      if (state.currentMonth === 0) {
+        return {
+          ...state,
+          currentMonth: 11,
+          currentYear: state.currentYear - 1
+        };
+      } else {
+        return {
+          ...state,
+          currentMonth: state.currentMonth - 1
+        };
+      }
     default:
       return state;
   }

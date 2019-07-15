@@ -8,11 +8,11 @@ const uuidv1 = require("uuid/v1");
 
 const Month = () => {
   const {
-    state: { currentMonth, monthDays },
+    state: { currentYear, currentMonth, monthDays },
     dispatch
   } = useContext(calendarContext);
   useEffect(() => {
-    const monthDays: day[] = getDaysOnMonth(2019, currentMonth);
+    const monthDays: day[] = getDaysOnMonth(currentYear, currentMonth);
     const [{ value: firstDay }] = monthDays.slice(0, 1);
     const [{ value: lastDay }] = monthDays.slice(-1);
     const firstBlanks = Array(firstDay.getDay()).fill({
@@ -31,7 +31,7 @@ const Month = () => {
       type: "SET_MONTH_DAYS",
       payload: { monthDays: blankFilledWeeks }
     });
-  }, []);
+  }, [currentMonth]);
   return (
     <div>
       {monthDays.map((weekDays: day[]) => (
