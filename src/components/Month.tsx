@@ -31,7 +31,10 @@ const Month = () => {
       type: "SET_MONTH_DAYS",
       payload: { monthDays: blankFilledWeeks }
     });
-  }, [currentMonth]);
+
+    return () => console.log("Unmount");
+  }, [currentMonth, currentYear, dispatch]);
+
   return (
     <div>
       {monthDays.map((weekDays: day[]) => (

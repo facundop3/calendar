@@ -1,0 +1,21 @@
+.timepicker-container {
+  display: flex;
+  /* border: 1px solid grey; */
+  max-width: 80px;
+}
+.up-down-controls {
+  display: inline-grid;
+  zoom: 0.7;
+}
+
+.up-down-controls button {
+  margin: 0;
+  padding: 4px 8px;
+}
+.timepicker-value {
+  padding: 0.5em;
+  display: flex;
+}
+.timepicker-value p {
+  margin: 0;
+}

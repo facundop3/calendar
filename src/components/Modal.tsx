@@ -3,18 +3,25 @@ import "./styles/Modal.css";
 import Button from "./Button";
 import Input from "./Input";
 import calendarContext from "../context";
-import { day } from "../interfaces";
+import { day as iday } from "../interfaces";
+import TimePicker from "./TimePicker";
 
-const Modal = (props: { dayIndex: number; day: day }) => {
+const Modal = (props: { dayIndex: number; day: iday }) => {
   const { dayIndex, day } = props;
   const { dispatch } = useContext(calendarContext);
+  const [showTimePicker, setShowTimePicker] = useState<boolean>(false);
+  const [time, setTime] = useState<Date>(new Date());
+  const [title, setTitle] = useState<string>("");
   const toggleModal = () => {
     dispatch({ type: "TOGGLE_MODAL", payload: "" });
   };
   const stopPropagation = (ev: any) => {
     ev.stopPropagation();
   };
-  const [title, setTitle] = useState<string>("");
+  const saveTask = (ev: any) => {
+    dispatch({ type: "ADD_TASK", payload: { task: { title, time, day } } });
+  };
+
   return (
     <div
       className="modal-container"
@@ -22,7 +29,7 @@ const Modal = (props: { dayIndex: number; day: day }) => {
       onClick={stopPropagation}
     >
       <div className="modal-header">
-        <h3>{title}</h3>
+        <h4>{title}</h4>
         <Button
           ariaLabel="close"
           message="close"
@@ -37,10 +44,16 @@ const Modal = (props: { dayIndex: number; day: day }) => {
         placeholder="Do important stuff"
         type="text"
         handleChange={setTitle}
+        value={title}
       />
-      <Button ariaLabel="Add an hour" message="Add an hour" />
+      <Button
+        ariaLabel="Add an hour"
+        message="Add an hour"
+        onClick={() => setShowTimePicker(!showTimePicker)}
+      />
+      {showTimePicker && <TimePicker date={time} handleChange={setTime} />}
       <div>
-        <Button ariaLabel="Save button" message="Save" />
+        <Button ariaLabel="Save button" message="Save" onClick={saveTask} />
         <Button
           ariaLabel="Cancel button"
           message="Cancel"

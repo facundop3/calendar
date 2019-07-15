@@ -1,5 +1,20 @@
 export default function(state: any, action: { type: string; payload: any }) {
   switch (action.type) {
+    case "ADD_TASK":
+      console.log("Adding task: ", action.payload.task);
+      const { title, time } = action.payload.task;
+      const monthDays = state.monthDays.map((day: any) => {
+        if (day.id === action.payload.task.day.id) {
+          console.log("added task:");
+          const addedTask = { ...day, tasks: [...day.tasks, { title, time }] };
+          return addedTask;
+        }
+        return day;
+      });
+      return {
+        ...state,
+        monthDays
+      };
     case "SET_MONTH_DAYS":
       return {
         ...state,
@@ -8,7 +23,6 @@ export default function(state: any, action: { type: string; payload: any }) {
     case "TOGGLE_MODAL":
       return {
         ...state,
-        showModal: !state.showModal,
         currentDayId: action.payload.dayId
       };
     case "NEXT_MONTH":
