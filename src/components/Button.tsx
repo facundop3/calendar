@@ -5,13 +5,24 @@ const Button = (props: {
   ariaLabel: string;
   type?: string;
   style?: {};
-  onClick?: () => any;
+  onClick?: (ev: any) => any;
 }) => {
-  const { ariaLabel, message, type = "primary", ...otherProps } = props;
+  const {
+    ariaLabel,
+    message,
+    type = "primary",
+    onClick,
+    ...otherProps
+  } = props;
+  const stopPropagation = (ev: any) => {
+    ev.stopPropagation();
+    onClick && onClick(ev);
+  };
   return (
     <button
       aria-label={ariaLabel}
       className={`btn btn--${type}`}
+      onClick={stopPropagation}
       {...otherProps}
     >
       {message}

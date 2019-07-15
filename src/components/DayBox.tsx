@@ -6,6 +6,7 @@ import Modal from "./Modal";
 const DayBox = (props: { weekDay?: string; day: day; index: number }) => {
   const {
     day: { value, disabled, id },
+    day,
     weekDay,
     index
   } = props;
@@ -37,7 +38,7 @@ const DayBox = (props: { weekDay?: string; day: day; index: number }) => {
       <p aria-label={!disabled ? value.toDateString() : ""}>
         {disabled ? value : value.getDate()}
       </p>
-      {!disabled && currentDayId === id && <Modal dayIndex={index} />}
+      {!disabled && currentDayId === id && <Modal dayIndex={index} day={day} />}
     </div>
   );
 };
