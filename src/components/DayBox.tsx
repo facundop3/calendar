@@ -1,14 +1,21 @@
 import React, { useContext } from "react";
 import "./styles/DayBox.css";
-import calendarContext from "../context";
+// import calendarContext from "../context";
 import { day as iday } from "../interfaces";
 import Modal from "./Modal";
-const DayBox = (props: { weekDay?: string; day: iday; index: number }) => {
+// import { calendarContext } from "../context";
+const DayBox = (props: {
+  weekDay?: string;
+  day: iday;
+  index: number;
+  context: any;
+}) => {
   const {
     day: { value, disabled, id },
     day,
     index
   } = props;
+  const calendarContext = props.context;
   const tabIndex = disabled ? {} : { tabIndex: 0 };
   const {
     dispatch,
@@ -36,7 +43,9 @@ const DayBox = (props: { weekDay?: string; day: iday; index: number }) => {
       <p aria-label={!disabled ? value.toDateString() : ""}>
         {disabled ? value : value.getDate()}
       </p>
-      {!disabled && currentDayId === id && <Modal dayIndex={index} day={day} />}
+      {!disabled && currentDayId === id && (
+        <Modal dayIndex={index} day={day} context={calendarContext} />
+      )}
     </div>
   );
 };

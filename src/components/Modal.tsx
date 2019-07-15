@@ -2,12 +2,13 @@ import React, { useContext, useState } from "react";
 import "./styles/Modal.css";
 import Button from "./Button";
 import Input from "./Input";
-import calendarContext from "../context";
+// import calendarContext from "../context";
 import { day as iday } from "../interfaces";
 import TimePicker from "./TimePicker";
 
-const Modal = (props: { dayIndex: number; day: iday }) => {
+const Modal = (props: { dayIndex: number; day: iday; context: any }) => {
   const { dayIndex, day } = props;
+  const calendarContext = props.context;
   const { dispatch } = useContext(calendarContext);
   const [showTimePicker, setShowTimePicker] = useState<boolean>(false);
   const [time, setTime] = useState<Date>(new Date());

@@ -1,22 +1,36 @@
 import React, { useContext, useReducer } from "react";
 
-import calendarContext from "./context";
+import { calendarContext, miniCalendarContext } from "./context";
 import calendarReducer from "./reducer";
 
 import Calendar from "./components/Calendar";
 import MiniCalendar from "./components/MiniCalendar";
 import "./App.css";
 const App: React.FC = () => {
-  const initialState = useContext(calendarContext);
-  const [state, dispatch] = useReducer(calendarReducer, initialState);
+  const initialCalendarState = useContext(calendarContext);
+  const [calendarState, calendarDispatch] = useReducer(
+    calendarReducer,
+    initialCalendarState
+  );
+  const initialMiniCalendarState = useContext(miniCalendarContext);
+  const [miniCalendarState, miniCalendarDispatch] = useReducer(
+    calendarReducer,
+    initialMiniCalendarState
+  );
 
   return (
-    <calendarContext.Provider value={{ state, dispatch }}>
-      <div className="container">
-        <MiniCalendar />
-        <Calendar />
-      </div>
-    </calendarContext.Provider>
+    <div className="container">
+      <miniCalendarContext.Provider
+        value={{ state: miniCalendarState, dispatch: miniCalendarDispatch }}
+      >
+        <MiniCalendar context={miniCalendarContext} />
+      </miniCalendarContext.Provider>
+      <calendarContext.Provider
+        value={{ state: calendarState, dispatch: calendarDispatch }}
+      >
+        <Calendar context={calendarContext} />
+      </calendarContext.Provider>
+    </div>
   );
 };
 

@@ -2,12 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { getDaysOnMonth } from "../utils/dates";
 import { chunkArray } from "../utils/arrays";
 import Week from "./Week";
-import calendarContext from "../context";
 import { day } from "../interfaces";
 const uuidv1 = require("uuid/v1");
 
-const Month = (props: { mini?: boolean }) => {
-  const { mini } = props;
+const Month = (props: { mini?: boolean; context: any }) => {
+  const calendarContext = props.context;
   const {
     state: { currentYear, currentMonth, monthDays },
     dispatch
@@ -39,7 +38,7 @@ const Month = (props: { mini?: boolean }) => {
   return (
     <div>
       {monthDays.map((weekDays: day[]) => (
-        <Week days={weekDays} key={uuidv1()} />
+        <Week days={weekDays} key={uuidv1()} context={calendarContext} />
       ))}
     </div>
   );

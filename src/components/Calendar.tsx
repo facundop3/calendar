@@ -4,12 +4,13 @@ import Month from "./Month";
 import MonthSelector from "./MonthSelector";
 import WeekHeader from "./WeekHeader";
 
-const Calendar: React.FC = () => {
+const Calendar = (props: { context: any }) => {
+  const { context } = props;
   return (
     <div className="Container">
-      <MonthSelector />
+      <MonthSelector context={context} />
       <WeekHeader />
-      <Month />
+      <Month context={context} />
     </div>
   );
 };

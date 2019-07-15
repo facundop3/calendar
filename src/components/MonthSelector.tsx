@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import calendarContext from "../context";
+// import calendarContext from "../context";
 import Button from "./Button";
 import "./styles/MonthSelector.css";
 
-const MonthSelector = (props: { mini?: boolean }) => {
+const MonthSelector = (props: { mini?: boolean; context: any }) => {
   const { mini } = props;
+  const calendarContext = props.context;
   const { state, dispatch } = useContext(calendarContext);
   const { monthDays } = state;
   const [selectedMonth, setSelectedMonth] = useState<string>("");
