@@ -1,26 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import calendarContext from "../context";
-
 import Button from "./Button";
 import "./styles/MonthSelector.css";
 
 const MonthSelector = () => {
   const { state, dispatch } = useContext(calendarContext);
-  const { currentMonth } = state;
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
+  const { monthDays } = state;
+  const [selectedMonth, setSelectedMonth] = useState<string>("");
+  useEffect(() => {
+    const firstWeek = monthDays[0];
+    let firstDay = "";
+    if (firstWeek) {
+      firstDay = firstWeek
+        .find(({ disabled }: { disabled: boolean }) => !disabled)
+        .value.toDateString();
+    }
+    console.log(firstDay);
+    let month = "",
+      year = "";
+    if (firstDay) {
+      const stringDateArr: string[] = firstDay.split(" ");
+      month = stringDateArr[1];
+      year = stringDateArr[3];
+    }
+    setSelectedMonth(`${month} - ${year}`);
+  }, [monthDays]);
   return (
     <div className="monthSelector-container">
       <Button
@@ -29,7 +33,7 @@ const MonthSelector = () => {
         onClick={() => dispatch({ type: "PREV_MONTH" })}
       />
       <div className="selected-month" arial-label="testing" tabIndex={0}>
-        {months[currentMonth]}
+        {selectedMonth}
       </div>
       <Button
         message="Next"
