@@ -6,7 +6,8 @@ import calendarContext from "../context";
 import { day } from "../interfaces";
 const uuidv1 = require("uuid/v1");
 
-const Month = () => {
+const Month = (props: { mini?: boolean }) => {
+  const { mini } = props;
   const {
     state: { currentYear, currentMonth, monthDays },
     dispatch

@@ -3,7 +3,8 @@ import calendarContext from "../context";
 import Button from "./Button";
 import "./styles/MonthSelector.css";
 
-const MonthSelector = () => {
+const MonthSelector = (props: { mini?: boolean }) => {
+  const { mini } = props;
   const { state, dispatch } = useContext(calendarContext);
   const { monthDays } = state;
   const [selectedMonth, setSelectedMonth] = useState<string>("");
@@ -25,7 +26,7 @@ const MonthSelector = () => {
     setSelectedMonth(`${month} - ${year}`);
   }, [monthDays]);
   return (
-    <div className="monthSelector-container">
+    <div className="monthSelector-container" style={{ zoom: mini ? 0.7 : 1 }}>
       <Button
         message="Prev"
         ariaLabel="Previus month"
