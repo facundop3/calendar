@@ -24,3 +24,12 @@ p {
 .modal-header h4 {
   margin: 0;
 }
+
+.modal-header button {
+  right: 0.5em;
+  top: 0.5em;
+  position: absolute;
+  align-self: "flex-end";
+  font-size: ".8em";
+  padding: 0;
+}

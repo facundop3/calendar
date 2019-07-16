@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/Button.css";
 const Button = (props: {
-  message: string;
+  children: any;
   ariaLabel: string;
   type?: string;
   style?: {};
@@ -9,7 +9,7 @@ const Button = (props: {
 }) => {
   const {
     ariaLabel,
-    message,
+    children,
     type = "primary",
     onClick,
     ...otherProps
@@ -25,7 +25,7 @@ const Button = (props: {
       onClick={stopPropagation}
       {...otherProps}
     >
-      {message}
+      {children}
     </button>
   );
 };

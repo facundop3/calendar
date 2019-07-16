@@ -2,10 +2,14 @@ import React, { useContext, useState } from "react";
 import "./styles/Modal.css";
 import Button from "./Button";
 import Input from "./Input";
-// import calendarContext from "../context";
 import { day as iday } from "../interfaces";
 import TimePicker from "./TimePicker";
+import { Close } from "styled-icons/material/Close";
+import styled from "styled-components";
 
+const CloseIcon = styled(Close)`
+  height: 15px;
+`;
 const Modal = (props: { dayIndex: number; day: iday; context: any }) => {
   const { dayIndex, day } = props;
   const calendarContext = props.context;
@@ -31,13 +35,9 @@ const Modal = (props: { dayIndex: number; day: iday; context: any }) => {
     >
       <div className="modal-header">
         <h4>{title}</h4>
-        <Button
-          ariaLabel="close"
-          message="close"
-          type="link"
-          onClick={toggleModal}
-          style={{ alignSelf: "flex-end", fontSize: ".8em", padding: 0 }}
-        />
+        <Button ariaLabel="close" type="link" onClick={toggleModal}>
+          <CloseIcon />
+        </Button>
       </div>
       <p>{day.value.toDateString()}</p>
       <Input
@@ -49,18 +49,22 @@ const Modal = (props: { dayIndex: number; day: iday; context: any }) => {
       />
       <Button
         ariaLabel="Add an hour"
-        message="Add an hour"
         onClick={() => setShowTimePicker(!showTimePicker)}
-      />
+      >
+        Add an hour
+      </Button>
       {showTimePicker && <TimePicker date={time} handleChange={setTime} />}
       <div>
-        <Button ariaLabel="Save button" message="Save" onClick={saveTask} />
+        <Button ariaLabel="Save button" onClick={saveTask}>
+          Save
+        </Button>
         <Button
           ariaLabel="Cancel button"
-          message="Cancel"
           type="secondary"
           onClick={toggleModal}
-        />
+        >
+          cancel
+        </Button>
       </div>
     </div>
   );

@@ -4,10 +4,11 @@
   border: 1px solid grey;
   position: absolute;
   top: 0;
-  width: 100%;
-  box-sizing: border-box;
-  background-color: lightblue;
+  left: 0;
+  right: 0;
+  background-color: #fff;
   display: flex;
   z-index: 2;
   justify-content: space-between;
+  align-items: center;
 }

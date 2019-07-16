@@ -1,6 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import Button from "./Button";
 import "./styles/MonthSelector.css";
+import { NavigateNext } from "styled-icons/material/NavigateNext";
+import { NavigateBefore } from "styled-icons/material/NavigateBefore";
+import styled from "styled-components";
+
+const NavigateNextIcon = styled(NavigateNext)`
+  height: 30px;
+  font-weight: bold;
+`;
+
+const NavigateBeforeIcon = styled(NavigateBefore)`
+  height: 30px;
+  font-weight: bold;
+`;
 
 const MonthSelector = (props: { mini?: boolean; context: any }) => {
   const { mini } = props;
@@ -28,18 +41,22 @@ const MonthSelector = (props: { mini?: boolean; context: any }) => {
   return (
     <div className="monthSelector-container" style={{ zoom: mini ? 0.7 : 1 }}>
       <Button
-        message="Prev"
+        type="link"
         ariaLabel="Previus month"
         onClick={() => dispatch({ type: "PREV_MONTH" })}
-      />
+      >
+        <NavigateBeforeIcon />
+      </Button>
+      <Button
+        type="link"
+        ariaLabel="Next month"
+        onClick={() => dispatch({ type: "NEXT_MONTH" })}
+      >
+        <NavigateNextIcon />
+      </Button>
       <div className="selected-month" arial-label="testing" tabIndex={0}>
         {selectedMonth}
       </div>
-      <Button
-        message="Next"
-        ariaLabel="Next month"
-        onClick={() => dispatch({ type: "NEXT_MONTH" })}
-      />
     </div>
   );
 };

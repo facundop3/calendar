@@ -3,6 +3,12 @@
   padding: 0.5em;
   position: relative;
   border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  justify-content: space-between;
+  min-width: 80px;
 }
 
 .hide-options {

@@ -7,3 +7,14 @@
   min-width: 100px;
   text-align: center;
 }
+.monthSelector-container .btn--link {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.monthSelector-container .btn--link:hover {
+  background-color: rgba(119, 136, 153, 0.2);
+}
