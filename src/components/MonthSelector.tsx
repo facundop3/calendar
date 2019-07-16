@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-// import calendarContext from "../context";
 import Button from "./Button";
 import "./styles/MonthSelector.css";
 

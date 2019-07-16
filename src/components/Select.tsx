@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./styles/Select.css";
+import { DownArrow } from "styled-icons/boxicons-solid/DownArrow";
+import styled from "styled-components";
 const uuidv1 = require("uuid/v1");
+
+const Arrow = styled(DownArrow)`
+  height: 15px;
+`;
 const Select = (props: {
   options: string[];
   defaultValue: string;
@@ -21,7 +27,7 @@ const Select = (props: {
       className="select-container"
       onClick={() => setShowOptions(!showOptions)}
     >
-      {selected}
+      {selected} <Arrow />
       <div>
         <ul className={`hide-options ${showOptions ? "show-options" : ""}`}>
           {options.map(option => (
