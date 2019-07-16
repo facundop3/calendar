@@ -32,6 +32,7 @@ export default function(state: any, action: { type: string; payload: any }) {
         currentDayId: action.payload.dayId
       };
     case "NEXT_MONTH":
+      console.log("Next month");
       if (state.currentMonth === 11) {
         return {
           ...state,

@@ -19,6 +19,7 @@ const MonthSelector = (props: { mini?: boolean; context: any }) => {
   const { mini } = props;
   const calendarContext = props.context;
   const { state, dispatch } = useContext(calendarContext);
+  console.log(state);
   const { monthDays } = state;
   const [selectedMonth, setSelectedMonth] = useState<string>("");
   useEffect(() => {

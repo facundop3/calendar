@@ -1,20 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useReducer } from "react";
 import "./styles/calendar.css";
 import Month from "./Month";
 import MonthSelector from "./MonthSelector";
 import WeekHeader from "./WeekHeader";
+import { calendarContext, miniCalendarContext } from "../context";
+import calendarReducer from "../reducer";
 
-const Calendar = (props: { context: any }) => {
-  const { context } = props;
-  const {
-    state: { mini }
-  } = useContext(context);
+const Calendar = () => {
+  const initialState = useContext(calendarContext);
+  const [state, dispatch] = useReducer(calendarReducer, initialState);
+  const { mini } = state;
   return (
-    <div className={`calendar-container ${mini ? "" : "flex-end"}`}>
-      {mini && <MonthSelector context={context} />}
-      <WeekHeader />
-      <Month context={context} />
-    </div>
+    <calendarContext.Provider value={{ state, dispatch }}>
+      <div className={`calendar-container ${mini ? "" : "flex-end"}`}>
+        {mini && <MonthSelector context={calendarContext} />}
+        <WeekHeader />
+        <Month context={calendarContext} />
+      </div>
+    </calendarContext.Provider>
   );
 };
 
