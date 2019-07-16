@@ -36,7 +36,7 @@ const DayBox = (props: {
     >
       <p
         aria-label={!disabled ? value.toDateString() : ""}
-        className={mini && "hover-date"}
+        className={mini ? "hover-date" : ""}
       >
         {disabled ? value : value.getDate()}
       </p>
