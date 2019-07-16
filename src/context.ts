@@ -3,13 +3,16 @@ const calendarState: any = {
   currentMonth: new Date().getMonth(),
   currentYear: new Date().getFullYear(),
   currentDayId: "",
-  monthDays: []
+  monthDays: [],
+  mini: false,
+  calendarMode: ""
 };
 const miniCalendarState: any = {
   currentMonth: new Date().getMonth(),
   currentYear: new Date().getFullYear(),
   currentDayId: "",
-  monthDays: []
+  monthDays: [],
+  mini: true
 };
 
 export const calendarContext = React.createContext(calendarState);

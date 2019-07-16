@@ -20,23 +20,32 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="container">
-      <Header />
-      <div>
-        <div className="left-side">
-          <miniCalendarContext.Provider
-            value={{ state: miniCalendarState, dispatch: miniCalendarDispatch }}
-          >
-            <MiniCalendar context={miniCalendarContext} />
-          </miniCalendarContext.Provider>
-        </div>
+    <React.Fragment>
+      <div className="container">
         <calendarContext.Provider
           value={{ state: calendarState, dispatch: calendarDispatch }}
         >
-          <Calendar context={calendarContext} />
+          <Header />
         </calendarContext.Provider>
+        <div className="content-container">
+          <div className="left-side">
+            <miniCalendarContext.Provider
+              value={{
+                state: miniCalendarState,
+                dispatch: miniCalendarDispatch
+              }}
+            >
+              <MiniCalendar context={miniCalendarContext} />
+            </miniCalendarContext.Provider>
+          </div>
+          <calendarContext.Provider
+            value={{ state: calendarState, dispatch: calendarDispatch }}
+          >
+            <Calendar context={calendarContext} />
+          </calendarContext.Provider>
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

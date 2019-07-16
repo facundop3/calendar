@@ -1,6 +1,11 @@
-.Container {
+.calendar-container {
   display: flex;
   flex-flow: row wrap;
-  width: 800px;
+  width: 100%;
   flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.flex-end {
+  justify-content: flex-end;
 }

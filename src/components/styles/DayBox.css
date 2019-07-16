@@ -5,3 +5,19 @@
   border: 1px solid black;
   width: 100%;
 }
+.no-border {
+  border: 0;
+}
+.hover-date {
+  border-radius: 50%;
+  padding: 0.5em;
+  min-width: 20px;
+  min-height: 20px;
+  text-align: center;
+}
+.hover-date:hover {
+  background-color: rgba(119, 136, 153, 0.2);
+}
+.big-boxes {
+  min-height: 150px;
+}

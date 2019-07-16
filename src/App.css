@@ -7,9 +7,17 @@
 }
 
 .left-side {
-  border: 1px solid red;
   display: flex;
-  height: 100vh;
-  position: absolute;
   left: 0;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }

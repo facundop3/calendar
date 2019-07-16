@@ -1,0 +1,33 @@
+.select-container {
+  background-color: rgba(119, 136, 153, 0.2);
+  padding: 0.5em;
+  position: relative;
+  border-radius: 6px;
+}
+
+.hide-options {
+  position: absolute;
+  display: none;
+  background-color: #fff;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+.show-options {
+  z-index: 2;
+  display: block;
+  padding: 0.5em;
+  min-width: 100px;
+  left: -54px;
+}
+
+.show-options li {
+  padding: 0.5em;
+  list-style-type: none;
+}
+
+.show-options li:hover {
+  background-color: rgba(119, 136, 153, 0.1);
+}
+.selected-option {
+  background-color: rgba(119, 136, 153, 0.1);
+}

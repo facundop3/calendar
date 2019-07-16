@@ -1,5 +1,11 @@
 export default function(state: any, action: { type: string; payload: any }) {
   switch (action.type) {
+    case "CHANGE_CALENDAR_MODE":
+      console.log(action.payload);
+      return {
+        ...state,
+        calendarMode: action.payload.calendarMode
+      };
     case "ADD_TASK":
       console.log("Adding task: ", action.payload.task);
       const { title, time } = action.payload.task;
