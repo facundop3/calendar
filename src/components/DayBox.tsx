@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./styles/DayBox.css";
 import { day as iday } from "../interfaces";
 import Modal from "./Modal";
+import { handleEnterPress } from "../utils/a11y";
 const DayBox = (props: {
   weekDay?: string;
   day: iday;
@@ -24,17 +25,12 @@ const DayBox = (props: {
       dispatch({ type: "TOGGLE_MODAL", payload: { dayId: id } });
     }
   };
-  const handleEnterPress = (ev: any) => {
-    if (ev.key === "Enter") {
-      return toggleModal(ev);
-    }
-  };
   return (
     <div
       style={{ position: "relative" }}
       className={`DayContainer ${mini ? "no-border" : "big-boxes"}`}
       onClick={toggleModal}
-      onKeyPress={handleEnterPress}
+      onKeyPress={ev => handleEnterPress(ev, toggleModal)}
       aria-disabled={disabled}
       {...tabIndex}
     >

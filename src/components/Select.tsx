@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles/Select.css";
 import { DownArrow } from "styled-icons/boxicons-solid/DownArrow";
 import styled from "styled-components";
+import { handleEnterPress } from "../utils/a11y";
 const uuidv1 = require("uuid/v1");
 
 const Arrow = styled(DownArrow)`
@@ -21,11 +22,13 @@ const Select = (props: {
   useEffect(() => {
     handleChange && handleChange(selected);
   }, [selected]);
-
+  const handleClick = () => setShowOptions(!showOptions);
   return (
     <div
       className="select-container"
-      onClick={() => setShowOptions(!showOptions)}
+      onClick={() => handleClick()}
+      tabIndex={0}
+      onKeyPress={ev => handleEnterPress(ev, handleClick)}
     >
       {selected} <Arrow />
       <div>
@@ -34,6 +37,8 @@ const Select = (props: {
             <li
               key={uuidv1()}
               onClick={handleSelect}
+              onKeyPress={ev => handleEnterPress(ev, handleSelect)}
+              tabIndex={0}
               className={selected === option ? "selected-option" : ""}
             >
               {option}
