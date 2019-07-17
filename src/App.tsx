@@ -1,17 +1,16 @@
 import React, { useContext, useReducer } from "react";
-
 import { monthSelectorContext } from "./context";
 import { calendarReducer } from "./reducer";
-
 import Header from "./components/Header";
 import Calendar from "./components/Calendar";
 import MiniCalendar from "./components/MiniCalendar";
 import "./App.css";
+
 const App: React.FC = () => {
-  const monthSelectorInitial = useContext(monthSelectorContext);
+  const { state } = useContext(monthSelectorContext);
   const [monthSelectorState, monthSelectorDispatcher] = useReducer(
     calendarReducer,
-    monthSelectorInitial
+    state
   );
 
   return (

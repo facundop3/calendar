@@ -26,7 +26,8 @@ const Title = styled.h2`
 const Header = () => {
   const { dispatch } = useContext(monthSelectorContext);
   const handleChange = (calendarMode: string) => {
-    dispatch({ type: "CHANGE_CALENDAR_MODE", payload: { calendarMode } });
+    dispatch &&
+      dispatch({ type: "CHANGE_CALENDAR_MODE", payload: { calendarMode } });
   };
   return (
     <header className="header-container">

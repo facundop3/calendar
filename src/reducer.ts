@@ -1,7 +1,9 @@
+import { calendarState, action as actionI } from "./interfaces";
+
 export const calendarReducer = (
-  state: any,
-  action: { type: string; payload: any }
-) => {
+  state: calendarState,
+  action: actionI
+): calendarState => {
   switch (action.type) {
     case "CHANGE_CALENDAR_MODE":
       console.log(action.payload);
@@ -40,7 +42,7 @@ export const calendarReducer = (
         };
       }
     case "PREV_MONTH":
-      if (state.currentDate === 0) {
+      if (state.currentDate.getMonth() === 0) {
         return {
           ...state,
           currentDate: new Date(state.currentDate.getFullYear() - 1, 11)
