@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles/Modal.css";
+// import "./styles/Modal.css";
 import Button from "./Button";
 import Input from "./Input";
 import { day as iday } from "../interfaces";
@@ -30,8 +30,12 @@ const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
 
   return (
     <div
-      className="modal-container"
-      style={{ left: dayIndex < 3 ? "100px" : "-100px" }}
+      // className="modal"
+      style={{
+        left: dayIndex < 3 ? "100px" : "-100px",
+        position: "absolute",
+        zIndex: 2
+      }}
       onClick={stopPropagation}
     >
       <div className="modal-header">
@@ -59,11 +63,7 @@ const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
         <Button ariaLabel="Save button" onClick={saveTask}>
           Save
         </Button>
-        <Button
-          ariaLabel="Cancel button"
-          type="secondary"
-          onClick={toggleModal}
-        >
+        <Button ariaLabel="Cancel button" type="is-light" onClick={toggleModal}>
           cancel
         </Button>
       </div>

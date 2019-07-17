@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./styles/Select.css";
 import { DownArrow } from "styled-icons/boxicons-solid/DownArrow";
 import styled from "styled-components";
 import { handleEnterPress } from "../utils/a11y";
@@ -25,26 +24,24 @@ const Select = (props: {
   const handleClick = () => setShowOptions(!showOptions);
   return (
     <div
-      className="select-container"
+      className="navbar-item has-dropdown is-hoverable"
       onClick={() => handleClick()}
       tabIndex={0}
       onKeyPress={ev => handleEnterPress(ev, handleClick)}
     >
-      {selected} <Arrow />
-      <div>
-        <ul className={`hide-options ${showOptions ? "show-options" : ""}`}>
-          {options.map(option => (
-            <li
-              key={uuidv1()}
-              onClick={handleSelect}
-              onKeyPress={ev => handleEnterPress(ev, handleSelect)}
-              tabIndex={0}
-              className={selected === option ? "selected-option" : ""}
-            >
-              {option}
-            </li>
-          ))}
-        </ul>
+      <a className="navbar-link">{selected}</a>
+      <div className="navbar-dropdown">
+        {options.map(option => (
+          <a
+            className="navbar-item"
+            key={uuidv1()}
+            onClick={handleSelect}
+            onKeyPress={ev => handleEnterPress(ev, handleSelect)}
+            tabIndex={0}
+          >
+            {option}
+          </a>
+        ))}
       </div>
     </div>
   );

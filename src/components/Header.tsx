@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./styles/Header.css";
+// import "./styles/Header.css
 import Select from "./Select";
 import { monthSelectorContext } from "../context";
 import MonthSelector from "./MonthSelector";
@@ -30,8 +30,8 @@ const Header = () => {
       dispatch({ type: "CHANGE_CALENDAR_MODE", payload: { calendarMode } });
   };
   return (
-    <header className="header-container">
-      <div>
+    <nav className="navbar">
+      <div className="navbar-brand">
         <HeaderTitle>
           <CalendarIcon />
           <Title>Calendar</Title>
@@ -39,12 +39,16 @@ const Header = () => {
       </div>
 
       <MonthSelector context={monthSelectorContext} />
-      <Select
-        defaultValue="Month"
-        options={["Month", "Year"]}
-        handleChange={handleChange}
-      />
-    </header>
+      <div className="navbar-end">
+        <div className="navbar-item">
+          <Select
+            defaultValue="Month"
+            options={["Month", "Year"]}
+            handleChange={handleChange}
+          />
+        </div>
+      </div>
+    </nav>
   );
 };
 export default Header;

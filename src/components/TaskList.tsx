@@ -5,7 +5,6 @@ import { task } from "../interfaces";
 const Task = styled.li`
   list-style-type: none;
   border-radius: 6px;
-  background-color: rgb(56, 102, 208);
   color: white;
   padding: 0.5em;
 `;
@@ -21,7 +20,7 @@ const TaskList = (props: { tasks: task[] }) => {
   return (
     <Container>
       {tasks.map(task => (
-        <Task>{task.title}</Task>
+        <Task className="tag is-link">{task.title}</Task>
       ))}
     </Container>
   );

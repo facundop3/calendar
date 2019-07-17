@@ -4,8 +4,8 @@ import { calendarReducer } from "./reducer";
 import Header from "./components/Header";
 import Calendar from "./components/Calendar";
 import MiniCalendar from "./components/MiniCalendar";
+import "../node_modules/bulma/css/bulma.min.css";
 import "./App.css";
-
 const App: React.FC = () => {
   const { state } = useContext(monthSelectorContext);
   const [monthSelectorState, monthSelectorDispatcher] = useReducer(
@@ -14,7 +14,7 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="container">
+    <div>
       <monthSelectorContext.Provider
         value={{
           state: monthSelectorState,
@@ -22,11 +22,13 @@ const App: React.FC = () => {
         }}
       >
         <Header />
-        <div className="content-container">
-          <div className="left-side">
-            <MiniCalendar />
+        <div>
+          <div className="content-container">
+            <div className="left-side">
+              <MiniCalendar />
+            </div>
+            <Calendar />
           </div>
-          <Calendar />
         </div>
       </monthSelectorContext.Provider>
     </div>

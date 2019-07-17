@@ -27,14 +27,14 @@ const MonthSelector = (props: { mini?: boolean; context: any }) => {
   return (
     <div className="monthSelector-container" style={{ zoom: mini ? 0.7 : 1 }}>
       <Button
-        type="link"
+        type="is-white"
         ariaLabel="Previus month"
         onClick={() => dispatch({ type: "PREV_MONTH" })}
       >
         <NavigateBeforeIcon />
       </Button>
       <Button
-        type="link"
+        type="is-white"
         ariaLabel="Next month"
         onClick={() => dispatch({ type: "NEXT_MONTH" })}
       >

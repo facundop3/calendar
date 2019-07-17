@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Button.css";
+// import "./styles/Button.css";
 const Button = (props: {
   children: any;
   ariaLabel: string;
@@ -10,7 +10,7 @@ const Button = (props: {
   const {
     ariaLabel,
     children,
-    type = "primary",
+    type = "is-link",
     onClick,
     ...otherProps
   } = props;
@@ -21,7 +21,7 @@ const Button = (props: {
   return (
     <button
       aria-label={ariaLabel}
-      className={`btn btn--${type}`}
+      className={`button ${type}`}
       onClick={stopPropagation}
       {...otherProps}
     >
