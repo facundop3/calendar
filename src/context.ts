@@ -1,19 +1,12 @@
 import React from "react";
-const calendarState: any = {
-  currentMonth: new Date().getMonth(),
-  currentYear: new Date().getFullYear(),
-  currentDayId: "",
-  monthDays: [],
-  mini: false,
-  calendarMode: ""
-};
-const miniCalendarState: any = {
-  currentMonth: new Date().getMonth(),
-  currentYear: new Date().getFullYear(),
-  currentDayId: "",
-  monthDays: [],
-  mini: true
+
+const monthSelector: any = {
+  currentDate: new Date()
 };
 
-export const calendarContext = React.createContext(calendarState);
+const miniCalendarState: any = {
+  currentDate: new Date()
+};
+
+export const monthSelectorContext = React.createContext(monthSelector);
 export const miniCalendarContext = React.createContext(miniCalendarState);

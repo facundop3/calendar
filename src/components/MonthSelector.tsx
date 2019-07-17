@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Button from "./Button";
 import "./styles/MonthSelector.css";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
@@ -19,26 +19,11 @@ const MonthSelector = (props: { mini?: boolean; context: any }) => {
   const { mini } = props;
   const calendarContext = props.context;
   const { state, dispatch } = useContext(calendarContext);
-  console.log(state);
-  const { monthDays } = state;
-  const [selectedMonth, setSelectedMonth] = useState<string>("");
-  useEffect(() => {
-    const firstWeek = monthDays[0];
-    let firstDay = "";
-    if (firstWeek) {
-      firstDay = firstWeek
-        .find(({ disabled }: { disabled: boolean }) => !disabled)
-        .value.toDateString();
-    }
-    let month = "",
-      year = "";
-    if (firstDay) {
-      const stringDateArr: string[] = firstDay.split(" ");
-      month = stringDateArr[1];
-      year = stringDateArr[3];
-    }
-    setSelectedMonth(`${month} - ${year}`);
-  }, [monthDays]);
+  const { currentDate } = state;
+  const stringDateArr: string[] = currentDate.toDateString().split(" ");
+  const month = stringDateArr[1];
+  const year = stringDateArr[3];
+
   return (
     <div className="monthSelector-container" style={{ zoom: mini ? 0.7 : 1 }}>
       <Button
@@ -56,7 +41,7 @@ const MonthSelector = (props: { mini?: boolean; context: any }) => {
         <NavigateNextIcon />
       </Button>
       <div className="selected-month" arial-label="testing" tabIndex={0}>
-        {selectedMonth}
+        {`${month} - ${year}`}
       </div>
     </div>
   );

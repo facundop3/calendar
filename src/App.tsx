@@ -1,39 +1,33 @@
 import React, { useContext, useReducer } from "react";
 
-// import { calendarContext, miniCalendarContext } from "./context";
-import calendarReducer from "./reducer";
+import { monthSelectorContext } from "./context";
+import { calendarReducer } from "./reducer";
 
 import Header from "./components/Header";
 import Calendar from "./components/Calendar";
 import MiniCalendar from "./components/MiniCalendar";
 import "./App.css";
 const App: React.FC = () => {
-  // const initialCalendarState = useContext(calendarContext);
-  // const [calendarState, calendarDispatch] = useReducer(
-  //   calendarReducer,
-  //   initialCalendarState
-  // );
+  const monthSelectorInitial = useContext(monthSelectorContext);
+  const [monthSelectorState, monthSelectorDispatcher] = useReducer(
+    calendarReducer,
+    monthSelectorInitial
+  );
 
   return (
-    // <React.Fragment>
     <div className="container">
-      {/* <calendarContext.Provider
-          value={{ state: calendarState, dispatch: calendarDispatch }}
-        > */}
-      <Header />
-      {/* </calendarContext.Provider> */}
-      <div className="content-container">
-        <div className="left-side">
-          <MiniCalendar />
+      <monthSelectorContext.Provider
+        value={{ state: monthSelectorState, dispatch: monthSelectorDispatcher }}
+      >
+        <Header />
+        <div className="content-container">
+          <div className="left-side">
+            <MiniCalendar />
+          </div>
+          <Calendar />
         </div>
-        {/* <calendarContext.Provider
-            value={{ state: calendarState, dispatch: calendarDispatch }}
-          > */}
-        <Calendar />
-        {/* </calendarContext.Provider> */}
-      </div>
+      </monthSelectorContext.Provider>
     </div>
-    // </React.Fragment>
   );
 };
 

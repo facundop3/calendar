@@ -1,4 +1,7 @@
-export default function(state: any, action: { type: string; payload: any }) {
+export const calendarReducer = (
+  state: any,
+  action: { type: string; payload: any }
+) => {
   switch (action.type) {
     case "CHANGE_CALENDAR_MODE":
       console.log(action.payload);
@@ -21,11 +24,7 @@ export default function(state: any, action: { type: string; payload: any }) {
         ...state,
         monthDays
       };
-    case "SET_MONTH_DAYS":
-      return {
-        ...state,
-        monthDays: action.payload.monthDays
-      };
+
     case "TOGGLE_MODAL":
       return {
         ...state,
@@ -33,32 +32,38 @@ export default function(state: any, action: { type: string; payload: any }) {
       };
     case "NEXT_MONTH":
       console.log("Next month");
-      if (state.currentMonth === 11) {
+      console.log(state.currentDate);
+      if (state.currentDate.getMonth() === 11) {
+        const year = state.currentDate.getFullYear() + 1;
         return {
           ...state,
-          currentMonth: 0,
-          currentYear: state.currentYeat + 1
+          currentDate: new Date(year, 0)
         };
       } else {
         return {
           ...state,
-          currentMonth: state.currentMonth + 1
+          currentDate: new Date(
+            state.currentDate.getFullYear(),
+            state.currentDate.getMonth() + 1
+          )
         };
       }
     case "PREV_MONTH":
-      if (state.currentMonth === 0) {
+      if (state.currentDate === 0) {
         return {
           ...state,
-          currentMonth: 11,
-          currentYear: state.currentYear - 1
+          currentDate: new Date(state.currentDate.getFullYear() - 1, 11)
         };
       } else {
         return {
           ...state,
-          currentMonth: state.currentMonth - 1
+          currentDate: new Date(
+            state.currentDate.getFullYear(),
+            state.currentDate.getMonth() - 1
+          )
         };
       }
     default:
       return state;
   }
-}
+};

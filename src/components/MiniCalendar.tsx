@@ -4,7 +4,7 @@ import MonthSelector from "./MonthSelector";
 import Month from "./Month";
 import "./styles/MiniCalendar.css";
 import { miniCalendarContext } from "../context";
-import calendarReducer from "../reducer";
+import { calendarReducer } from "../reducer";
 
 const MiniCalendar = () => {
   const initialCalendarState = useContext(miniCalendarContext);
@@ -14,7 +14,7 @@ const MiniCalendar = () => {
       <miniCalendarContext.Provider value={{ state, dispatch }}>
         <MonthSelector mini={true} context={miniCalendarContext} />
         <WeekHeader mini={true} />
-        <Month mini={true} context={miniCalendarContext} />
+        <Month mini={true} currentDate={state.currentDate} />
       </miniCalendarContext.Provider>
     </div>
   );

@@ -3,26 +3,30 @@ import "./styles/DayBox.css";
 import { day as iday } from "../interfaces";
 import Modal from "./Modal";
 import { handleEnterPress } from "../utils/a11y";
+
 const DayBox = (props: {
   weekDay?: string;
   day: iday;
   index: number;
-  context: any;
+  mini: boolean;
 }) => {
   const {
     day: { value, disabled, id },
     day,
-    index
+    index,
+    mini
   } = props;
-  const calendarContext = props.context;
   const tabIndex = disabled ? {} : { tabIndex: 0 };
-  const {
-    dispatch,
-    state: { currentDayId, mini }
-  } = useContext(calendarContext);
+  console.log(value);
+  console.log(day);
+  const currentDayId = disabled ? "" : String(value.getTime());
+  // const {
+  //   dispatch,
+  //   state: { currentDayId, mini }
+  // } = useContext(calendarContext);
   const toggleModal = (ev: any) => {
     if (!disabled) {
-      dispatch({ type: "TOGGLE_MODAL", payload: { dayId: id } });
+      // dispatch({ type: "TOGGLE_MODAL", payload: { dayId: id } });
     }
   };
   return (
@@ -40,9 +44,7 @@ const DayBox = (props: {
       >
         {disabled ? value : value.getDate()}
       </p>
-      {!disabled && currentDayId === id && (
-        <Modal dayIndex={index} day={day} context={calendarContext} />
-      )}
+      {/* {!disabled && currentDayId === id && <Modal dayIndex={index} day={day} />} */}
     </div>
   );
 };
