@@ -14,7 +14,12 @@ const MiniCalendar = () => {
       <miniCalendarContext.Provider value={{ state, dispatch }}>
         <MonthSelector mini={true} context={miniCalendarContext} />
         <WeekHeader mini={true} />
-        <Month mini={true} currentDate={state.currentDate} />
+        <Month
+          mini={true}
+          currentDate={state.currentDate}
+          dispatch={dispatch}
+          state={state}
+        />
       </miniCalendarContext.Provider>
     </div>
   );

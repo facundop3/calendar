@@ -10,22 +10,22 @@ import styled from "styled-components";
 const CloseIcon = styled(Close)`
   height: 15px;
 `;
-const Modal = (props: { dayIndex: number; day: iday }) => {
-  const { dayIndex, day } = props;
+const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
+  const { dayIndex, day, dispatch } = props;
 
   const [showTimePicker, setShowTimePicker] = useState<boolean>(false);
   const [time, setTime] = useState<Date>(new Date());
   const [title, setTitle] = useState<string>("");
   const toggleModal = () => {
     console.log("Toggle modal");
-    // dispatch({ type: "TOGGLE_MODAL", payload: "" });
+    dispatch({ type: "TOGGLE_MODAL", payload: "" });
   };
   const stopPropagation = (ev: any) => {
     ev.stopPropagation();
   };
   const saveTask = (ev: any) => {
     console.log("save task");
-    // dispatch({ type: "ADD_TASK", payload: { task: { title, time, day } } });
+    dispatch({ type: "ADD_TASK", payload: { task: { title, time, day } } });
   };
 
   return (

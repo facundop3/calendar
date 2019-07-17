@@ -9,24 +9,22 @@ const DayBox = (props: {
   day: iday;
   index: number;
   mini: boolean;
+  dispatch: any;
+  state: any;
 }) => {
   const {
     day: { value, disabled, id },
     day,
     index,
-    mini
+    mini,
+    dispatch,
+    state: { currentDayId }
   } = props;
   const tabIndex = disabled ? {} : { tabIndex: 0 };
-  console.log(value);
-  console.log(day);
-  const currentDayId = disabled ? "" : String(value.getTime());
-  // const {
-  //   dispatch,
-  //   state: { currentDayId, mini }
-  // } = useContext(calendarContext);
+
   const toggleModal = (ev: any) => {
     if (!disabled) {
-      // dispatch({ type: "TOGGLE_MODAL", payload: { dayId: id } });
+      dispatch({ type: "TOGGLE_MODAL", payload: { dayId: id } });
     }
   };
   return (
@@ -44,7 +42,9 @@ const DayBox = (props: {
       >
         {disabled ? value : value.getDate()}
       </p>
-      {/* {!disabled && currentDayId === id && <Modal dayIndex={index} day={day} />} */}
+      {!disabled && currentDayId === id && (
+        <Modal dayIndex={index} day={day} dispatch={dispatch} />
+      )}
     </div>
   );
 };

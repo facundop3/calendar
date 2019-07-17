@@ -17,7 +17,10 @@ const App: React.FC = () => {
   return (
     <div className="container">
       <monthSelectorContext.Provider
-        value={{ state: monthSelectorState, dispatch: monthSelectorDispatcher }}
+        value={{
+          state: monthSelectorState,
+          dispatch: monthSelectorDispatcher
+        }}
       >
         <Header />
         <div className="content-container">

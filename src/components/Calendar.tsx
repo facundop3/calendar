@@ -7,12 +7,17 @@ import { monthSelectorContext } from "../context";
 const Calendar = () => {
   return (
     <monthSelectorContext.Consumer>
-      {({ state }: any) => {
+      {({ state, dispatch }: any) => {
         const currentDate = state.currentDate;
         return (
           <div className={`calendar-container flex-end`}>
             <WeekHeader />
-            <Month currentDate={currentDate} mini={false} />
+            <Month
+              currentDate={currentDate}
+              mini={false}
+              dispatch={dispatch}
+              state={state}
+            />
           </div>
         );
       }}

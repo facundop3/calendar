@@ -31,8 +31,6 @@ export const calendarReducer = (
         currentDayId: action.payload.dayId
       };
     case "NEXT_MONTH":
-      console.log("Next month");
-      console.log(state.currentDate);
       if (state.currentDate.getMonth() === 11) {
         const year = state.currentDate.getFullYear() + 1;
         return {
