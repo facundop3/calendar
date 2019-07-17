@@ -29,12 +29,14 @@ const MonthSelector = (props: { mini?: boolean; context: any }) => {
       <Button
         type="is-white"
         ariaLabel="Previus month"
+        size={50}
         onClick={() => dispatch({ type: "PREV_MONTH" })}
       >
         <NavigateBeforeIcon />
       </Button>
       <Button
         type="is-white"
+        size={50}
         ariaLabel="Next month"
         onClick={() => dispatch({ type: "NEXT_MONTH" })}
       >

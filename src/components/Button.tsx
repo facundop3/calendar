@@ -1,10 +1,18 @@
 import React from "react";
-// import "./styles/Button.css";
+import styled from "styled-components";
+
+const Btn = styled.button`
+  width: ${({ size }: { size?: number }) => size}px;
+  height: ${({ size }: { size?: number }) => size}px;
+  border-radius: ${({ size }: { size?: number }) => (size ? "50%" : "")};
+`;
+
 const Button = (props: {
   children: any;
   ariaLabel: string;
   type?: string;
   style?: {};
+  size?: number;
   onClick?: (ev: any) => any;
 }) => {
   const {
@@ -12,6 +20,7 @@ const Button = (props: {
     children,
     type = "is-link",
     onClick,
+    size,
     ...otherProps
   } = props;
   const stopPropagation = (ev: any) => {
@@ -19,14 +28,14 @@ const Button = (props: {
     onClick && onClick(ev);
   };
   return (
-    <button
+    <Btn
       aria-label={ariaLabel}
       className={`button ${type}`}
       onClick={stopPropagation}
       {...otherProps}
     >
       {children}
-    </button>
+    </Btn>
   );
 };
 
