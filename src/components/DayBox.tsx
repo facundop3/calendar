@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./styles/DayBox.css";
-import { day as iday } from "../interfaces";
+import { day as dayI } from "../interfaces";
 import Modal from "./Modal";
 import { handleEnterPress } from "../utils/a11y";
+import TaskList from "./TaskList";
 
 const DayBox = (props: {
   weekDay?: string;
-  day: iday;
+  day: dayI;
   index: number;
   mini: boolean;
   dispatch: any;
@@ -21,7 +22,9 @@ const DayBox = (props: {
     state: { currentDayId, tasks }
   } = props;
   const tabIndex = disabled ? {} : { tabIndex: 0 };
-
+  const todayTasks = tasks.filter(
+    ({ day }: { day: dayI }) => String(day.value.getTime()) === id
+  );
   const toggleModal = (ev: any) => {
     if (!disabled) {
       dispatch({ type: "TOGGLE_MODAL", payload: { dayId: id } });
@@ -29,14 +32,7 @@ const DayBox = (props: {
   };
   return (
     <div
-      style={{
-        position: "relative",
-        backgroundColor: tasks.some(
-          ({ day }: any) => String(day.value.getTime()) === id
-        )
-          ? "red"
-          : "white"
-      }}
+      style={{ position: "relative" }}
       className={`DayContainer ${mini ? "no-border" : "big-boxes"}`}
       onClick={toggleModal}
       onKeyPress={ev => handleEnterPress(ev, toggleModal)}
@@ -49,6 +45,7 @@ const DayBox = (props: {
       >
         {disabled ? value : value.getDate()}
       </p>
+      <TaskList tasks={todayTasks} />
       {!disabled && currentDayId === id && (
         <Modal dayIndex={index} day={day} dispatch={dispatch} />
       )}
