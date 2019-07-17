@@ -11,18 +11,11 @@ export const calendarReducer = (
       };
     case "ADD_TASK":
       console.log("Adding task: ", action.payload.task);
-      const { title, time } = action.payload.task;
-      const monthDays = state.monthDays.map((day: any) => {
-        if (day.id === action.payload.task.day.id) {
-          console.log("added task:");
-          const addedTask = { ...day, tasks: [...day.tasks, { title, time }] };
-          return addedTask;
-        }
-        return day;
-      });
+      const { title, time, day } = action.payload.task;
       return {
         ...state,
-        monthDays
+        tasks: [...state.tasks, { title, time, day }],
+        currentDayId: ""
       };
 
     case "TOGGLE_MODAL":

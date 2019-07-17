@@ -18,7 +18,7 @@ const DayBox = (props: {
     index,
     mini,
     dispatch,
-    state: { currentDayId }
+    state: { currentDayId, tasks }
   } = props;
   const tabIndex = disabled ? {} : { tabIndex: 0 };
 
@@ -29,7 +29,14 @@ const DayBox = (props: {
   };
   return (
     <div
-      style={{ position: "relative" }}
+      style={{
+        position: "relative",
+        backgroundColor: tasks.some(
+          ({ day }: any) => String(day.value.getTime()) === id
+        )
+          ? "red"
+          : "white"
+      }}
       className={`DayContainer ${mini ? "no-border" : "big-boxes"}`}
       onClick={toggleModal}
       onKeyPress={ev => handleEnterPress(ev, toggleModal)}
