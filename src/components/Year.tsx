@@ -19,14 +19,15 @@ const MonthTitle = styled.p`
 const MonthCalendar = styled.div`
   width: 320px;
 `;
-const Year = (props: any) => {
-  const year: number = props.year ? props.year : new Date().getFullYear();
+const Year = () => {
+  const initialState = useContext(yearCalendarContext);
+  const [state, dispatch] = useReducer(calendarReducer, initialState.state);
+  const year: number = state.currentDate.getFullYear();
+  console.log(year);
   const monthDates: Date[] = Array(12)
     .fill(1)
     .map((e, monthNumber: number) => new Date(year, monthNumber));
   const fourMonthOneElem: Date[][] = chunkArray(monthDates, 4);
-  const initialState = useContext(yearCalendarContext);
-  const [state, dispatch] = useReducer(calendarReducer, initialState.state);
   return (
     <yearCalendarContext.Provider value={{ state, dispatch }}>
       <div>

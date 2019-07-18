@@ -19,17 +19,20 @@ const Calendar = () => {
       {({ state, dispatch }: any) => {
         const currentDate = state.currentDate;
         return (
-          // <CalendarContainer>
-          //   <Year />
-          // </CalendarContainer>
           <CalendarContainer>
-            <WeekHeader />
-            <Month
-              currentDate={currentDate}
-              mini={false}
-              dispatch={dispatch}
-              state={state}
-            />
+            {state.calendarMode === "Month" ? (
+              <React.Fragment>
+                <WeekHeader />
+                <Month
+                  currentDate={currentDate}
+                  mini={false}
+                  dispatch={dispatch}
+                  state={state}
+                />
+              </React.Fragment>
+            ) : (
+              <Year />
+            )}
           </CalendarContainer>
         );
       }}

@@ -37,8 +37,12 @@ const NavigateBeforeIcon = styled(NavigateBefore)`
   font-weight: bold;
 `;
 
-const MonthSelector = (props: { mini?: boolean; context: any }) => {
-  const { mini } = props;
+const MonthSelector = (props: {
+  mini?: boolean;
+  context: any;
+  onlyYear?: boolean;
+}) => {
+  const { mini, onlyYear } = props;
   const calendarContext = props.context;
   const { state, dispatch } = useContext(calendarContext);
   const { currentDate } = state;
@@ -52,7 +56,9 @@ const MonthSelector = (props: { mini?: boolean; context: any }) => {
         type="is-white"
         ariaLabel="Previus month"
         size={50}
-        onClick={() => dispatch({ type: "PREV_MONTH" })}
+        onClick={() =>
+          dispatch({ type: onlyYear ? "PREV_YEAR" : "PREV_MONTH" })
+        }
       >
         <NavigateBeforeIcon />
       </Button>
@@ -60,12 +66,14 @@ const MonthSelector = (props: { mini?: boolean; context: any }) => {
         type="is-white"
         size={50}
         ariaLabel="Next month"
-        onClick={() => dispatch({ type: "NEXT_MONTH" })}
+        onClick={() =>
+          dispatch({ type: onlyYear ? "NEXT_YEAR" : "NEXT_MONTH" })
+        }
       >
         <NavigateNextIcon />
       </Button>
       <SelectedMonthContainer arial-label="testing" tabIndex={0}>
-        {`${month} - ${year}`}
+        {`${onlyYear ? "" : month + " - "}${year}`}
       </SelectedMonthContainer>
     </MonthSelectorContainer>
   );

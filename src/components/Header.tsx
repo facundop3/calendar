@@ -23,7 +23,10 @@ const Title = styled.h2`
 `;
 
 const Header = () => {
-  const { dispatch } = useContext(monthSelectorContext);
+  const {
+    dispatch,
+    state: { calendarMode }
+  } = useContext(monthSelectorContext);
   const handleChange = (calendarMode: string) => {
     dispatch &&
       dispatch({ type: "CHANGE_CALENDAR_MODE", payload: { calendarMode } });
@@ -40,7 +43,10 @@ const Header = () => {
         </HeaderTitle>
       </div>
 
-      <MonthSelector context={monthSelectorContext} />
+      <MonthSelector
+        context={monthSelectorContext}
+        onlyYear={calendarMode === "Year"}
+      />
       <div className="navbar-end">
         <div className="navbar-item">
           <Select

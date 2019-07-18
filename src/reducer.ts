@@ -6,13 +6,11 @@ export const calendarReducer = (
 ): calendarState => {
   switch (action.type) {
     case "CHANGE_CALENDAR_MODE":
-      console.log(action.payload);
       return {
         ...state,
         calendarMode: action.payload.calendarMode
       };
     case "ADD_TASK":
-      console.log("Adding task: ", action.payload.task);
       const { title, time, day } = action.payload.task;
       return {
         ...state,
@@ -56,6 +54,22 @@ export const calendarReducer = (
           )
         };
       }
+    case "PREV_YEAR":
+      return {
+        ...state,
+        currentDate: new Date(
+          state.currentDate.getFullYear() - 1,
+          state.currentDate.getMonth()
+        )
+      };
+    case "NEXT_YEAR":
+      return {
+        ...state,
+        currentDate: new Date(
+          state.currentDate.getFullYear() + 1,
+          state.currentDate.getMonth()
+        )
+      };
     default:
       return state;
   }
