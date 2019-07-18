@@ -2,15 +2,20 @@ import React, { useContext, useReducer } from "react";
 import WeekHeader from "./WeekHeader";
 import MonthSelector from "./MonthSelector";
 import Month from "./Month";
-import "./styles/MiniCalendar.css";
 import { miniCalendarContext } from "../context";
 import { calendarReducer } from "../reducer";
+import styled from "styled-components";
+
+const MiniCalendarContainer = styled.div`
+  min-width: 300px;
+  zoom: 0.8;
+`;
 
 const MiniCalendar = () => {
   const { state } = useContext(miniCalendarContext);
   const [MiniCalendarState, dispatch] = useReducer(calendarReducer, state);
   return (
-    <div className="mini-calendar">
+    <MiniCalendarContainer>
       <miniCalendarContext.Provider
         value={{ state: MiniCalendarState, dispatch }}
       >
@@ -23,7 +28,7 @@ const MiniCalendar = () => {
           state={state}
         />
       </miniCalendarContext.Provider>
-    </div>
+    </MiniCalendarContainer>
   );
 };
 

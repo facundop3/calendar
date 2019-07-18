@@ -1,5 +1,13 @@
 import React from "react";
-import "./styles/Input.css";
+import styled from "styled-components";
+
+const InputContainer = styled.label`
+  display: flex;
+  flex-direction: column;
+`;
+const InputDescription = styled.small`
+  color: gray;
+`;
 const Input = (props: {
   label: string;
   placeholder?: string;
@@ -16,8 +24,8 @@ const Input = (props: {
     handleChange && handleChange(ev.target.value);
   };
   return (
-    <label className="input-container">
-      <small>{label}</small>
+    <InputContainer>
+      <InputDescription>{label}</InputDescription>
       <input
         className="input"
         placeholder={placeholder}
@@ -27,7 +35,7 @@ const Input = (props: {
         value={value}
         onChange={onChange}
       />
-    </label>
+    </InputContainer>
   );
 };
 

@@ -1,9 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
-import "./styles/TimePicker.css";
 import styled from "styled-components";
 import { Plus } from "styled-icons/fa-solid/Plus";
 import { Minus } from "styled-icons/typicons/Minus";
+
+const TimePickerContainer = styled.div`
+  display: flex;
+  max-width: 80px;
+`;
+
+const TimePickerValue = styled.div`
+  padding: 0.5em;
+  display: flex;
+  p {
+    margin: 0;
+  }
+`;
+const ControlsContainer = styled.div`
+  display: inline-grid;
+  zoom: 0.7;
+
+  button {
+    margin: 0;
+    padding: 4px 8px;
+  }
+`;
 
 const PlusIcon = styled(Plus)`
   height: 15px;
@@ -24,13 +45,13 @@ const TimePicker = (props: { date: Date; handleChange?: any }) => {
     handleChange && handleChange(currentTime);
   }, [currentTime, handleChange]);
   return (
-    <div className="timepicker-container">
-      <div className="timepicker-value">
+    <TimePickerContainer>
+      <TimePickerValue>
         <p>
           {hours}:{minutes}
         </p>
-      </div>
-      <div className="up-down-controls">
+      </TimePickerValue>
+      <ControlsContainer>
         <Button ariaLabel="Add 5 minutes" onClick={() => changeMinutes(1)}>
           <PlusIcon />
         </Button>
@@ -40,8 +61,8 @@ const TimePicker = (props: { date: Date; handleChange?: any }) => {
         >
           <MinusIcon />
         </Button>
-      </div>
-    </div>
+      </ControlsContainer>
+    </TimePickerContainer>
   );
 };
 
