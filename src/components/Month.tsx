@@ -8,8 +8,8 @@ const uuidv1 = require("uuid/v1");
 const Month = (props: {
   mini: boolean;
   currentDate: Date;
-  dispatch: any;
-  state: any;
+  dispatch?: any;
+  state?: any;
 }) => {
   const { currentDate, mini, dispatch, state } = props;
   const monthDays: day[] = getDaysOnMonth(currentDate);
@@ -29,7 +29,7 @@ const Month = (props: {
   );
 
   return (
-    <div>
+    <div style={{ justifyContent: "space-arround", margin: "1em" }}>
       {blankFilledWeeks.map((weekDays: day[]) => (
         <Week
           days={weekDays}

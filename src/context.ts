@@ -22,5 +22,18 @@ const miniCalendarState: {
   }
 };
 
+const yearCalendarState: {
+  state: calendarState;
+  dispatch?: Dispatch<action>;
+} = {
+  state: {
+    currentDate: new Date(),
+    currentDayId: "",
+    calendarMode: "",
+    tasks: []
+  }
+};
+
 export const monthSelectorContext = React.createContext(monthSelector);
 export const miniCalendarContext = React.createContext(miniCalendarState);
+export const yearCalendarContext = React.createContext(yearCalendarState);
