@@ -5,7 +5,23 @@ import Header from "./components/Header";
 import Calendar from "./components/Calendar";
 import MiniCalendar from "./components/MiniCalendar";
 import "../node_modules/bulma/css/bulma.min.css";
-import "./App.css";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.5em;
+`;
+
+const LeftSide = styled.div`
+  display: flex;
+  left: 0;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
 const App: React.FC = () => {
   const { state } = useContext(monthSelectorContext);
   const [monthSelectorState, monthSelectorDispatcher] = useReducer(
@@ -23,12 +39,12 @@ const App: React.FC = () => {
       >
         <Header />
         <div>
-          <div className="content-container" style={{ padding: ".5em" }}>
-            <div className="left-side">
+          <Container>
+            <LeftSide>
               <MiniCalendar />
-            </div>
+            </LeftSide>
             <Calendar />
-          </div>
+          </Container>
         </div>
       </monthSelectorContext.Provider>
     </div>
