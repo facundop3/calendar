@@ -3,8 +3,14 @@ import { getDaysOnMonth } from "../utils/dates";
 import { chunkArray } from "../utils/arrays";
 import Week from "./Week";
 import { day } from "../interfaces";
+import styled from "styled-components";
 const uuidv1 = require("uuid/v1");
 
+const MonthContainer = styled.div`
+  justify-content: space-arround;
+  margin: 1em;
+  width: 100%;
+`;
 const Month = (props: {
   mini: boolean;
   currentDate: Date;
@@ -29,7 +35,7 @@ const Month = (props: {
   );
 
   return (
-    <div style={{ justifyContent: "space-arround", margin: "1em" }}>
+    <MonthContainer>
       {blankFilledWeeks.map((weekDays: day[]) => (
         <Week
           days={weekDays}
@@ -39,7 +45,7 @@ const Month = (props: {
           state={state}
         />
       ))}
-    </div>
+    </MonthContainer>
   );
 };
 

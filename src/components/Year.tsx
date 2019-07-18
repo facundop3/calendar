@@ -4,6 +4,7 @@ import Month from "./Month";
 import { yearCalendarContext } from "../context";
 import { calendarReducer } from "../reducer";
 import { chunkArray } from "../utils/arrays";
+import WeekHeader from "./WeekHeader";
 
 const YearContainer = styled.div`
   display: flex;
@@ -26,12 +27,15 @@ const Year = (props: any) => {
           return (
             <FourMonths>
               {months.map(date => (
-                <Month
-                  currentDate={date}
-                  mini={true}
-                  dispatch={dispatch}
-                  state={state}
-                />
+                <div>
+                  <WeekHeader mini={true} />
+                  <Month
+                    currentDate={date}
+                    mini={true}
+                    dispatch={dispatch}
+                    state={state}
+                  />
+                </div>
               ))}
             </FourMonths>
           );
