@@ -9,10 +9,15 @@ import WeekHeader from "./WeekHeader";
 const FourMonths = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
 `;
 const MonthTitle = styled.p`
   width: 100%;
   padding-left: 1.5em;
+`;
+
+const MonthCalendar = styled.div`
+  width: 320px;
 `;
 const Year = (props: any) => {
   const year: number = props.year ? props.year : new Date().getFullYear();
@@ -29,7 +34,7 @@ const Year = (props: any) => {
           return (
             <FourMonths>
               {months.map(date => (
-                <div style={{ width: "100%" }}>
+                <MonthCalendar>
                   <MonthTitle>{date.toDateString().split(" ")[1]}</MonthTitle>
                   <WeekHeader mini={true} />
                   <Month
@@ -38,7 +43,7 @@ const Year = (props: any) => {
                     dispatch={dispatch}
                     state={state}
                   />
-                </div>
+                </MonthCalendar>
               ))}
             </FourMonths>
           );
