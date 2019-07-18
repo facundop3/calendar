@@ -12,6 +12,10 @@ const YearContainer = styled.div`
 const FourMonths = styled.div`
   width: 100%;
 `;
+const MonthTitle = styled.p`
+  width: 100%;
+  padding-left: 1.5em;
+`;
 const Year = (props: any) => {
   const year: number = props.year ? props.year : new Date().getFullYear();
   const monthDates: Date[] = Array(12)
@@ -28,6 +32,7 @@ const Year = (props: any) => {
             <FourMonths>
               {months.map(date => (
                 <div>
+                  <MonthTitle>{date.toDateString().split(" ")[1]}</MonthTitle>
                   <WeekHeader mini={true} />
                   <Month
                     currentDate={date}
@@ -40,14 +45,6 @@ const Year = (props: any) => {
             </FourMonths>
           );
         })}
-        {/* {monthDates.map(date => (
-          <Month
-            currentDate={date}
-            mini={true}
-            dispatch={dispatch}
-            state={state}
-          />
-        ))} */}
       </YearContainer>
     </yearCalendarContext.Provider>
   );
