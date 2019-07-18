@@ -1,5 +1,4 @@
 import React from "react";
-// import "./styles/DayBox.css";
 import { day as dayI } from "../interfaces";
 import Modal from "./Modal";
 import { handleEnterPress } from "../utils/a11y";
@@ -33,12 +32,15 @@ const DayBox = (props: {
   return (
     <div
       style={{ position: "relative", margin: 0, width: "100%" }}
-      className="box"
+      className={mini ? "" : "box"}
       onClick={toggleModal}
       onKeyPress={ev => handleEnterPress(ev, toggleModal)}
       aria-disabled={disabled}
       {...tabIndex}
     >
+      {!disabled && currentDayId === id && (
+        <Modal dayIndex={index} day={day} dispatch={dispatch} />
+      )}
       <article className="media">
         <div className="media-content">
           <div className="content">
@@ -49,9 +51,6 @@ const DayBox = (props: {
               {disabled ? value : value.getDate()}
             </p>
             <TaskList tasks={todayTasks} />
-            {!disabled && currentDayId === id && (
-              <Modal dayIndex={index} day={day} dispatch={dispatch} />
-            )}
           </div>
         </div>
       </article>

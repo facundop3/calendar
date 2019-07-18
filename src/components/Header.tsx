@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-// import "./styles/Header.css
 import Select from "./Select";
 import { monthSelectorContext } from "../context";
 import MonthSelector from "./MonthSelector";
@@ -30,7 +29,10 @@ const Header = () => {
       dispatch({ type: "CHANGE_CALENDAR_MODE", payload: { calendarMode } });
   };
   return (
-    <nav className="navbar">
+    <nav
+      className="navbar"
+      style={{ borderBottom: ".5px solid grey", marginBottom: "1em" }}
+    >
       <div className="navbar-brand">
         <HeaderTitle>
           <CalendarIcon />

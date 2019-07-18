@@ -23,7 +23,7 @@ const App: React.FC = () => {
       >
         <Header />
         <div>
-          <div className="content-container">
+          <div className="content-container" style={{ padding: ".5em" }}>
             <div className="left-side">
               <MiniCalendar />
             </div>

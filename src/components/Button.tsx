@@ -5,6 +5,7 @@ const Btn = styled.button`
   width: ${({ size }: { size?: number }) => size}px;
   height: ${({ size }: { size?: number }) => size}px;
   border-radius: ${({ size }: { size?: number }) => (size ? "50%" : "")};
+  margin: 0.25em;
 `;
 
 const Button = (props: {

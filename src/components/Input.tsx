@@ -19,6 +19,7 @@ const Input = (props: {
     <label className="input-container">
       <small>{label}</small>
       <input
+        className="input"
         placeholder={placeholder}
         type={type}
         aria-required={required}

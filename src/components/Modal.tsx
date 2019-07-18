@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import "./styles/Modal.css";
 import Button from "./Button";
 import Input from "./Input";
 import { day as iday } from "../interfaces";
@@ -9,6 +8,17 @@ import styled from "styled-components";
 
 const CloseIcon = styled(Close)`
   height: 15px;
+`;
+const ModalContainer = styled.div`
+  min-height: 250px;
+  min-width: 200px;
+  position: absolute;
+  background-color: white;
+  z-index: 3;
+`;
+const TaskName = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
   const { dayIndex, day, dispatch } = props;
@@ -29,21 +39,20 @@ const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
   };
 
   return (
-    <div
-      // className="modal"
+    <ModalContainer
+      className="box"
       style={{
         left: dayIndex < 3 ? "100px" : "-100px",
-        position: "absolute",
-        zIndex: 2
+        position: "absolute"
       }}
       onClick={stopPropagation}
     >
-      <div className="modal-header">
+      <TaskName>
         <h4>{title}</h4>
         <Button ariaLabel="close" type="link" onClick={toggleModal}>
           <CloseIcon />
         </Button>
-      </div>
+      </TaskName>
       <p>{day.value.toDateString()}</p>
       <Input
         label="Add title"
@@ -67,7 +76,7 @@ const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
           cancel
         </Button>
       </div>
-    </div>
+    </ModalContainer>
   );
 };
 
