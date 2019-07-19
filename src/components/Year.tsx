@@ -5,6 +5,7 @@ import { yearCalendarContext } from "../context";
 import { calendarReducer } from "../reducer";
 import { chunkArray } from "../utils/arrays";
 import WeekHeader from "./WeekHeader";
+const uuidv1 = require("uuid/v1");
 
 const FourMonths = styled.div`
   width: 100%;
@@ -23,7 +24,6 @@ const Year = () => {
   const initialState = useContext(yearCalendarContext);
   const [state, dispatch] = useReducer(calendarReducer, initialState.state);
   const year: number = state.currentDate.getFullYear();
-  console.log(year);
   const monthDates: Date[] = Array(12)
     .fill(1)
     .map((e, monthNumber: number) => new Date(year, monthNumber));
@@ -33,9 +33,9 @@ const Year = () => {
       <div>
         {fourMonthOneElem.map(months => {
           return (
-            <FourMonths>
+            <FourMonths key={uuidv1()}>
               {months.map(date => (
-                <MonthCalendar>
+                <MonthCalendar key={uuidv1()}>
                   <MonthTitle>{date.toDateString().split(" ")[1]}</MonthTitle>
                   <WeekHeader mini={true} />
                   <Month

@@ -1,11 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { DownArrow } from "styled-icons/boxicons-solid/DownArrow";
 import styled from "styled-components";
 import { handleEnterPress } from "../utils/a11y";
+import { textColor, hoverColor, backgroundColor } from "../theme";
 const uuidv1 = require("uuid/v1");
 
-const Arrow = styled(DownArrow)`
-  height: 15px;
+const SelectedOption = styled.a`
+  color: ${textColor} !important;
+  border-radius: 4px;
+  &:hover {
+    background-color: ${hoverColor} !important;
+  }
+  &:focus {
+    background-color: ${hoverColor} !important;
+  }
+  &:focus-within {
+    background-color: ${hoverColor} !important;
+  }
+`;
+
+const OptionList = styled.div`
+  background-color: ${hoverColor} !important;
+`;
+const OptionItem = styled.a`
+  color: ${textColor} !important;
+  &:hover {
+    background-color: ${backgroundColor} !important;
+  }
 `;
 const Select = (props: {
   options: string[];
@@ -29,10 +49,10 @@ const Select = (props: {
       tabIndex={0}
       onKeyPress={ev => handleEnterPress(ev, handleClick)}
     >
-      <a className="navbar-link">{selected}</a>
-      <div className="navbar-dropdown">
+      <SelectedOption className="navbar-link">{selected}</SelectedOption>
+      <OptionList className="navbar-dropdown">
         {options.map(option => (
-          <a
+          <OptionItem
             className="navbar-item"
             key={uuidv1()}
             onClick={handleSelect}
@@ -40,9 +60,9 @@ const Select = (props: {
             tabIndex={0}
           >
             {option}
-          </a>
+          </OptionItem>
         ))}
-      </div>
+      </OptionList>
     </div>
   );
 };

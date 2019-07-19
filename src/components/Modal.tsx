@@ -5,20 +5,26 @@ import { day as iday } from "../interfaces";
 import TimePicker from "./TimePicker";
 import { Close } from "styled-icons/material/Close";
 import styled from "styled-components";
+import { textColor, backgroundColor } from "../theme";
 
 const CloseIcon = styled(Close)`
   height: 15px;
+  color: ${textColor};
 `;
 const ModalContainer = styled.div`
   min-height: 250px;
   min-width: 200px;
   position: absolute;
-  background-color: white;
+  background-color: ${backgroundColor} !important;
+  color: ${textColor} !important;
   z-index: 3;
 `;
 const TaskName = styled.div`
   display: flex;
   justify-content: space-between;
+  button {
+    background-color: transparent !important;
+  }
 `;
 const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
   const { dayIndex, day, dispatch } = props;
@@ -49,7 +55,7 @@ const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
     >
       <TaskName>
         <h4>{title}</h4>
-        <Button ariaLabel="close" type="link" onClick={toggleModal}>
+        <Button ariaLabel="close" onClick={toggleModal}>
           <CloseIcon />
         </Button>
       </TaskName>

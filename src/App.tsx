@@ -24,6 +24,7 @@ const LeftSide = styled.div`
 `;
 const AppContainer = styled.div`
   min-height: 100vh;
+  overflow: hidden;
 `;
 
 const App: React.FC = () => {

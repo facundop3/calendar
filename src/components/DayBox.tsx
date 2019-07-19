@@ -3,6 +3,20 @@ import { day as dayI } from "../interfaces";
 import Modal from "./Modal";
 import { handleEnterPress } from "../utils/a11y";
 import TaskList from "./TaskList";
+import styled from "styled-components";
+import { backgroundColor, textColor, hoverColor } from "../theme";
+
+const DayBoxContainer = styled.div`
+  position: relative;
+  margin: 0 !important;
+  width: 100%;
+  background-color: ${backgroundColor} !important;
+  color: ${textColor} !important;
+`;
+
+const DayContent = styled.div`
+  color: ${textColor};
+`;
 
 const DayBox = (props: {
   weekDay?: string;
@@ -30,8 +44,7 @@ const DayBox = (props: {
     }
   };
   return (
-    <div
-      style={{ position: "relative", margin: 0, width: "100%" }}
+    <DayBoxContainer
       className={mini ? "" : "box"}
       onClick={toggleModal}
       onKeyPress={ev => handleEnterPress(ev, toggleModal)}
@@ -43,7 +56,7 @@ const DayBox = (props: {
       )}
       <article className="media">
         <div className="media-content">
-          <div className="content">
+          <DayContent className="content">
             <p
               aria-label={!disabled ? value.toDateString() : ""}
               className={mini ? "hover-date" : ""}
@@ -51,10 +64,10 @@ const DayBox = (props: {
               {disabled ? value : value.getDate()}
             </p>
             <TaskList tasks={todayTasks} />
-          </div>
+          </DayContent>
         </div>
       </article>
-    </div>
+    </DayBoxContainer>
   );
 };
 

@@ -2,13 +2,19 @@ import React, { useContext } from "react";
 import Button from "./Button";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
+import { backgroundColor, textColor } from "../theme";
 
 const MonthSelectorContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  button {
+    background-color: transparent !important;
+  }
+  svg {
+    color: ${textColor};
+  }
   .btn--link {
     width: 60px;
     height: 60px;
@@ -41,6 +47,7 @@ const MonthSelector = (props: {
   mini?: boolean;
   context: any;
   onlyYear?: boolean;
+  theme?: { mode: string };
 }) => {
   const { mini, onlyYear } = props;
   const calendarContext = props.context;
@@ -53,7 +60,6 @@ const MonthSelector = (props: {
   return (
     <MonthSelectorContainer style={{ zoom: mini ? 0.7 : 1 }}>
       <Button
-        type="is-white"
         ariaLabel="Previus month"
         size={50}
         onClick={() =>
@@ -63,7 +69,6 @@ const MonthSelector = (props: {
         <NavigateBeforeIcon />
       </Button>
       <Button
-        type="is-white"
         size={50}
         ariaLabel="Next month"
         onClick={() =>
@@ -79,4 +84,4 @@ const MonthSelector = (props: {
   );
 };
 
-export default MonthSelector;
+export default withTheme(MonthSelector);

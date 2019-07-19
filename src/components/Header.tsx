@@ -4,7 +4,7 @@ import { monthSelectorContext } from "../context";
 import MonthSelector from "./MonthSelector";
 import styled, { withTheme } from "styled-components";
 import { CalendarAlt } from "styled-icons/fa-solid/CalendarAlt";
-import { backgroundColor, textColor } from "../theme";
+import { backgroundColor, textColor, oppositeBlue } from "../theme";
 import { useTheme } from "../ThemeContext";
 import Button from "./Button";
 
@@ -16,15 +16,33 @@ const CalendarIcon = styled(CalendarAlt)`
 const HeaderTitle = styled.div`
   display: inline-flex;
 `;
+
 const Title = styled.h2`
   margin: 0;
   font-family: sans-serif;
-  color: grey;
+  color: ${textColor};
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
+const NavBar = styled.nav`
+  border-bottom: 0.5px solid ${textColor};
+  margin-bottom: "1em";
+  background-color: ${backgroundColor} !important;
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+`;
+const Sky = styled.div`
+  background-color: ${oppositeBlue};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  max-height: 40px;
+  max-width: 40px;
+`;
 const Header = (props: any) => {
   const themeToggle: any = useTheme();
 
@@ -37,10 +55,7 @@ const Header = (props: any) => {
       dispatch({ type: "CHANGE_CALENDAR_MODE", payload: { calendarMode } });
   };
   return (
-    <nav
-      className="navbar"
-      style={{ borderBottom: ".5px solid grey", marginBottom: "1em" }}
-    >
+    <NavBar className="navbar">
       <div className="navbar-brand">
         <HeaderTitle>
           <CalendarIcon />
@@ -52,9 +67,15 @@ const Header = (props: any) => {
         context={monthSelectorContext}
         onlyYear={calendarMode === "Year"}
       />
-      <Button ariaLabel="night mode" onClick={() => themeToggle.toggle()}>
-        {props.theme.mode === "dark" ? "🌝" : "🌚"}
-      </Button>
+      <Sky>
+        <Button
+          ariaLabel="night mode"
+          onClick={() => themeToggle.toggle()}
+          bg="transparent"
+        >
+          {props.theme.mode === "dark" ? "🌝" : "🌚"}
+        </Button>
+      </Sky>
       <div className="navbar-end">
         <div className="navbar-item">
           <Select
@@ -64,7 +85,7 @@ const Header = (props: any) => {
           />
         </div>
       </div>
-    </nav>
+    </NavBar>
   );
 };
 export default withTheme(Header);

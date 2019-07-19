@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { ThemeSet } from "styled-theming";
 
 const Btn = styled.button`
   width: ${({ size }: { size?: number }) => size}px;
   height: ${({ size }: { size?: number }) => size}px;
   border-radius: ${({ size }: { size?: number }) => (size ? "50%" : "")};
   margin: 0.25em;
+  background-color: ${({ bg }: any) => bg} !important;
 `;
 
 const Button = (props: {
@@ -14,6 +16,8 @@ const Button = (props: {
   type?: string;
   style?: {};
   size?: number;
+  transparent?: boolean;
+  bg?: string;
   onClick?: (ev: any) => any;
 }) => {
   const {
@@ -30,6 +34,7 @@ const Button = (props: {
   };
   return (
     <Btn
+      bg={props.bg}
       aria-label={ariaLabel}
       className={`button ${type}`}
       onClick={stopPropagation}
