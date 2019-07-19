@@ -22,6 +22,10 @@ const LeftSide = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const AppContainer = styled.div`
+  min-height: 100vh;
+`;
+
 const App: React.FC = () => {
   const { state } = useContext(monthSelectorContext);
   const [monthSelectorState, monthSelectorDispatcher] = useReducer(
@@ -30,7 +34,7 @@ const App: React.FC = () => {
   );
 
   return (
-    <div>
+    <AppContainer>
       <monthSelectorContext.Provider
         value={{
           state: monthSelectorState,
@@ -47,7 +51,7 @@ const App: React.FC = () => {
           </Container>
         </div>
       </monthSelectorContext.Provider>
-    </div>
+    </AppContainer>
   );
 };
 
