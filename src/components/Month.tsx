@@ -4,6 +4,8 @@ import { chunkArray } from "../utils/arrays";
 import Week from "./Week";
 import { day } from "../interfaces";
 import styled from "styled-components";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import "./styles/MonthMounth.css";
 const uuidv1 = require("uuid/v1");
 
 const MonthContainer = styled.div`
@@ -35,17 +37,25 @@ const Month = (props: {
   );
 
   return (
-    <MonthContainer>
-      {blankFilledWeeks.map((weekDays: day[]) => (
-        <Week
-          days={weekDays}
-          key={uuidv1()}
-          mini={mini}
-          dispatch={dispatch}
-          state={state}
-        />
-      ))}
-    </MonthContainer>
+    <ReactCSSTransitionGroup
+      transitionName="example"
+      transitionAppear={true}
+      transitionAppearTimeout={500}
+      transitionEnter={false}
+      transitionLeave={false}
+    >
+      <MonthContainer>
+        {blankFilledWeeks.map((weekDays: day[]) => (
+          <Week
+            days={weekDays}
+            key={uuidv1()}
+            mini={mini}
+            dispatch={dispatch}
+            state={state}
+          />
+        ))}
+      </MonthContainer>
+    </ReactCSSTransitionGroup>
   );
 };
 
