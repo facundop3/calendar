@@ -14,6 +14,7 @@ const Container = styled.ul`
   margin: 0;
   top: 0;
   width: 100%;
+  display: contents;
 `;
 const TaskList = (props: { tasks: task[] }) => {
   const { tasks } = props;

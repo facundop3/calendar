@@ -68,7 +68,7 @@ const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
             <CloseIcon />
           </Button>
         </TaskName>
-        <p>{day.value.toDateString()}</p>
+        <p>{new Date(day.timeStamp).toDateString()}</p>
         <Input
           label="Add title"
           placeholder="Do important stuff"

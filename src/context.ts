@@ -2,13 +2,13 @@ import React, { Dispatch } from "react";
 import { calendarState, action } from "./interfaces";
 
 const monthSelector: { state: calendarState; dispatch?: Dispatch<action> } = {
-  state: localStorage.getItem("calendarMode")
+  state: localStorage.getItem("monthSelector")
     ? JSON.parse(
-        localStorage.getItem("calendarMode") || "{calalendarMode:'Month'}"
+        localStorage.getItem("monthSelector") || "{calalendarMode:'Month'}"
       )
     : {
         currentDate: new Date().getTime(),
-        currentDayId: "",
+        currentDayId: 0,
         calendarMode: "",
         tasks: []
       }
@@ -20,7 +20,7 @@ const miniCalendarState: {
 } = {
   state: {
     currentDate: new Date().getTime(),
-    currentDayId: "",
+    currentDayId: 0,
     calendarMode: "",
     tasks: []
   }
@@ -32,7 +32,7 @@ const yearCalendarState: {
 } = {
   state: {
     currentDate: new Date().getTime(),
-    currentDayId: "",
+    currentDayId: 0,
     calendarMode: "",
     tasks: []
   }

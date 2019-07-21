@@ -1,6 +1,6 @@
 export interface calendarState {
   currentDate: number;
-  currentDayId: string;
+  currentDayId: number;
   calendarMode: string;
   tasks: task[];
 }
@@ -11,9 +11,8 @@ export interface action {
 }
 
 export interface day {
-  value: Date;
+  timeStamp: number;
   disabled: boolean;
-  id: string;
 }
 
 export interface task {

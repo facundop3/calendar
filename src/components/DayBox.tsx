@@ -27,7 +27,7 @@ const DayBox = (props: {
   state: any;
 }) => {
   const {
-    day: { value, disabled, id },
+    day: { timeStamp, disabled },
     day,
     index,
     mini,
@@ -36,11 +36,11 @@ const DayBox = (props: {
   } = props;
   const tabIndex = disabled ? {} : { tabIndex: 0 };
   const todayTasks = tasks.filter(
-    ({ day }: { day: dayI }) => String(day.value.getTime()) === id
+    ({ day }: { day: dayI }) => day.timeStamp === timeStamp
   );
   const toggleModal = (ev: any) => {
     if (!disabled) {
-      dispatch({ type: "TOGGLE_MODAL", payload: { dayId: id } });
+      dispatch({ type: "TOGGLE_MODAL", payload: { dayId: timeStamp } });
     }
   };
   return (
@@ -51,17 +51,17 @@ const DayBox = (props: {
       aria-disabled={disabled}
       {...tabIndex}
     >
-      {!disabled && currentDayId === id && (
+      {!disabled && currentDayId === timeStamp && (
         <Modal dayIndex={index} day={day} dispatch={dispatch} />
       )}
       <article className="media">
         <div className="media-content">
           <DayContent className="content">
             <p
-              aria-label={!disabled ? value.toDateString() : ""}
+              aria-label={!disabled ? new Date(timeStamp).toDateString() : ""}
               className={mini ? "hover-date" : ""}
             >
-              {disabled ? value : value.getDate()}
+              {disabled ? timeStamp : new Date(timeStamp).getDate()}
             </p>
             <TaskList tasks={todayTasks} />
           </DayContent>

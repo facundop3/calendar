@@ -21,13 +21,13 @@ const Month = (props: {
 }) => {
   const { currentDate, mini, dispatch, state } = props;
   const monthDays: day[] = getDaysOnMonth(new Date(currentDate));
-  const [{ value: firstDay }] = monthDays.slice(0, 1);
-  const [{ value: lastDay }] = monthDays.slice(-1);
-  const firstBlanks = Array(firstDay.getDay()).fill({
+  const [{ timeStamp: firstDay }] = monthDays.slice(0, 1);
+  const [{ timeStamp: lastDay }] = monthDays.slice(-1);
+  const firstBlanks = Array(new Date(firstDay).getDay()).fill({
     value: "x",
     disabled: true
   });
-  const LastBlanks = Array(6 - lastDay.getDay()).fill({
+  const LastBlanks = Array(6 - new Date(lastDay).getDay()).fill({
     value: "x",
     disabled: true
   });

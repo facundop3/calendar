@@ -8,11 +8,9 @@ export const getDaysOnMonth = (date: Date): day[] => {
   const days: day[] = Array(lastMonthDay)
     .fill(1)
     .map((e, index: number) => {
-      const value = new Date(year, month, index + 1);
-      const id = String(value.getTime());
+      const timeStamp: number = new Date(year, month, index + 1).getTime();
       return {
-        id,
-        value,
+        timeStamp,
         disabled: false
       };
     });

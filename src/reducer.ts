@@ -12,7 +12,7 @@ export const calendarReducer = (
           calendarMode: action.payload.calendarMode
         };
         localStorage.setItem(
-          "calendarMode",
+          "monthSelector",
           JSON.stringify({
             ...newState,
             currentDate: newState.currentDate
@@ -27,9 +27,9 @@ export const calendarReducer = (
         const newState = {
           ...state,
           tasks: [...state.tasks, { title, time, day }],
-          currentDayId: ""
+          currentDayId: 0
         };
-        localStorage.setItem("tasks", JSON.stringify(newState));
+        localStorage.setItem("monthSelector", JSON.stringify(newState));
         return newState;
       })();
 
