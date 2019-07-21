@@ -23,7 +23,7 @@ const MonthCalendar = styled.div`
 const Year = () => {
   const initialState = useContext(yearCalendarContext);
   const [state, dispatch] = useReducer(calendarReducer, initialState.state);
-  const year: number = state.currentDate.getFullYear();
+  const year: number = new Date(state.currentDate).getFullYear();
   const monthDates: Date[] = Array(12)
     .fill(1)
     .map((e, monthNumber: number) => new Date(year, monthNumber));
@@ -39,7 +39,7 @@ const Year = () => {
                   <MonthTitle>{date.toDateString().split(" ")[1]}</MonthTitle>
                   <WeekHeader mini={true} />
                   <Month
-                    currentDate={date}
+                    currentDate={date.getTime()}
                     mini={true}
                     dispatch={dispatch}
                     state={state}

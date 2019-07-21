@@ -3,7 +3,7 @@ import Button from "./Button";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import styled, { withTheme } from "styled-components";
-import { backgroundColor, textColor } from "../theme";
+import { textColor } from "../theme";
 
 const MonthSelectorContainer = styled.div`
   display: flex;
@@ -53,7 +53,9 @@ const MonthSelector = (props: {
   const calendarContext = props.context;
   const { state, dispatch } = useContext(calendarContext);
   const { currentDate } = state;
-  const stringDateArr: string[] = currentDate.toDateString().split(" ");
+  const stringDateArr: string[] = new Date(currentDate)
+    .toDateString()
+    .split(" ");
   const month = stringDateArr[1];
   const year = stringDateArr[3];
 

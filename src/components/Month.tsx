@@ -5,7 +5,7 @@ import Week from "./Week";
 import { day } from "../interfaces";
 import styled from "styled-components";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import "./styles/MonthMounth.css";
+import "./styles/MountTransition.css";
 const uuidv1 = require("uuid/v1");
 
 const MonthContainer = styled.div`
@@ -15,12 +15,12 @@ const MonthContainer = styled.div`
 `;
 const Month = (props: {
   mini: boolean;
-  currentDate: Date;
+  currentDate: number;
   dispatch?: any;
   state?: any;
 }) => {
   const { currentDate, mini, dispatch, state } = props;
-  const monthDays: day[] = getDaysOnMonth(currentDate);
+  const monthDays: day[] = getDaysOnMonth(new Date(currentDate));
   const [{ value: firstDay }] = monthDays.slice(0, 1);
   const [{ value: lastDay }] = monthDays.slice(-1);
   const firstBlanks = Array(firstDay.getDay()).fill({

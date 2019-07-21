@@ -8,7 +8,7 @@ export const useTheme = () => React.useContext(ThemeToggleContext);
 
 export const MyThemeProvider = ({ children }: { children: any }) => {
   const [themeState, setThemeState] = React.useState({
-    mode: "light"
+    mode: localStorage.getItem("theme") || "light"
   });
 
   const Wrapper = styled.div`
@@ -18,6 +18,7 @@ export const MyThemeProvider = ({ children }: { children: any }) => {
   const toggle = () => {
     const mode = themeState.mode === "light" ? "dark" : "light";
     setThemeState({ mode });
+    localStorage.setItem("theme", mode);
   };
 
   return (

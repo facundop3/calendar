@@ -1,6 +1,7 @@
 import React from "react";
 import DayBox from "./DayBox";
 import { day } from "../interfaces";
+const uuidv1 = require("uuid/v1");
 
 const Week = (props: {
   days: day[];
@@ -16,7 +17,7 @@ const Week = (props: {
         return (
           <DayBox
             day={day}
-            key={day.id}
+            key={uuidv1()}
             index={index}
             mini={mini}
             dispatch={dispatch}

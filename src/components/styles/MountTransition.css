@@ -6,3 +6,12 @@
   opacity: 1;
   transition: opacity 0.5s ease-in;
 }
+
+.modal-appear {
+  opacity: 0.1;
+}
+
+.modal-appear.modal-appear-active {
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
+}

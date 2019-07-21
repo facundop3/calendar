@@ -1,5 +1,5 @@
 export interface calendarState {
-  currentDate: Date;
+  currentDate: number;
   currentDayId: string;
   calendarMode: string;
   tasks: task[];

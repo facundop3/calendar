@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ThemeSet } from "styled-theming";
 
 const Btn = styled.button`
   width: ${({ size }: { size?: number }) => size}px;

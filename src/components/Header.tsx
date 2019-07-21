@@ -15,6 +15,8 @@ const CalendarIcon = styled(CalendarAlt)`
 `;
 const HeaderTitle = styled.div`
   display: inline-flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Title = styled.h2`
@@ -33,6 +35,7 @@ const NavBar = styled.nav`
   display: flex;
   align-items: center !important;
   justify-content: center;
+  padding-left: 0.5em;
 `;
 const Sky = styled.div`
   background-color: ${oppositeBlue};
@@ -45,11 +48,8 @@ const Sky = styled.div`
 `;
 const Header = (props: any) => {
   const themeToggle: any = useTheme();
-
-  const {
-    dispatch,
-    state: { calendarMode }
-  } = useContext(monthSelectorContext);
+  const { dispatch, state } = useContext(monthSelectorContext);
+  const calendarMode = state.calendarMode;
   const handleChange = (calendarMode: string) => {
     dispatch &&
       dispatch({ type: "CHANGE_CALENDAR_MODE", payload: { calendarMode } });
@@ -79,7 +79,7 @@ const Header = (props: any) => {
       <div className="navbar-end">
         <div className="navbar-item">
           <Select
-            defaultValue="Month"
+            defaultValue={calendarMode || "Month"}
             options={["Month", "Year"]}
             handleChange={handleChange}
           />
