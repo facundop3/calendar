@@ -2,6 +2,7 @@
   "name": "flexbox-calendar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://facundop3.github.io/calendar/",
   "dependencies": {
     "@types/jest": "24.0.15",
     "@types/node": "^12.0.10",
@@ -10,6 +11,7 @@
     "@types/styled-components": "^4.1.16",
     "@types/styled-theming": "^2.2.2",
     "bulma": "^0.7.5",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.8.6",
@@ -24,7 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
