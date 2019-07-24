@@ -26,7 +26,7 @@ const Year = (props: { year: number; state: calendarState }) => {
     .map((e, monthNumber: number) => new Date(year, monthNumber));
   const fourMonthOneElem: Date[][] = chunkArray(monthDates, 4);
   return (
-    <div>
+    <div style={{ zoom: 0.8 }}>
       {fourMonthOneElem.map(months => {
         return (
           <FourMonths key={uuidv1()}>

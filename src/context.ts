@@ -14,6 +14,7 @@ const calendarState: {
         currentDayId: 0,
         currentDateMin: new Date().getTime(),
         currentDayIdMin: 0,
+        selectedDayMini: new Date().getTime(),
         calendarMode: "",
         tasks: []
       }

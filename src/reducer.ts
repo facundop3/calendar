@@ -6,44 +6,48 @@ export const calendarReducer = (
 ): calendarState => {
   const mini = action.payload ? action.payload.mini : false;
   switch (action.type) {
-    case "CHANGE_CALENDAR_MODE":
-      return (() => {
-        const newState = {
-          ...state,
-          calendarMode: action.payload.calendarMode
-        };
-        localStorage.setItem(
-          "calendarState",
-          JSON.stringify({
-            ...newState,
-            currentDate: newState.currentDate
-          })
-        );
-        return newState;
-      })();
+    case "CHANGE_CALENDAR_MODE": {
+      const newState: calendarState = {
+        ...state,
+        calendarMode: action.payload.calendarMode
+      };
+      localStorage.setItem(
+        "calendarState",
+        JSON.stringify({
+          ...newState,
+          currentDate: newState.currentDate
+        })
+      );
+      return newState;
+    }
 
-    case "ADD_TASK":
-      return (() => {
-        const { title, time, day } = action.payload.task;
-        const newState = {
-          ...state,
-          tasks: [...state.tasks, { title, time, day }],
-          currentDayId: 0
-        };
-        localStorage.setItem("calendarState", JSON.stringify(newState));
-        return newState;
-      })();
+    case "ADD_TASK": {
+      const { title, time, day } = action.payload.task;
+      const newState: calendarState = {
+        ...state,
+        tasks: [...state.tasks, { title, time, day }],
+        currentDayId: 0
+      };
+      localStorage.setItem("calendarState", JSON.stringify(newState));
+      return newState;
+    }
+    case "SET_SELECTED_DAY": {
+      const newState: calendarState = {
+        ...state,
+        selectedDayMini: action.payload.dayId
+      };
+      localStorage.setItem("calendarState", JSON.stringify(newState));
+      return newState;
+    }
+    case "TOGGLE_MODAL": {
+      const newState: calendarState = {
+        ...state,
+        currentDayId: action.payload.dayId
+      };
+      localStorage.setItem("calendarState", JSON.stringify(newState));
 
-    case "TOGGLE_MODAL":
-      return (() => {
-        const newState = {
-          ...state,
-          currentDayId: action.payload.dayId
-        };
-        localStorage.setItem("calendarState", JSON.stringify(newState));
-
-        return newState;
-      })();
+      return newState;
+    }
     case "NEXT_MONTH": {
       let newState: calendarState;
       const currentDate = mini ? "currentDateMin" : "currentDate";
@@ -90,30 +94,28 @@ export const calendarReducer = (
       return newState;
     }
 
-    case "PREV_YEAR":
-      return (() => {
-        const newState = {
-          ...state,
-          currentDate: new Date(
-            new Date(state.currentDate).getFullYear() - 1,
-            new Date(state.currentDate).getMonth()
-          ).getTime()
-        };
-        localStorage.setItem("calendarState", JSON.stringify(newState));
-        return newState;
-      })();
-    case "NEXT_YEAR":
-      return (() => {
-        const newState = {
-          ...state,
-          currentDate: new Date(
-            new Date(state.currentDate).getFullYear() + 1,
-            new Date(state.currentDate).getMonth()
-          ).getTime()
-        };
-        localStorage.setItem("calendarState", JSON.stringify(newState));
-        return newState;
-      })();
+    case "PREV_YEAR": {
+      const newState: calendarState = {
+        ...state,
+        currentDate: new Date(
+          new Date(state.currentDate).getFullYear() - 1,
+          new Date(state.currentDate).getMonth()
+        ).getTime()
+      };
+      localStorage.setItem("calendarState", JSON.stringify(newState));
+      return newState;
+    }
+    case "NEXT_YEAR": {
+      const newState: calendarState = {
+        ...state,
+        currentDate: new Date(
+          new Date(state.currentDate).getFullYear() + 1,
+          new Date(state.currentDate).getMonth()
+        ).getTime()
+      };
+      localStorage.setItem("calendarState", JSON.stringify(newState));
+      return newState;
+    }
     default:
       return state;
   }

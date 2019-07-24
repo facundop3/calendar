@@ -1,6 +1,7 @@
 export interface calendarState {
   currentDate: number;
   currentDateMin: number;
+  selectedDayMini: number;
   currentDayId: number;
   calendarMode: string;
   currentDayIdMin: number;
