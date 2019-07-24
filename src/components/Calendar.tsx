@@ -1,7 +1,7 @@
 import React from "react";
 import Month from "./Month";
 import WeekHeader from "./WeekHeader";
-import { monthSelectorContext } from "../context";
+import { calendarContext } from "../context";
 import Year from "./Year";
 import styled from "styled-components";
 
@@ -15,7 +15,7 @@ const CalendarContainer = styled.div`
 `;
 const Calendar = () => {
   return (
-    <monthSelectorContext.Consumer>
+    <calendarContext.Consumer>
       {({ state, dispatch }: any) => {
         const currentDate = state.currentDate;
         return (
@@ -23,20 +23,18 @@ const Calendar = () => {
             {state.calendarMode === "Month" ? (
               <React.Fragment>
                 <WeekHeader />
-                <Month
-                  currentDate={currentDate}
-                  mini={false}
-                  dispatch={dispatch}
-                  state={state}
-                />
+                <Month currentDate={currentDate} mini={false} state={state} />
               </React.Fragment>
             ) : (
-              <Year />
+              <Year
+                year={new Date(state.currentDate).getFullYear()}
+                state={state}
+              />
             )}
           </CalendarContainer>
         );
       }}
-    </monthSelectorContext.Consumer>
+    </calendarContext.Consumer>
   );
 };
 

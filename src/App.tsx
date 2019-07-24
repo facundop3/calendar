@@ -1,5 +1,5 @@
 import React, { useContext, useReducer } from "react";
-import { monthSelectorContext } from "./context";
+import { calendarContext } from "./context";
 import { calendarReducer } from "./reducer";
 import Header from "./components/Header";
 import Calendar from "./components/Calendar";
@@ -28,7 +28,7 @@ const AppContainer = styled.div`
 `;
 
 const App: React.FC = () => {
-  const { state } = useContext(monthSelectorContext);
+  const { state } = useContext(calendarContext);
   const [monthSelectorState, monthSelectorDispatcher] = useReducer(
     calendarReducer,
     state
@@ -36,13 +36,17 @@ const App: React.FC = () => {
 
   return (
     <AppContainer>
-      <monthSelectorContext.Provider
+      <calendarContext.Provider
         value={{
           state: monthSelectorState,
           dispatch: monthSelectorDispatcher
         }}
       >
-        <Header />
+        <calendarContext.Consumer>
+          {({ dispatch, state }) => (
+            <Header state={state} dispatch={dispatch} />
+          )}
+        </calendarContext.Consumer>
         <div>
           <Container>
             <LeftSide>
@@ -51,7 +55,7 @@ const App: React.FC = () => {
             <Calendar />
           </Container>
         </div>
-      </monthSelectorContext.Provider>
+      </calendarContext.Provider>
     </AppContainer>
   );
 };

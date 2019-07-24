@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React, { Dispatch } from "react";
 import Select from "./Select";
-import { monthSelectorContext } from "../context";
 import MonthSelector from "./MonthSelector";
 import styled, { withTheme } from "styled-components";
 import { CalendarAlt } from "styled-icons/fa-solid/CalendarAlt";
 import { backgroundColor, textColor, oppositeBlue } from "../theme";
 import { useTheme } from "../ThemeContext";
 import Button from "./Button";
+import { calendarState, action } from "../interfaces";
 
 const CalendarIcon = styled(CalendarAlt)`
   height: 40px;
@@ -46,9 +46,13 @@ const Sky = styled.div`
   max-height: 40px;
   max-width: 40px;
 `;
-const Header = (props: any) => {
+const Header = (props: {
+  state: calendarState;
+  dispatch?: Dispatch<action>;
+  theme: { mode: string };
+}) => {
+  const { dispatch, state } = props;
   const themeToggle: any = useTheme();
-  const { dispatch, state } = useContext(monthSelectorContext);
   const calendarMode = state.calendarMode;
   const handleChange = (calendarMode: string) => {
     dispatch &&
@@ -64,8 +68,10 @@ const Header = (props: any) => {
       </div>
 
       <MonthSelector
-        context={monthSelectorContext}
         onlyYear={calendarMode === "Year"}
+        mini={false}
+        dispatch={dispatch}
+        state={state}
       />
       <Sky>
         <Button

@@ -1,10 +1,9 @@
-import React, { useContext, useReducer } from "react";
+import React from "react";
 import styled from "styled-components";
 import Month from "./Month";
-import { yearCalendarContext } from "../context";
-import { calendarReducer } from "../reducer";
 import { chunkArray } from "../utils/arrays";
 import WeekHeader from "./WeekHeader";
+import { calendarState } from "../interfaces";
 const uuidv1 = require("uuid/v1");
 
 const FourMonths = styled.div`
@@ -20,37 +19,28 @@ const MonthTitle = styled.p`
 const MonthCalendar = styled.div`
   width: 320px;
 `;
-const Year = () => {
-  const initialState = useContext(yearCalendarContext);
-  const [state, dispatch] = useReducer(calendarReducer, initialState.state);
-  const year: number = new Date(state.currentDate).getFullYear();
+const Year = (props: { year: number; state: calendarState }) => {
+  const { year, state } = props;
   const monthDates: Date[] = Array(12)
     .fill(1)
     .map((e, monthNumber: number) => new Date(year, monthNumber));
   const fourMonthOneElem: Date[][] = chunkArray(monthDates, 4);
   return (
-    <yearCalendarContext.Provider value={{ state, dispatch }}>
-      <div>
-        {fourMonthOneElem.map(months => {
-          return (
-            <FourMonths key={uuidv1()}>
-              {months.map(date => (
-                <MonthCalendar key={uuidv1()}>
-                  <MonthTitle>{date.toDateString().split(" ")[1]}</MonthTitle>
-                  <WeekHeader mini={true} />
-                  <Month
-                    currentDate={date.getTime()}
-                    mini={true}
-                    dispatch={dispatch}
-                    state={state}
-                  />
-                </MonthCalendar>
-              ))}
-            </FourMonths>
-          );
-        })}
-      </div>
-    </yearCalendarContext.Provider>
+    <div>
+      {fourMonthOneElem.map(months => {
+        return (
+          <FourMonths key={uuidv1()}>
+            {months.map(date => (
+              <MonthCalendar key={uuidv1()}>
+                <MonthTitle>{date.toDateString().split(" ")[1]}</MonthTitle>
+                <WeekHeader mini={true} />
+                <Month currentDate={date.getTime()} mini={true} state={state} />
+              </MonthCalendar>
+            ))}
+          </FourMonths>
+        );
+      })}
+    </div>
   );
 };
 

@@ -1,43 +1,22 @@
 import React, { Dispatch } from "react";
-import { calendarState, action } from "./interfaces";
+import { calendarState as calendarStateInterface, action } from "./interfaces";
 
-const monthSelector: { state: calendarState; dispatch?: Dispatch<action> } = {
-  state: localStorage.getItem("monthSelector")
+const calendarState: {
+  state: calendarStateInterface;
+  dispatch?: Dispatch<action>;
+} = {
+  state: localStorage.getItem("calendarState")
     ? JSON.parse(
-        localStorage.getItem("monthSelector") || "{calalendarMode:'Month'}"
+        localStorage.getItem("calendarState") || "{calalendarMode:'Month'}"
       )
     : {
         currentDate: new Date().getTime(),
         currentDayId: 0,
+        currentDateMin: new Date().getTime(),
+        currentDayIdMin: 0,
         calendarMode: "",
         tasks: []
       }
 };
 
-const miniCalendarState: {
-  state: calendarState;
-  dispatch?: Dispatch<action>;
-} = {
-  state: {
-    currentDate: new Date().getTime(),
-    currentDayId: 0,
-    calendarMode: "",
-    tasks: []
-  }
-};
-
-const yearCalendarState: {
-  state: calendarState;
-  dispatch?: Dispatch<action>;
-} = {
-  state: {
-    currentDate: new Date().getTime(),
-    currentDayId: 0,
-    calendarMode: "",
-    tasks: []
-  }
-};
-
-export const monthSelectorContext = React.createContext(monthSelector);
-export const miniCalendarContext = React.createContext(miniCalendarState);
-export const yearCalendarContext = React.createContext(yearCalendarState);
+export const calendarContext = React.createContext(calendarState);

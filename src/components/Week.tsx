@@ -1,31 +1,31 @@
 import React from "react";
 import DayBox from "./DayBox";
 import { day } from "../interfaces";
+import { calendarContext } from "../context";
 const uuidv1 = require("uuid/v1");
 
-const Week = (props: {
-  days: day[];
-  mini: boolean;
-  dispatch: any;
-  state: any;
-}) => {
-  const { days, mini, dispatch, state } = props;
+const Week = (props: { days: day[]; mini: boolean }) => {
+  const { days, mini } = props;
 
   return (
-    <div style={{ display: "flex" }}>
-      {days.map((day: day, index: number) => {
-        return (
-          <DayBox
-            day={day}
-            key={uuidv1()}
-            index={index}
-            mini={mini}
-            dispatch={dispatch}
-            state={state}
-          />
-        );
-      })}
-    </div>
+    <calendarContext.Consumer>
+      {({ dispatch, state }) => (
+        <div style={{ display: "flex" }}>
+          {days.map((day: day, index: number) => {
+            return (
+              <DayBox
+                day={day}
+                key={uuidv1()}
+                index={index}
+                mini={mini}
+                state={state}
+                dispatch={dispatch}
+              />
+            );
+          })}
+        </div>
+      )}
+    </calendarContext.Consumer>
   );
 };
 

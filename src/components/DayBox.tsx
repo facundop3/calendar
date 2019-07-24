@@ -1,10 +1,10 @@
 import React from "react";
-import { day as dayI } from "../interfaces";
+import { day as dayI, action } from "../interfaces";
 import Modal from "./Modal";
 import { handleEnterPress } from "../utils/a11y";
 import TaskList from "./TaskList";
 import styled from "styled-components";
-import { backgroundColor, textColor, hoverColor } from "../theme";
+import { backgroundColor, textColor } from "../theme";
 
 const DayBoxContainer = styled.div`
   position: relative;
@@ -23,8 +23,8 @@ const DayBox = (props: {
   day: dayI;
   index: number;
   mini: boolean;
-  dispatch: any;
   state: any;
+  dispatch?: React.Dispatch<action>;
 }) => {
   const {
     day: { timeStamp, disabled },
@@ -39,7 +39,7 @@ const DayBox = (props: {
     ({ day }: { day: dayI }) => day.timeStamp === timeStamp
   );
   const toggleModal = (ev: any) => {
-    if (!disabled) {
+    if (!disabled && dispatch && !mini) {
       dispatch({ type: "TOGGLE_MODAL", payload: { dayId: timeStamp } });
     }
   };
@@ -51,7 +51,7 @@ const DayBox = (props: {
       aria-disabled={disabled}
       {...tabIndex}
     >
-      {!disabled && currentDayId === timeStamp && (
+      {!disabled && !mini && currentDayId === timeStamp && (
         <Modal dayIndex={index} day={day} dispatch={dispatch} />
       )}
       <article className="media">
@@ -63,7 +63,7 @@ const DayBox = (props: {
             >
               {disabled ? timeStamp : new Date(timeStamp).getDate()}
             </p>
-            <TaskList tasks={todayTasks} />
+            <TaskList tasks={todayTasks} mini={mini} />
           </DayContent>
         </div>
       </article>

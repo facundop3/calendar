@@ -4,6 +4,7 @@ export const calendarReducer = (
   state: calendarState,
   action: actionI
 ): calendarState => {
+  const mini = action.payload ? action.payload.mini : false;
   switch (action.type) {
     case "CHANGE_CALENDAR_MODE":
       return (() => {
@@ -12,7 +13,7 @@ export const calendarReducer = (
           calendarMode: action.payload.calendarMode
         };
         localStorage.setItem(
-          "monthSelector",
+          "calendarState",
           JSON.stringify({
             ...newState,
             currentDate: newState.currentDate
@@ -29,7 +30,7 @@ export const calendarReducer = (
           tasks: [...state.tasks, { title, time, day }],
           currentDayId: 0
         };
-        localStorage.setItem("monthSelector", JSON.stringify(newState));
+        localStorage.setItem("calendarState", JSON.stringify(newState));
         return newState;
       })();
 
@@ -39,54 +40,56 @@ export const calendarReducer = (
           ...state,
           currentDayId: action.payload.dayId
         };
-        localStorage.setItem("modal", JSON.stringify(newState));
+        localStorage.setItem("calendarState", JSON.stringify(newState));
 
         return newState;
       })();
-    case "NEXT_MONTH":
-      return (() => {
-        let newState: any;
-        if (new Date(state.currentDate).getMonth() === 11) {
-          const year = new Date(state.currentDate).getFullYear() + 1;
-          newState = {
-            ...state,
-            currentDate: new Date(year, 0)
-          };
-        } else {
-          newState = {
-            ...state,
-            currentDate: new Date(
-              new Date(state.currentDate).getFullYear(),
-              new Date(state.currentDate).getMonth() + 1
-            )
-          };
-        }
-        localStorage.setItem("nextMonth", JSON.stringify(newState));
-        return newState;
-      })();
-    case "PREV_MONTH":
-      return (() => {
-        let newState: any;
-        if (new Date(state.currentDate).getMonth() === 0) {
-          newState = {
-            ...state,
-            currentDate: new Date(
-              new Date(state.currentDate).getFullYear() - 1,
-              11
-            )
-          };
-        } else {
-          newState = {
-            ...state,
-            currentDate: new Date(
-              new Date(state.currentDate).getFullYear(),
-              new Date(state.currentDate).getMonth() - 1
-            )
-          };
-        }
-        localStorage.setItem("prevMonth", JSON.stringify(newState));
-        return newState;
-      })();
+    case "NEXT_MONTH": {
+      let newState: calendarState;
+      const currentDate = mini ? "currentDateMin" : "currentDate";
+      if (new Date(state[currentDate]).getMonth() === 11) {
+        const year = new Date(state[currentDate]).getFullYear() + 1;
+        newState = {
+          ...state,
+          [currentDate]: new Date(year, 0).getTime()
+        };
+      } else {
+        newState = {
+          ...state,
+          [currentDate]: new Date(
+            new Date(state[currentDate]).getFullYear(),
+            new Date(state[currentDate]).getMonth() + 1
+          ).getTime()
+        };
+      }
+      localStorage.setItem("calendarState", JSON.stringify(newState));
+      return newState;
+    }
+
+    case "PREV_MONTH": {
+      let newState: calendarState;
+      const currentDate = mini ? "currentDateMin" : "currentDate";
+      if (new Date(state[currentDate]).getMonth() === 0) {
+        newState = {
+          ...state,
+          [currentDate]: new Date(
+            new Date(state[currentDate]).getFullYear() - 1,
+            11
+          ).getTime()
+        };
+      } else {
+        newState = {
+          ...state,
+          [currentDate]: new Date(
+            new Date(state[currentDate]).getFullYear(),
+            new Date(state[currentDate]).getMonth() - 1
+          ).getTime()
+        };
+      }
+      localStorage.setItem("calendarState", JSON.stringify(newState));
+      return newState;
+    }
+
     case "PREV_YEAR":
       return (() => {
         const newState = {
@@ -96,7 +99,7 @@ export const calendarReducer = (
             new Date(state.currentDate).getMonth()
           ).getTime()
         };
-        localStorage.setItem("prevYear", JSON.stringify(newState));
+        localStorage.setItem("calendarState", JSON.stringify(newState));
         return newState;
       })();
     case "NEXT_YEAR":
@@ -108,7 +111,7 @@ export const calendarReducer = (
             new Date(state.currentDate).getMonth()
           ).getTime()
         };
-        localStorage.setItem("newxtYear", JSON.stringify(newState));
+        localStorage.setItem("calendarState", JSON.stringify(newState));
         return newState;
       })();
     default:

@@ -16,13 +16,12 @@ const Container = styled.ul`
   width: 100%;
   display: contents;
 `;
-const TaskList = (props: { tasks: task[] }) => {
-  const { tasks } = props;
+const TaskList = (props: { tasks: task[]; mini: boolean }) => {
+  const { tasks, mini } = props;
   return (
     <Container>
-      {tasks.map(task => (
-        <Task className="tag is-link">{task.title}</Task>
-      ))}
+      {!mini &&
+        tasks.map(task => <Task className="tag is-link">{task.title}</Task>)}
     </Container>
   );
 };

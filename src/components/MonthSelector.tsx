@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "./Button";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import styled, { withTheme } from "styled-components";
 import { textColor } from "../theme";
+import { action, calendarState } from "../interfaces";
 
 const MonthSelectorContainer = styled.div`
   display: flex;
@@ -45,19 +46,20 @@ const NavigateBeforeIcon = styled(NavigateBefore)`
 
 const MonthSelector = (props: {
   mini?: boolean;
-  context: any;
   onlyYear?: boolean;
   theme?: { mode: string };
+  dispatch?: React.Dispatch<action>;
+  state: calendarState;
 }) => {
-  const { mini, onlyYear } = props;
-  const calendarContext = props.context;
-  const { state, dispatch } = useContext(calendarContext);
-  const { currentDate } = state;
+  const { mini, onlyYear, dispatch, state } = props;
+  const currentDate = mini ? state.currentDateMin : state.currentDate;
   const stringDateArr: string[] = new Date(currentDate)
     .toDateString()
     .split(" ");
   const month = stringDateArr[1];
   const year = stringDateArr[3];
+  const previusDate = onlyYear ? "PREV_YEAR" : "PREV_MONTH";
+  const nextDate = onlyYear ? "NEXT_YEAR" : "NEXT_MONTH";
 
   return (
     <MonthSelectorContainer style={{ zoom: mini ? 0.7 : 1 }}>
@@ -65,7 +67,7 @@ const MonthSelector = (props: {
         ariaLabel="Previus month"
         size={50}
         onClick={() =>
-          dispatch({ type: onlyYear ? "PREV_YEAR" : "PREV_MONTH" })
+          dispatch && dispatch({ type: previusDate, payload: { mini } })
         }
       >
         <NavigateBeforeIcon />
@@ -74,7 +76,7 @@ const MonthSelector = (props: {
         size={50}
         ariaLabel="Next month"
         onClick={() =>
-          dispatch({ type: onlyYear ? "NEXT_YEAR" : "NEXT_MONTH" })
+          dispatch && dispatch({ type: nextDate, payload: { mini } })
         }
       >
         <NavigateNextIcon />
