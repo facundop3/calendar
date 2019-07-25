@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Month from "./Month";
-import { chunkArray } from "../utils/arrays";
+import { chunkArray } from "../../utils/arrays";
 import WeekHeader from "./WeekHeader";
-import { calendarState } from "../interfaces";
+import { calendarState } from "../../interfaces";
 const uuidv1 = require("uuid/v1");
 
 const FourMonths = styled.div`

@@ -1,7 +1,7 @@
 import React from "react";
 import DayBox from "./DayBox";
-import { day } from "../interfaces";
-import { calendarContext } from "../context";
+import { day } from "../../interfaces";
+import { calendarContext } from "../../context";
 const uuidv1 = require("uuid/v1");
 
 const Week = (props: { days: day[]; mini: boolean }) => {

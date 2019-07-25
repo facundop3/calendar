@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { handleEnterPress } from "../utils/a11y";
-import { textColor, hoverColor, backgroundColor } from "../theme";
+import { handleEnterPress } from "../../utils/a11y";
+import { textColor, hoverColor, backgroundColor } from "../../theme";
 const uuidv1 = require("uuid/v1");
 
 const SelectedOption = styled.a`

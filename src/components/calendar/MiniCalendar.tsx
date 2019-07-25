@@ -2,7 +2,7 @@ import React from "react";
 import WeekHeader from "./WeekHeader";
 import MonthSelector from "./MonthSelector";
 import Month from "./Month";
-import { calendarContext } from "../context";
+import { calendarContext } from "../../context";
 import styled from "styled-components";
 
 const MiniCalendarContainer = styled.div`

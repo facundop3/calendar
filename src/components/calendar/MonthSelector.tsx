@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "./Button";
+import Button from "../elements/Button";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import styled, { withTheme } from "styled-components";
-import { textColor } from "../theme";
-import { action, calendarState } from "../interfaces";
+import { textColor } from "../../theme";
+import { action, calendarState } from "../../interfaces";
 
 const MonthSelectorContainer = styled.div`
   display: flex;

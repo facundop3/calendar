@@ -1,11 +1,10 @@
 import React from "react";
-import { getDaysOnMonth } from "../utils/dates";
-import { chunkArray } from "../utils/arrays";
+import { getDaysOnMonth } from "../../utils/dates";
+import { chunkArray } from "../../utils/arrays";
 import Week from "./Week";
-import { day, calendarState } from "../interfaces";
+import { day, calendarState } from "../../interfaces";
 import styled from "styled-components";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import "./styles/MountTransition.css";
 const uuidv1 = require("uuid/v1");
 
 const MonthContainer = styled.div`

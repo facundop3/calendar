@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { task } from "../interfaces";
+import { task } from "../../interfaces";
 const uuidv1 = require("uuid/v1");
 const Task = styled.li`
   list-style-type: none;

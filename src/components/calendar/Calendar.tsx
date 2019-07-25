@@ -1,7 +1,7 @@
 import React from "react";
 import Month from "./Month";
 import WeekHeader from "./WeekHeader";
-import { calendarContext } from "../context";
+import { calendarContext } from "../../context";
 import Year from "./Year";
 import styled from "styled-components";
 

@@ -1,10 +1,10 @@
 import React from "react";
-import { day as dayI, action, calendarState } from "../interfaces";
-import Modal from "./Modal";
-import { handleEnterPress } from "../utils/a11y";
+import { day as dayI, action, calendarState } from "../../interfaces";
+import Modal from "../page/Modal";
+import { handleEnterPress } from "../../utils/a11y";
 import TaskList from "./TaskList";
 import styled from "styled-components";
-import { backgroundColor, textColor } from "../theme";
+import { backgroundColor, textColor } from "../../theme";
 
 const DayBoxContainer = styled.div`
   position: relative;
