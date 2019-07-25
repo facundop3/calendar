@@ -1,11 +1,10 @@
 import React, { Dispatch } from "react";
-import Select from "../elements/Select";
-import MonthSelector from "../calendar/MonthSelector";
+import { Select, Button } from "../elements";
+import { MonthSelector } from "../calendar";
 import styled, { withTheme } from "styled-components";
 import { CalendarAlt } from "styled-icons/fa-solid/CalendarAlt";
 import { backgroundColor, textColor, oppositeBlue } from "../../theme";
 import { useTheme } from "../../ThemeContext";
-import Button from "../elements/Button";
 import { calendarState, action } from "../../interfaces";
 
 const CalendarIcon = styled(CalendarAlt)`

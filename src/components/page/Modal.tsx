@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Button from "../elements/Button";
-import Input from "../elements/Input";
+import { Button, Input, TimePicker } from "../elements";
 import { day as iday } from "../../interfaces";
-import TimePicker from "../elements/TimePicker";
 import { Close } from "styled-icons/material/Close";
 import styled from "styled-components";
 import { textColor, backgroundColor, hoverColor } from "../../theme";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import "../animations/styles.css";
 const CloseIcon = styled(Close)`
   height: 15px;
   color: ${textColor};

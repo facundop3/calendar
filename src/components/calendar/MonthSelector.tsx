@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../elements/Button";
+import { Button } from "../elements";
 import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import styled, { withTheme } from "styled-components";

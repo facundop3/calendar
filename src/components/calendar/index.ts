@@ -1,9 +1,5 @@
 import Calendar from "./Calendar";
 import MonthSelector from "./MonthSelector";
-import Year from "./Year";
+import MiniCalendar from "./MiniCalendar";
 
-module.exports = {
-  Calendar,
-  MonthSelector,
-  Year
-};
+export { Calendar, MonthSelector, MiniCalendar };
