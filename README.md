@@ -2,7 +2,7 @@
 
 ## What do I need to run ?
 
-- [Node](https://nodejs.org/en/](https://nodejs.org/)
+- [Node](https://nodejs.org/)
 - [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
 ## How to run it?
