@@ -16,7 +16,7 @@ const CalendarContainer = styled.div`
 const Calendar = () => {
   return (
     <calendarContext.Consumer>
-      {({ state, dispatch }: any) => {
+      {({ state }: any) => {
         const currentDate = state.currentDate;
         return (
           <CalendarContainer>

@@ -13,6 +13,9 @@ const DayBoxContainer = styled.div`
   background-color: ${backgroundColor} !important;
   color: ${textColor} !important;
   outline: none;
+  @media (max-width: 768px) {
+    padding: 0.5rem !important;
+  }
 `;
 
 const DayContent = styled.div`

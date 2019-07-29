@@ -27,6 +27,27 @@ const OptionItem = styled.a`
     background-color: ${backgroundColor} !important;
   }
 `;
+
+const SelectContainer = styled.div`
+  /* Shame-css */
+  @media (max-width: 768px) {
+    height: 40px !important;
+    overflow: hidden;
+
+    &:hover {
+      height: 115px !important;
+    }
+    &:hover div {
+      position: absolute;
+    }
+    &:active {
+      height: 115px !important;
+    }
+    &:active div {
+      position: absolute;
+    }
+  }
+`;
 const Select = (props: {
   options: string[];
   defaultValue: string;
@@ -43,7 +64,7 @@ const Select = (props: {
   }, [selected]);
   const handleClick = () => setShowOptions(!showOptions);
   return (
-    <div
+    <SelectContainer
       className="navbar-item has-dropdown is-hoverable"
       onClick={() => handleClick()}
       tabIndex={0}
@@ -63,7 +84,7 @@ const Select = (props: {
           </OptionItem>
         ))}
       </OptionList>
-    </div>
+    </SelectContainer>
   );
 };
 

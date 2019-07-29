@@ -12,6 +12,9 @@ const MonthContainer = styled.div`
   justify-content: space-arround;
   margin: 1em;
   width: 100%;
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 `;
 const Month = (props: {
   mini: boolean;
