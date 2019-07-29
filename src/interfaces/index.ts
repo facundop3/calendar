@@ -1,4 +1,4 @@
-export interface calendarState {
+export interface CalendarState {
   currentDate: number;
   currentDateMin: number;
   selectedDayMini: number;
@@ -6,21 +6,21 @@ export interface calendarState {
   calendarMode: string;
   currentDayIdMin: number;
   calendarModeMin: string;
-  tasks: task[];
+  tasks: Task[];
 }
 
-export interface action {
+export interface Action {
   type?: string;
   payload?: any;
 }
 
-export interface day {
+export interface Day {
   timeStamp: number;
   disabled: boolean;
 }
 
-export interface task {
+export interface Task {
   title: string;
-  day: day;
+  day: Day;
   time: Date;
 }

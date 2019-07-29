@@ -4,7 +4,13 @@ import { NavigateNext } from "styled-icons/material/NavigateNext";
 import { NavigateBefore } from "styled-icons/material/NavigateBefore";
 import styled, { withTheme } from "styled-components";
 import { textColor } from "../../theme";
-import { action, calendarState } from "../../interfaces";
+import { Action, CalendarState } from "../../interfaces";
+import {
+  PREV_YEAR,
+  PREV_MONTH,
+  NEXT_YEAR,
+  NEXT_MONTH
+} from "../../reducer/actions";
 
 const MonthSelectorContainer = styled.div`
   display: flex;
@@ -48,8 +54,8 @@ const MonthSelector = (props: {
   mini?: boolean;
   onlyYear?: boolean;
   theme?: { mode: string };
-  dispatch?: React.Dispatch<action>;
-  state: calendarState;
+  dispatch?: React.Dispatch<Action>;
+  state: CalendarState;
 }) => {
   const { mini, onlyYear, dispatch, state } = props;
   const currentDate = mini ? state.currentDateMin : state.currentDate;
@@ -58,8 +64,8 @@ const MonthSelector = (props: {
     .split(" ");
   const month = stringDateArr[1];
   const year = stringDateArr[3];
-  const previusDate = onlyYear ? "PREV_YEAR" : "PREV_MONTH";
-  const nextDate = onlyYear ? "NEXT_YEAR" : "NEXT_MONTH";
+  const previusDate = onlyYear ? PREV_YEAR : PREV_MONTH;
+  const nextDate = onlyYear ? NEXT_YEAR : NEXT_MONTH;
 
   return (
     <MonthSelectorContainer style={{ zoom: mini ? 0.7 : 1 }}>

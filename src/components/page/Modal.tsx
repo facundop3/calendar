@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Button, Input, TimePicker } from "../elements";
-import { day as iday } from "../../interfaces";
+import { Day } from "../../interfaces";
 import { Close } from "styled-icons/material/Close";
 import styled from "styled-components";
 import { textColor, backgroundColor, hoverColor } from "../../theme";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import "../animations/styles.css";
+import { TOGGLE_MODAL, ADD_TASK } from "../../reducer/actions";
 const CloseIcon = styled(Close)`
   height: 15px;
   color: ${textColor};
@@ -26,20 +27,20 @@ const TaskName = styled.div`
     background-color: transparent !important;
   }
 `;
-const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
+const Modal = (props: { dayIndex: number; day: Day; dispatch: any }) => {
   const { dayIndex, day, dispatch } = props;
 
   const [showTimePicker, setShowTimePicker] = useState<boolean>(false);
   const [time, setTime] = useState<Date>(new Date());
   const [title, setTitle] = useState<string>("");
   const toggleModal = () => {
-    dispatch({ type: "TOGGLE_MODAL", payload: "" });
+    dispatch({ type: TOGGLE_MODAL, payload: "" });
   };
   const stopPropagation = (ev: any) => {
     ev.stopPropagation();
   };
   const saveTask = (ev: any) => {
-    dispatch({ type: "ADD_TASK", payload: { task: { title, time, day } } });
+    dispatch({ type: ADD_TASK, payload: { task: { title, time, day } } });
   };
 
   return (

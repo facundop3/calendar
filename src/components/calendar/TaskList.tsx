@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { task } from "../../interfaces";
+import { Task as TaskI } from "../../interfaces";
 const uuidv1 = require("uuid/v1");
 const Task = styled.li`
   list-style-type: none;
@@ -16,7 +16,7 @@ const Container = styled.ul`
   width: 100%;
   display: contents;
 `;
-const TaskList = (props: { tasks: task[]; mini: boolean }) => {
+const TaskList = (props: { tasks: TaskI[]; mini: boolean }) => {
   const { tasks, mini } = props;
   return (
     <Container>

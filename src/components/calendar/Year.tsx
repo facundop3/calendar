@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Month from "./Month";
 import { chunkArray } from "../../utils/arrays";
 import WeekHeader from "./WeekHeader";
-import { calendarState } from "../../interfaces";
+import { CalendarState } from "../../interfaces";
 const uuidv1 = require("uuid/v1");
 
 const FourMonths = styled.div`
@@ -24,7 +24,7 @@ const MonthTitle = styled.p`
 const MonthCalendar = styled.div`
   width: 320px;
 `;
-const Year = (props: { year: number; state: calendarState }) => {
+const Year = (props: { year: number; state: CalendarState }) => {
   const { year, state } = props;
   const monthDates: Date[] = Array(12)
     .fill(1)

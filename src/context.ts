@@ -1,9 +1,9 @@
 import React, { Dispatch } from "react";
-import { calendarState as calendarStateInterface, action } from "./interfaces";
+import { CalendarState, Action } from "./interfaces";
 
 const calendarState: {
-  state: calendarStateInterface;
-  dispatch?: Dispatch<action>;
+  state: CalendarState;
+  dispatch?: Dispatch<Action>;
 } = {
   state: localStorage.getItem("calendarState")
     ? JSON.parse(

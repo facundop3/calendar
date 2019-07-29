@@ -1,6 +1,6 @@
 import React, { useContext, useReducer } from "react";
 import { calendarContext } from "./context";
-import { calendarReducer } from "./reducer";
+import { calendarReducer } from "./reducer/reducer";
 import { Header } from "./components/page";
 import { Calendar, MiniCalendar } from "./components/calendar";
 import "../node_modules/bulma/css/bulma.min.css";

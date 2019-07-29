@@ -1,17 +1,17 @@
 import React from "react";
 import DayBox from "./DayBox";
-import { day } from "../../interfaces";
+import { Day } from "../../interfaces";
 import { calendarContext } from "../../context";
 const uuidv1 = require("uuid/v1");
 
-const Week = (props: { days: day[]; mini: boolean }) => {
+const Week = (props: { days: Day[]; mini: boolean }) => {
   const { days, mini } = props;
 
   return (
     <calendarContext.Consumer>
       {({ dispatch, state }) => (
         <div style={{ display: "flex" }}>
-          {days.map((day: day, index: number) => {
+          {days.map((day: Day, index: number) => {
             return (
               <DayBox
                 day={day}
