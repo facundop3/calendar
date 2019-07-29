@@ -31,7 +31,6 @@ const OptionItem = styled.a`
 const SelectContainer = styled.div`
   /* Shame-css */
   @media (max-width: 768px) {
-    background-color: rebeccapurple;
     height: 40px !important;
     overflow: hidden;
 
