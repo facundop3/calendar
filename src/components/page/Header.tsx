@@ -11,6 +11,9 @@ const CalendarIcon = styled(CalendarAlt)`
   height: 40px;
   color: #3866d0;
   margin-right: 0.5em;
+  @media (max-width: 768px) {
+    margin-right: 0;
+  }
 `;
 const HeaderTitle = styled.div`
   display: inline-flex;
@@ -25,6 +28,9 @@ const Title = styled.h2`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const NavBar = styled.nav`
@@ -35,6 +41,15 @@ const NavBar = styled.nav`
   align-items: center !important;
   justify-content: center;
   padding-left: 0.5em;
+  @media (max-width: 768px) {
+    padding-left: 0;
+    .button {
+      padding: 0;
+    }
+    .navbar-item {
+      padding: 0.3em;
+    }
+  }
 `;
 const Sky = styled.div`
   background-color: ${oppositeBlue};

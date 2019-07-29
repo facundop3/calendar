@@ -53,7 +53,7 @@ const Modal = (props: { dayIndex: number; day: iday; dispatch: any }) => {
       <ModalContainer
         className="box"
         style={{
-          left: dayIndex < 3 ? "100px" : "-100px",
+          left: dayIndex < 3 ? "100px" : "-240px",
           position: "absolute"
         }}
         onClick={stopPropagation}

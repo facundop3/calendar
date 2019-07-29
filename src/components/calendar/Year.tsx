@@ -10,6 +10,11 @@ const FourMonths = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const MonthTitle = styled.p`
   width: 100%;
