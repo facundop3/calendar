@@ -41,6 +41,7 @@ const NavBar = styled.nav`
   align-items: center !important;
   justify-content: center;
   padding-left: 0.5em;
+  max-height: 55px;
   @media (max-width: 768px) {
     padding-left: 0;
     .button {
