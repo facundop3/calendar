@@ -39,10 +39,12 @@ const Modal = (props: { dayIndex: number; day: Day; dispatch: any }) => {
   const stopPropagation = (ev: any) => {
     ev.stopPropagation();
   };
-  const saveTask = (ev: any) => {
+  const saveTask = () => {
     dispatch({ type: ADD_TASK, payload: { task: { title, time, day } } });
   };
-
+  const handleEnter = (ev: any) => {
+    ev.key === "Enter" && saveTask();
+  };
   return (
     <ReactCSSTransitionGroup
       transitionName="modal"
@@ -72,6 +74,7 @@ const Modal = (props: { dayIndex: number; day: Day; dispatch: any }) => {
           type="text"
           handleChange={setTitle}
           value={title}
+          handleEnter={handleEnter}
         />
         <Button
           ariaLabel="Add an hour"
