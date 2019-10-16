@@ -14,15 +14,25 @@ const Input = (props: {
   type: string;
   required?: boolean;
   value?: string;
-  handleChange?: (ev: any) => any;
+  handleChange: (ev: any) => any;
+  handleEnter: (ev: any) => void;
 }) => {
   const handleInputClick = (ev: any) => {
     ev.target.focus();
   };
-  const { label, placeholder, type, required, value, handleChange } = props;
+  const {
+    label,
+    placeholder,
+    type,
+    required,
+    value,
+    handleChange,
+    handleEnter
+  } = props;
   const onChange = (ev: any) => {
-    handleChange && handleChange(ev.target.value);
+    handleChange(ev.target.value);
   };
+
   return (
     <InputContainer>
       <InputDescription>{label}</InputDescription>
@@ -34,6 +44,7 @@ const Input = (props: {
         onClick={handleInputClick}
         value={value}
         onChange={onChange}
+        onKeyDown={handleEnter}
       />
     </InputContainer>
   );
