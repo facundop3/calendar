@@ -61,7 +61,7 @@ const DayBox = (props: {
     ({ day }: { day: Day }) => day.timeStamp === timeStamp
   );
   const todayTimeStamp: number = new Date().setHours(0, 0, 0, 0);
-  const toggleModal = (ev: any) => {
+  const toggleModal = () => {
     if (!disabled && dispatch && mini) {
       dispatch({ type: SET_SELECTED_DAY, payload: { dayId: timeStamp } });
     }

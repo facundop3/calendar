@@ -51,13 +51,14 @@ const SelectContainer = styled.div`
 const Select = (props: {
   options: string[];
   defaultValue: string;
-  handleChange?: (p: string) => any;
+  handleChange?: (p: string) => void;
 }) => {
   const { defaultValue, options, handleChange } = props;
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>(defaultValue);
-  const handleSelect = (ev: any) => {
-    setSelected(ev.target.innerText);
+  const handleSelect = (ev: React.MouseEvent) => {
+    const target = ev.target as HTMLElement;
+    setSelected(target.innerText);
   };
   useEffect(() => {
     handleChange && handleChange(selected);

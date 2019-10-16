@@ -4,6 +4,7 @@ import WeekHeader from "./WeekHeader";
 import { calendarContext } from "../../context";
 import Year from "./Year";
 import styled from "styled-components";
+import { CalendarState } from "../../interfaces";
 
 const CalendarContainer = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const CalendarContainer = styled.div`
 const Calendar = () => {
   return (
     <calendarContext.Consumer>
-      {({ state }: any) => {
+      {({ state }: { state: CalendarState }) => {
         const currentDate = state.currentDate;
         return (
           <CalendarContainer>

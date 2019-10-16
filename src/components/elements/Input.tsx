@@ -14,11 +14,12 @@ const Input = (props: {
   type: string;
   required?: boolean;
   value?: string;
-  handleChange: (ev: any) => any;
-  handleEnter: (ev: any) => void;
+  setTitle: (newTitle: string) => void;
+  handleEnter: (ev: React.KeyboardEvent) => void;
 }) => {
-  const handleInputClick = (ev: any) => {
-    ev.target.focus();
+  const handleInputClick = (ev: React.MouseEvent) => {
+    const target = ev.target as HTMLElement;
+    target.focus();
   };
   const {
     label,
@@ -26,11 +27,12 @@ const Input = (props: {
     type,
     required,
     value,
-    handleChange,
+    setTitle,
     handleEnter
   } = props;
-  const onChange = (ev: any) => {
-    handleChange(ev.target.value);
+  const onChange = (ev: React.ChangeEvent) => {
+    const target = ev.target as HTMLInputElement;
+    setTitle(target.value);
   };
 
   return (

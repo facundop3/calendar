@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import styled from "styled-components";
 
 const Btn = styled.button`
@@ -17,7 +17,7 @@ const Button = (props: {
   size?: number;
   transparent?: boolean;
   bg?: string;
-  onClick?: (ev: any) => any;
+  onClick?: (ev: MouseEvent) => void;
 }) => {
   const {
     ariaLabel,
@@ -27,7 +27,7 @@ const Button = (props: {
     size,
     ...otherProps
   } = props;
-  const stopPropagation = (ev: any) => {
+  const stopPropagation = (ev: MouseEvent) => {
     ev.stopPropagation();
     onClick && onClick(ev);
   };

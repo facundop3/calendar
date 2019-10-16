@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Input, TimePicker } from "../elements";
-import { Day } from "../../interfaces";
+import { Day, Action } from "../../interfaces";
 import { Close } from "styled-icons/material/Close";
 import styled from "styled-components";
 import { textColor, backgroundColor, hoverColor } from "../../theme";
@@ -27,22 +27,27 @@ const TaskName = styled.div`
     background-color: transparent !important;
   }
 `;
-const Modal = (props: { dayIndex: number; day: Day; dispatch: any }) => {
+const Modal = (props: {
+  dayIndex: number;
+  day: Day;
+  dispatch?: React.Dispatch<Action>;
+}) => {
   const { dayIndex, day, dispatch } = props;
 
   const [showTimePicker, setShowTimePicker] = useState<boolean>(false);
   const [time, setTime] = useState<Date>(new Date());
   const [title, setTitle] = useState<string>("");
   const toggleModal = () => {
-    dispatch({ type: TOGGLE_MODAL, payload: "" });
+    dispatch && dispatch({ type: TOGGLE_MODAL, payload: "" });
   };
-  const stopPropagation = (ev: any) => {
+  const stopPropagation = (ev: React.MouseEvent) => {
     ev.stopPropagation();
   };
   const saveTask = () => {
-    dispatch({ type: ADD_TASK, payload: { task: { title, time, day } } });
+    dispatch &&
+      dispatch({ type: ADD_TASK, payload: { task: { title, time, day } } });
   };
-  const handleEnter = (ev: any) => {
+  const handleEnter = (ev: React.KeyboardEvent) => {
     ev.key === "Enter" && saveTask();
   };
   return (
@@ -72,7 +77,7 @@ const Modal = (props: { dayIndex: number; day: Day; dispatch: any }) => {
           label="Add title"
           placeholder="Do important stuff"
           type="text"
-          handleChange={setTitle}
+          setTitle={setTitle}
           value={title}
           handleEnter={handleEnter}
         />

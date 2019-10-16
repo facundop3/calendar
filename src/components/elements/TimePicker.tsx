@@ -33,7 +33,10 @@ const PlusIcon = styled(Plus)`
 const MinusIcon = styled(Minus)`
   height: 15px;
 `;
-const TimePicker = (props: { date: Date; handleChange?: any }) => {
+const TimePicker = (props: {
+  date: Date;
+  handleChange?: (date: Date) => void;
+}) => {
   const { date, handleChange } = props;
   const [currentTime, setCurrentTime] = useState<Date>(date);
   const [hours, minutes] = currentTime.toTimeString().split(":");
