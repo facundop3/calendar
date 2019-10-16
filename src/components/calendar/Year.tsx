@@ -24,7 +24,13 @@ const MonthTitle = styled.p`
 const MonthCalendar = styled.div`
   width: 320px;
 `;
-const Year = (props: { year: number; state: CalendarState }) => {
+
+interface YearProps {
+  year: number;
+  state: CalendarState;
+}
+
+const Year = (props: YearProps) => {
   const { year, state } = props;
   const monthDates: Date[] = Array(12)
     .fill(1)
@@ -49,4 +55,6 @@ const Year = (props: { year: number; state: CalendarState }) => {
   );
 };
 
-export default Year;
+const isSameYear = (prevProps: YearProps, nextProps: YearProps) =>
+  prevProps.year === nextProps.year;
+export default React.memo(Year, isSameYear);
