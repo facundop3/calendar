@@ -1,10 +1,9 @@
-import React from "react";
-import Month from "./Month";
-import WeekHeader from "./WeekHeader";
-import { calendarContext } from "../../context";
-import Year from "./Year";
-import styled from "styled-components";
-import { CalendarState } from "../../interfaces";
+import React from 'react'
+import Month from './Month'
+import WeekHeader from './WeekHeader'
+import { useCalendar } from '../../state/context'
+import Year from './Year'
+import styled from 'styled-components'
 
 const CalendarContainer = styled.div`
   display: flex;
@@ -13,30 +12,21 @@ const CalendarContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
-`;
+`
 const Calendar = () => {
+  const [{ calendarMode }] = useCalendar()
   return (
-    <calendarContext.Consumer>
-      {({ state }: { state: CalendarState }) => {
-        const currentDate = state.currentDate;
-        return (
-          <CalendarContainer>
-            {state.calendarMode === "Month" ? (
-              <React.Fragment>
-                <WeekHeader />
-                <Month currentDate={currentDate} mini={false} state={state} />
-              </React.Fragment>
-            ) : (
-              <Year
-                year={new Date(state.currentDate).getFullYear()}
-                state={state}
-              />
-            )}
-          </CalendarContainer>
-        );
-      }}
-    </calendarContext.Consumer>
-  );
-};
+    <CalendarContainer>
+      {calendarMode === 'Month' ? (
+        <React.Fragment>
+          <WeekHeader />
+          <Month mini={false} />
+        </React.Fragment>
+      ) : (
+        <Year />
+      )}
+    </CalendarContainer>
+  )
+}
 
-export default Calendar;
+export default Calendar

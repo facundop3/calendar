@@ -1,10 +1,9 @@
-import React, { useContext, useReducer } from "react";
-import { calendarContext } from "./context";
-import { calendarReducer } from "./reducer/reducer";
-import { Header } from "./components/page";
-import { Calendar, MiniCalendar } from "./components/calendar";
-import "../node_modules/bulma/css/bulma.min.css";
-import styled from "styled-components";
+import React from 'react'
+import { CalendarProvider } from './state/context'
+import { Header } from './components/page'
+import { Calendar, MiniCalendar } from './components/calendar'
+import '../node_modules/bulma/css/bulma.min.css'
+import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +14,7 @@ const Container = styled.div`
   @media (max-width: 768px) {
     padding: 0;
   }
-`;
+`
 
 const LeftSide = styled.div`
   display: flex;
@@ -23,32 +22,17 @@ const LeftSide = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
-`;
+`
 const AppContainer = styled.div`
   min-height: 100vh;
   overflow: hidden;
-`;
+`
 
 const App: React.FC = () => {
-  const { state } = useContext(calendarContext);
-  const [monthSelectorState, monthSelectorDispatcher] = useReducer(
-    calendarReducer,
-    state
-  );
-
   return (
     <AppContainer>
-      <calendarContext.Provider
-        value={{
-          state: monthSelectorState,
-          dispatch: monthSelectorDispatcher
-        }}
-      >
-        <calendarContext.Consumer>
-          {({ dispatch, state }) => (
-            <Header state={state} dispatch={dispatch} />
-          )}
-        </calendarContext.Consumer>
+      <CalendarProvider>
+        <Header />
         <div>
           <Container>
             <LeftSide className="is-hidden-mobile">
@@ -57,9 +41,9 @@ const App: React.FC = () => {
             <Calendar />
           </Container>
         </div>
-      </calendarContext.Provider>
+      </CalendarProvider>
     </AppContainer>
-  );
-};
+  )
+}
 
-export default App;
+export default App

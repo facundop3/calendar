@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { handleEnterPress } from "../../utils/a11y";
-import { textColor, hoverColor, backgroundColor } from "../../theme";
-const uuidv1 = require("uuid/v1");
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import { handleEnterPress } from '../../utils/a11y'
+import { textColor, hoverColor, backgroundColor } from '../../theme'
+const uuidv1 = require('uuid/v1')
 
 const SelectedOption = styled.a`
   color: ${textColor} !important;
@@ -16,17 +16,17 @@ const SelectedOption = styled.a`
   &:focus-within {
     background-color: ${hoverColor} !important;
   }
-`;
+`
 
 const OptionList = styled.div`
   background-color: ${hoverColor} !important;
-`;
+`
 const OptionItem = styled.a`
   color: ${textColor} !important;
   &:hover {
     background-color: ${backgroundColor} !important;
   }
-`;
+`
 
 const SelectContainer = styled.div`
   /* Shame-css */
@@ -47,38 +47,43 @@ const SelectContainer = styled.div`
       position: absolute;
     }
   }
-`;
-const Select = (props: {
-  options: string[];
-  defaultValue: string;
-  handleChange?: (p: string) => void;
-}) => {
-  const { defaultValue, options, handleChange } = props;
-  const [showOptions, setShowOptions] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>(defaultValue);
+`
+
+interface Props {
+  options: string[]
+  defaultValue: string
+  handleChange?: (p: string) => void
+}
+
+const Select: React.FC<Props> = (props) => {
+  const { defaultValue, options, handleChange } = props
+  const [showOptions, setShowOptions] = useState<boolean>(false)
+  const [selected, setSelected] = useState<string>(defaultValue)
   const handleSelect = (ev: React.MouseEvent) => {
-    const target = ev.target as HTMLElement;
-    setSelected(target.innerText);
-  };
+    const target = ev.target as HTMLElement
+    setSelected(target.innerText)
+  }
+
   useEffect(() => {
-    handleChange && handleChange(selected);
-  }, [selected]);
-  const handleClick = () => setShowOptions(!showOptions);
+    handleChange && handleChange(selected)
+  }, [selected])
+
+  const handleClick = () => setShowOptions(!showOptions)
   return (
     <SelectContainer
       className="navbar-item has-dropdown is-hoverable"
       onClick={() => handleClick()}
       tabIndex={0}
-      onKeyPress={ev => handleEnterPress(ev, handleClick)}
+      onKeyPress={(ev) => handleEnterPress(ev, handleClick)}
     >
       <SelectedOption className="navbar-link">{selected}</SelectedOption>
       <OptionList className="navbar-dropdown">
-        {options.map(option => (
+        {options.map((option) => (
           <OptionItem
             className="navbar-item"
             key={uuidv1()}
             onClick={handleSelect}
-            onKeyPress={ev => handleEnterPress(ev, handleSelect)}
+            onKeyPress={(ev) => handleEnterPress(ev, handleSelect)}
             tabIndex={0}
           >
             {option}
@@ -86,7 +91,7 @@ const Select = (props: {
         ))}
       </OptionList>
     </SelectContainer>
-  );
-};
+  )
+}
 
-export default Select;
+export default Select

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { Button, Input, TimePicker } from "../elements";
-import { Day, Action } from "../../interfaces";
-import { Close } from "styled-icons/material/Close";
-import styled from "styled-components";
-import { textColor, backgroundColor, hoverColor } from "../../theme";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import "../animations/styles.css";
-import { TOGGLE_MODAL, ADD_TASK } from "../../reducer/actions";
+import React, { useState } from 'react'
+import { Button, Input, TimePicker } from '../elements'
+import { Day, Action } from '../../interfaces'
+import { Close } from 'styled-icons/material/Close'
+import styled from 'styled-components'
+import { textColor, backgroundColor, hoverColor } from '../../theme'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import '../animations/styles.css'
+import { TOGGLE_MODAL, ADD_TASK } from '../../state/actions'
 const CloseIcon = styled(Close)`
   height: 15px;
   color: ${textColor};
-`;
+`
 const ModalContainer = styled.div`
   min-height: 250px;
   min-width: 200px;
@@ -19,37 +19,37 @@ const ModalContainer = styled.div`
   color: ${textColor} !important;
   z-index: 3;
   border: 0.5px solid ${hoverColor} !important;
-`;
+`
 const TaskName = styled.div`
   display: flex;
   justify-content: space-between;
   button {
     background-color: transparent !important;
   }
-`;
+`
 const Modal = (props: {
-  dayIndex: number;
-  day: Day;
-  dispatch?: React.Dispatch<Action>;
+  dayIndex: number
+  day: Day
+  dispatch?: React.Dispatch<Action>
 }) => {
-  const { dayIndex, day, dispatch } = props;
+  const { dayIndex, day, dispatch } = props
 
-  const [showTimePicker, setShowTimePicker] = useState<boolean>(false);
-  const [time, setTime] = useState<Date>(new Date());
-  const [title, setTitle] = useState<string>("");
+  const [showTimePicker, setShowTimePicker] = useState<boolean>(false)
+  const [time, setTime] = useState<Date>(new Date())
+  const [title, setTitle] = useState<string>('')
   const toggleModal = () => {
-    dispatch && dispatch({ type: TOGGLE_MODAL, payload: "" });
-  };
+    dispatch && dispatch({ type: TOGGLE_MODAL, payload: '' })
+  }
   const stopPropagation = (ev: React.MouseEvent) => {
-    ev.stopPropagation();
-  };
+    ev.stopPropagation()
+  }
   const saveTask = () => {
     dispatch &&
-      dispatch({ type: ADD_TASK, payload: { task: { title, time, day } } });
-  };
+      dispatch({ type: ADD_TASK, payload: { task: { title, time, day } } })
+  }
   const handleEnter = (ev: React.KeyboardEvent) => {
-    ev.key === "Enter" && saveTask();
-  };
+    ev.key === 'Enter' && saveTask()
+  }
   return (
     <ReactCSSTransitionGroup
       transitionName="modal"
@@ -61,8 +61,8 @@ const Modal = (props: {
       <ModalContainer
         className="box"
         style={{
-          left: dayIndex < 3 ? "100px" : "-240px",
-          position: "absolute"
+          left: dayIndex < 3 ? '100px' : '-240px',
+          position: 'absolute',
         }}
         onClick={stopPropagation}
       >
@@ -102,7 +102,7 @@ const Modal = (props: {
         </div>
       </ModalContainer>
     </ReactCSSTransitionGroup>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal
