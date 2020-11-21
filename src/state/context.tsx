@@ -4,12 +4,14 @@ import { calendarReducer } from './reducer'
 
 const defaultValues = {
   currentDate: new Date().getTime(),
-  currentDayId: 0,
+  selectedTimestamp: 0,
   currentDateMin: new Date().getTime(),
   currentDayIdMin: 0,
   selectedDayMini: new Date().getTime(),
   calendarMode: '',
   tasks: [],
+  showModal: false,
+  currentDayIndex: 0,
 }
 
 const stateFromLocalStore = localStorage.getItem('calendarState')

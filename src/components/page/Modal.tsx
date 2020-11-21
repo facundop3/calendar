@@ -1,23 +1,19 @@
 import React, { useState } from 'react'
 import { Button, Input, TimePicker } from '../elements'
-import { Day, Action } from '../../interfaces'
 import { Close } from 'styled-icons/material/Close'
 import styled from 'styled-components'
-import { textColor, backgroundColor, hoverColor } from '../../theme'
-import '../animations/styles.css'
 import { TOGGLE_MODAL, ADD_TASK } from '../../state/actions'
+import { useCalendar } from '../../state/context'
 const CloseIcon = styled(Close)`
   height: 15px;
-  color: ${textColor};
 `
-const ModalContainer = styled.div`
+const ModalContainer = styled.form`
   min-height: 250px;
   min-width: 200px;
-  position: absolute;
-  background-color: ${backgroundColor} !important;
-  color: ${textColor} !important;
+  position: fixed;
+  background-color: #fafafa !important;
   z-index: 3;
-  border: 0.5px solid ${hoverColor} !important;
+  border: 0.5px solid #fafafa !important;
 `
 const TaskName = styled.div`
   display: flex;
@@ -26,54 +22,74 @@ const TaskName = styled.div`
     background-color: transparent !important;
   }
 `
-const Modal = (props: {
-  dayIndex: number
-  day: Day
-  dispatch?: React.Dispatch<Action>
-}) => {
-  const { dayIndex, day, dispatch } = props
-
+const Modal = () => {
+  const [
+    { selectedTimestamp, currentDayIndex, showModal },
+    dispatch,
+  ] = useCalendar()
   const [showTimePicker, setShowTimePicker] = useState<boolean>(false)
   const [time, setTime] = useState<Date>(new Date())
   const [title, setTitle] = useState<string>('')
   const toggleModal = () => {
-    dispatch && dispatch({ type: TOGGLE_MODAL, payload: '' })
+    dispatch({ type: TOGGLE_MODAL, payload: '' })
   }
   const stopPropagation = (ev: React.MouseEvent) => {
     ev.stopPropagation()
   }
   const saveTask = () => {
-    dispatch &&
-      dispatch({ type: ADD_TASK, payload: { task: { title, time, day } } })
+    dispatch({
+      type: ADD_TASK,
+      payload: {
+        task: {
+          title,
+          time,
+          day: { timestamp: selectedTimestamp, disabled: false },
+        },
+      },
+    })
+    setTitle('')
+    dispatch({
+      type: TOGGLE_MODAL,
+      payload: {
+        timestamp: selectedTimestamp,
+        showModal: false,
+        currentDayIndex,
+      },
+    })
   }
-  const handleEnter = (ev: React.KeyboardEvent) => {
-    ev.key === 'Enter' && saveTask()
+
+  const handleSubmit = (ev: React.FormEvent) => {
+    ev.preventDefault()
+    console.log(ev)
+    console.log(title)
+    title && saveTask()
+  }
+
+  if (!showModal) {
+    return null
   }
   return (
     <ModalContainer
       className="box"
-      style={{
-        left: dayIndex < 3 ? '100px' : '-240px',
-        position: 'absolute',
-      }}
       onClick={stopPropagation}
+      onSubmit={handleSubmit}
     >
       <TaskName>
         <h4>{title}</h4>
-        <Button ariaLabel="close" onClick={toggleModal}>
+        <Button ariaLabel="close" onClick={toggleModal} type="button">
           <CloseIcon />
         </Button>
       </TaskName>
-      <p>{new Date(day.timeStamp).toDateString()}</p>
+      <p>{new Date(selectedTimestamp).toDateString()}</p>
       <Input
         label="Add title"
         placeholder="Do important stuff"
         type="text"
         setTitle={setTitle}
         value={title}
-        handleEnter={handleEnter}
       />
       <Button
+        type="button"
         ariaLabel="Add an hour"
         onClick={() => setShowTimePicker(!showTimePicker)}
       >
@@ -81,10 +97,15 @@ const Modal = (props: {
       </Button>
       {showTimePicker && <TimePicker date={time} handleChange={setTime} />}
       <div>
-        <Button ariaLabel="Save button" onClick={saveTask}>
+        <Button ariaLabel="Save button" type="submit">
           Save
         </Button>
-        <Button ariaLabel="Cancel button" type="is-light" onClick={toggleModal}>
+        <Button
+          type="button"
+          ariaLabel="Cancel button"
+          className="is-light"
+          onClick={toggleModal}
+        >
           cancel
         </Button>
       </div>

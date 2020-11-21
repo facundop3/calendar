@@ -12,9 +12,9 @@ const MiniCalendarContainer = styled.div`
 const MiniCalendar = () => {
   return (
     <MiniCalendarContainer>
-      <MonthSelector mini={true} />
-      <WeekHeader mini={true} />
-      <Month mini={true} />
+      <MonthSelector mini />
+      <WeekHeader mini />
+      <Month mini />
     </MiniCalendarContainer>
   )
 }

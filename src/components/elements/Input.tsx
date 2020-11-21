@@ -1,26 +1,26 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const InputContainer = styled.label`
   display: flex;
   flex-direction: column;
-`;
+`
 const InputDescription = styled.small`
   color: gray;
-`;
+`
 const Input = (props: {
-  label: string;
-  placeholder?: string;
-  type: string;
-  required?: boolean;
-  value?: string;
-  setTitle: (newTitle: string) => void;
-  handleEnter: (ev: React.KeyboardEvent) => void;
+  label: string
+  placeholder?: string
+  type: string
+  required?: boolean
+  value?: string
+  setTitle: (newTitle: string) => void
+  handleEnter?: (ev: React.KeyboardEvent) => void
 }) => {
   const handleInputClick = (ev: React.MouseEvent) => {
-    const target = ev.target as HTMLElement;
-    target.focus();
-  };
+    const target = ev.target as HTMLElement
+    target.focus()
+  }
   const {
     label,
     placeholder,
@@ -28,12 +28,12 @@ const Input = (props: {
     required,
     value,
     setTitle,
-    handleEnter
-  } = props;
+    handleEnter,
+  } = props
   const onChange = (ev: React.ChangeEvent) => {
-    const target = ev.target as HTMLInputElement;
-    setTitle(target.value);
-  };
+    const target = ev.target as HTMLInputElement
+    setTitle(target.value)
+  }
 
   return (
     <InputContainer>
@@ -49,7 +49,7 @@ const Input = (props: {
         onKeyDown={handleEnter}
       />
     </InputContainer>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

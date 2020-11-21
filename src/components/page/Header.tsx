@@ -1,10 +1,8 @@
 import React from 'react'
-import { Select, Button } from '../elements'
+import { Select } from '../elements'
 import { MonthSelector } from '../calendar'
 import styled, { withTheme } from 'styled-components'
 import { CalendarAlt } from 'styled-icons/fa-solid/CalendarAlt'
-import { backgroundColor, textColor, oppositeBlue } from '../../theme'
-import { useTheme } from '../../ThemeContext'
 import { CHANGE_CALENDAR_MODE } from '../../state/actions'
 import { useCalendar } from '../../state/context'
 
@@ -25,7 +23,6 @@ const HeaderTitle = styled.div`
 const Title = styled.h2`
   margin: 0;
   font-family: sans-serif;
-  color: ${textColor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,9 +32,9 @@ const Title = styled.h2`
 `
 
 const NavBar = styled.nav`
-  border-bottom: 0.5px solid ${textColor};
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   margin-bottom: '1em';
-  background-color: ${backgroundColor} !important;
+  background-color: #fafafa !important;
   display: flex;
   align-items: center !important;
   justify-content: center;
@@ -53,22 +50,12 @@ const NavBar = styled.nav`
     }
   }
 `
-const Sky = styled.div`
-  background-color: ${oppositeBlue};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  max-height: 40px;
-  max-width: 40px;
-`
+
 const Header = (props: { theme: { mode: string } }) => {
   const [state, dispatch] = useCalendar()
-  const themeToggle: any = useTheme()
   const calendarMode = state.calendarMode
   const handleChange = (calendarMode: string) => {
-    dispatch &&
-      dispatch({ type: CHANGE_CALENDAR_MODE, payload: { calendarMode } })
+    dispatch({ type: CHANGE_CALENDAR_MODE, payload: { calendarMode } })
   }
   return (
     <NavBar className="navbar">
@@ -80,15 +67,6 @@ const Header = (props: { theme: { mode: string } }) => {
       </div>
 
       <MonthSelector onlyYear={calendarMode === 'Year'} mini={false} />
-      <Sky>
-        <Button
-          ariaLabel="night mode"
-          onClick={() => themeToggle.toggle()}
-          bg="transparent"
-        >
-          {props.theme.mode === 'dark' ? '🌝' : '🌚'}
-        </Button>
-      </Sky>
       <div className="navbar-end">
         <div className="navbar-item">
           <Select

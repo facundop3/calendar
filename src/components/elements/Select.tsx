@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { handleEnterPress } from '../../utils/a11y'
-import { textColor, hoverColor, backgroundColor } from '../../theme'
 const uuidv1 = require('uuid/v1')
 
 const SelectedOption = styled.a`
-  color: ${textColor} !important;
   border-radius: 4px;
   &:hover {
-    background-color: ${hoverColor} !important;
+    background-color: #fafafa !important;
   }
   &:focus {
-    background-color: ${hoverColor} !important;
+    background-color: #fafafa !important;
   }
   &:focus-within {
-    background-color: ${hoverColor} !important;
+    background-color: #fafafa !important;
   }
 `
 
 const OptionList = styled.div`
-  background-color: ${hoverColor} !important;
+  background-color: #fafafa !important;
 `
 const OptionItem = styled.a`
-  color: ${textColor} !important;
   &:hover {
-    background-color: ${backgroundColor} !important;
+    background-color: #fafafa !important;
   }
 `
 
@@ -52,7 +49,7 @@ const SelectContainer = styled.div`
 interface Props {
   options: string[]
   defaultValue: string
-  handleChange?: (p: string) => void
+  handleChange: (p: string) => void
 }
 
 const Select: React.FC<Props> = (props) => {
@@ -65,7 +62,8 @@ const Select: React.FC<Props> = (props) => {
   }
 
   useEffect(() => {
-    handleChange && handleChange(selected)
+    // TODO: check how to solve the warning asking to add `handleChange` to the dependencies list
+    handleChange(selected)
   }, [selected])
 
   const handleClick = () => setShowOptions(!showOptions)

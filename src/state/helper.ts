@@ -1,4 +1,4 @@
-import { CalendarState, Action } from "../interfaces";
+import { CalendarState, Action } from '../interfaces'
 
 export const changeCalendarMode = (
   state: CalendarState,
@@ -6,83 +6,85 @@ export const changeCalendarMode = (
 ): CalendarState => {
   const newState: CalendarState = {
     ...state,
-    calendarMode: action.payload.calendarMode
-  };
-  return newState;
-};
+    calendarMode: action.payload.calendarMode,
+  }
+  return newState
+}
 
 export const addTask = (state: CalendarState, action: Action) => {
-  const { title, time, day } = action.payload.task;
+  const { title, time, day } = action.payload.task
   const newState: CalendarState = {
     ...state,
     tasks: [...state.tasks, { title, time, day }],
-    currentDayId: 0
-  };
-  return newState;
-};
+    selectedTimestamp: 0,
+  }
+  return newState
+}
 
 export const setSelectedDay = (state: CalendarState, action: Action) => {
   const newState: CalendarState = {
     ...state,
-    selectedDayMini: action.payload.dayId
-  };
-  return newState;
-};
+    selectedDayMini: action.payload.timestamp,
+  }
+  return newState
+}
 
 export const toggleModal = (state: CalendarState, action: Action) => {
   const newState: CalendarState = {
     ...state,
-    currentDayId: action.payload.dayId
-  };
+    selectedTimestamp: action.payload.timestamp,
+    showModal: action.payload.showModal,
+    currentDayIndex: action.payload.currentDayIndex,
+  }
 
-  return newState;
-};
+  return newState
+}
 
 export const nextMonth = (state: CalendarState, action: Action) => {
-  const mini = action.payload ? action.payload.mini : false;
-  let newState: CalendarState;
-  const currentDate = mini ? "currentDateMin" : "currentDate";
+  const mini = action.payload ? action.payload.mini : false
+  let newState: CalendarState
+  const currentDate = mini ? 'currentDateMin' : 'currentDate'
   if (new Date(state[currentDate]).getMonth() === 11) {
-    const year = new Date(state[currentDate]).getFullYear() + 1;
+    const year = new Date(state[currentDate]).getFullYear() + 1
     newState = {
       ...state,
-      [currentDate]: new Date(year, 0).getTime()
-    };
+      [currentDate]: new Date(year, 0).getTime(),
+    }
   } else {
     newState = {
       ...state,
       [currentDate]: new Date(
         new Date(state[currentDate]).getFullYear(),
         new Date(state[currentDate]).getMonth() + 1
-      ).getTime()
-    };
+      ).getTime(),
+    }
   }
-  return newState;
-};
+  return newState
+}
 
 export const prevMonth = (state: CalendarState, action: Action) => {
-  const mini = action.payload ? action.payload.mini : false;
-  let newState: CalendarState;
-  const currentDate = mini ? "currentDateMin" : "currentDate";
+  const mini = action.payload ? action.payload.mini : false
+  let newState: CalendarState
+  const currentDate = mini ? 'currentDateMin' : 'currentDate'
   if (new Date(state[currentDate]).getMonth() === 0) {
     newState = {
       ...state,
       [currentDate]: new Date(
         new Date(state[currentDate]).getFullYear() - 1,
         11
-      ).getTime()
-    };
+      ).getTime(),
+    }
   } else {
     newState = {
       ...state,
       [currentDate]: new Date(
         new Date(state[currentDate]).getFullYear(),
         new Date(state[currentDate]).getMonth() - 1
-      ).getTime()
-    };
+      ).getTime(),
+    }
   }
-  return newState;
-};
+  return newState
+}
 
 export const prevYear = (state: CalendarState, action: Action) => {
   const newState: CalendarState = {
@@ -90,10 +92,10 @@ export const prevYear = (state: CalendarState, action: Action) => {
     currentDate: new Date(
       new Date(state.currentDate).getFullYear() - 1,
       new Date(state.currentDate).getMonth()
-    ).getTime()
-  };
-  return newState;
-};
+    ).getTime(),
+  }
+  return newState
+}
 
 export const nextYear = (state: CalendarState, action: Action) => {
   const newState: CalendarState = {
@@ -101,12 +103,12 @@ export const nextYear = (state: CalendarState, action: Action) => {
     currentDate: new Date(
       new Date(state.currentDate).getFullYear() + 1,
       new Date(state.currentDate).getMonth()
-    ).getTime()
-  };
-  return newState;
-};
+    ).getTime(),
+  }
+  return newState
+}
 
 export const persist = (state: CalendarState) => {
-  localStorage.setItem("calendarState", JSON.stringify(state));
-  return state;
-};
+  localStorage.setItem('calendarState', JSON.stringify(state))
+  return state
+}

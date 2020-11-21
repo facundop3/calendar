@@ -1,26 +1,28 @@
 export interface CalendarState {
-  currentDate: number;
-  currentDateMin: number;
-  selectedDayMini: number;
-  currentDayId: number;
-  calendarMode: string;
-  currentDayIdMin: number;
-  calendarModeMin: string;
-  tasks: Task[];
+  currentDate: number
+  currentDateMin: number
+  selectedDayMini: number
+  selectedTimestamp: number
+  calendarMode: string
+  currentDayIdMin: number
+  calendarModeMin: string
+  tasks: Task[]
+  showModal: boolean
+  currentDayIndex: number
 }
 
 export interface Action {
-  type?: string;
-  payload?: any;
+  type?: string
+  payload?: any
 }
 
 export interface Day {
-  timeStamp: number;
-  disabled: boolean;
+  timestamp: number
+  disabled: boolean
 }
 
 export interface Task {
-  title: string;
-  day: Day;
-  time: Date;
+  title: string
+  day: Day
+  time: Date
 }

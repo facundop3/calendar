@@ -3,7 +3,6 @@ import { Button } from '../elements'
 import { NavigateNext } from 'styled-icons/material/NavigateNext'
 import { NavigateBefore } from 'styled-icons/material/NavigateBefore'
 import styled, { withTheme } from 'styled-components'
-import { textColor } from '../../theme'
 import {
   PREV_YEAR,
   PREV_MONTH,
@@ -20,7 +19,7 @@ const MonthSelectorContainer = styled.div`
     background-color: transparent !important;
   }
   svg {
-    color: ${textColor};
+    color: #000;
   }
   .btn--link {
     width: 60px;

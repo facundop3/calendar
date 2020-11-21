@@ -9,6 +9,10 @@ const YearContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   zoom: 0.8;
+  padding-bottom: 5em;
+  padding-left: 7em;
+  padding-top: 1em;
+  height: 100%;
 `
 
 const MonthTitle = styled.p`

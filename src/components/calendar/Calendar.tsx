@@ -1,9 +1,9 @@
 import React from 'react'
 import Month from './Month'
-import WeekHeader from './WeekHeader'
 import { useCalendar } from '../../state/context'
 import Year from './Year'
 import styled from 'styled-components'
+import { Modal } from '../page'
 
 const CalendarContainer = styled.div`
   display: flex;
@@ -17,8 +17,8 @@ const Calendar = () => {
     <CalendarContainer>
       {calendarMode === 'Month' ? (
         <>
-          <WeekHeader />
           <Month mini={false} />
+          <Modal />
         </>
       ) : (
         <Year />

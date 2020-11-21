@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import Button from "./Button";
-import styled from "styled-components";
-import { Plus } from "styled-icons/fa-solid/Plus";
-import { Minus } from "styled-icons/typicons/Minus";
+import React, { useState, useEffect } from 'react'
+import Button from './Button'
+import styled from 'styled-components'
+import { Plus } from 'styled-icons/fa-solid/Plus'
+import { Minus } from 'styled-icons/typicons/Minus'
 
 const TimePickerContainer = styled.div`
   display: flex;
   max-width: 80px;
-`;
+`
 
 const TimePickerValue = styled.div`
   padding: 0.5em;
@@ -15,7 +15,7 @@ const TimePickerValue = styled.div`
   p {
     margin: 0;
   }
-`;
+`
 const ControlsContainer = styled.div`
   display: inline-grid;
   zoom: 0.7;
@@ -24,29 +24,29 @@ const ControlsContainer = styled.div`
     margin: 0;
     padding: 4px 8px;
   }
-`;
+`
 
 const PlusIcon = styled(Plus)`
   height: 15px;
-`;
+`
 
 const MinusIcon = styled(Minus)`
   height: 15px;
-`;
+`
 const TimePicker = (props: {
-  date: Date;
-  handleChange?: (date: Date) => void;
+  date: Date
+  handleChange?: (date: Date) => void
 }) => {
-  const { date, handleChange } = props;
-  const [currentTime, setCurrentTime] = useState<Date>(date);
-  const [hours, minutes] = currentTime.toTimeString().split(":");
+  const { date, handleChange } = props
+  const [currentTime, setCurrentTime] = useState<Date>(date)
+  const [hours, minutes] = currentTime.toTimeString().split(':')
   const changeMinutes = (sign: number) => {
-    const fiveMinutesInMiliseconds = sign * 5 * 60000;
-    setCurrentTime(new Date(currentTime.getTime() + fiveMinutesInMiliseconds));
-  };
+    const fiveMinutesInMiliseconds = sign * 5 * 60000
+    setCurrentTime(new Date(currentTime.getTime() + fiveMinutesInMiliseconds))
+  }
   useEffect(() => {
-    handleChange && handleChange(currentTime);
-  }, [currentTime, handleChange]);
+    handleChange && handleChange(currentTime)
+  }, [currentTime, handleChange])
   return (
     <TimePickerContainer>
       <TimePickerValue>
@@ -55,10 +55,15 @@ const TimePicker = (props: {
         </p>
       </TimePickerValue>
       <ControlsContainer>
-        <Button ariaLabel="Add 5 minutes" onClick={() => changeMinutes(1)}>
+        <Button
+          ariaLabel="Add 5 minutes"
+          onClick={() => changeMinutes(1)}
+          type="button"
+        >
           <PlusIcon />
         </Button>
         <Button
+          type="button"
           ariaLabel="substract 5 minutes"
           onClick={() => changeMinutes(-1)}
         >
@@ -66,7 +71,7 @@ const TimePicker = (props: {
         </Button>
       </ControlsContainer>
     </TimePickerContainer>
-  );
-};
+  )
+}
 
-export default TimePicker;
+export default TimePicker

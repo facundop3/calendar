@@ -8,7 +8,6 @@
     "@types/node": "^12.0.10",
     "@types/react-dom": "16.8.4",
     "@types/styled-components": "^4.1.16",
-    "@types/styled-theming": "^2.2.2",
     "bulma": "^0.7.5",
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",
@@ -16,7 +15,6 @@
     "react-scripts": "3.0.1",
     "styled-components": "^4.3.2",
     "styled-icons": "^8.1.0",
-    "styled-theming": "^2.2.0",
     "typescript": "3.5.2",
     "uuid": "^3.3.2"
   },
