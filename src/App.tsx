@@ -4,6 +4,7 @@ import { Header } from './components/page'
 import { Calendar, MiniCalendar } from './components/calendar'
 import '../node_modules/bulma/css/bulma.min.css'
 import styled from 'styled-components'
+import { MyThemeProvider } from './ThemeContext'
 
 const Container = styled.div`
   display: flex;
@@ -24,25 +25,27 @@ const LeftSide = styled.div`
   align-items: center;
 `
 const AppContainer = styled.div`
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 `
 
 const App: React.FC = () => {
   return (
-    <AppContainer>
+    <MyThemeProvider>
       <CalendarProvider>
-        <Header />
-        <div>
+        <AppContainer>
+          <Header />
           <Container>
             <LeftSide className="is-hidden-mobile">
               <MiniCalendar />
             </LeftSide>
             <Calendar />
           </Container>
-        </div>
+        </AppContainer>
       </CalendarProvider>
-    </AppContainer>
+    </MyThemeProvider>
   )
 }
 

@@ -1,18 +1,19 @@
 import React from 'react'
 import { getDaysOnMonth } from '../../utils/dates'
-import { chunkArray } from '../../utils/arrays'
-import Week from './Week'
 import { Day } from '../../interfaces'
 import styled from 'styled-components'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import '../animations/styles.css'
 import { useCalendar } from '../../state/context'
+import DayBox from './DayBox'
 const uuidv1 = require('uuid/v1')
 
 const MonthContainer = styled.div`
   justify-content: space-arround;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
   margin: 1em;
   width: 100%;
+  height: 100%;
   @media (max-width: 768px) {
     margin: 0;
   }
@@ -32,25 +33,14 @@ const Month = (props: { mini: boolean; currentDate?: number }) => {
     value: 'x',
     disabled: true,
   })
-  const blankFilledWeeks: Day[][] = chunkArray(
-    [...firstBlanks, ...monthDays, ...LastBlanks],
-    7
-  )
+  const blankFilledDays = [...firstBlanks, ...monthDays, ...LastBlanks]
 
   return (
-    <ReactCSSTransitionGroup
-      transitionName="example"
-      transitionAppear={true}
-      transitionAppearTimeout={500}
-      transitionEnter={false}
-      transitionLeave={false}
-    >
-      <MonthContainer>
-        {blankFilledWeeks.map((weekDays: Day[]) => (
-          <Week days={weekDays} key={uuidv1()} mini={mini} />
-        ))}
-      </MonthContainer>
-    </ReactCSSTransitionGroup>
+    <MonthContainer>
+      {blankFilledDays.map((day: Day, index: number) => (
+        <DayBox day={day} key={uuidv1()} index={index} mini={mini} />
+      ))}
+    </MonthContainer>
   )
 }
 

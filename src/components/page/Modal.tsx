@@ -4,7 +4,6 @@ import { Day, Action } from '../../interfaces'
 import { Close } from 'styled-icons/material/Close'
 import styled from 'styled-components'
 import { textColor, backgroundColor, hoverColor } from '../../theme'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import '../animations/styles.css'
 import { TOGGLE_MODAL, ADD_TASK } from '../../state/actions'
 const CloseIcon = styled(Close)`
@@ -51,57 +50,45 @@ const Modal = (props: {
     ev.key === 'Enter' && saveTask()
   }
   return (
-    <ReactCSSTransitionGroup
-      transitionName="modal"
-      transitionAppear={true}
-      transitionAppearTimeout={500}
-      transitionEnter={false}
-      transitionLeave={false}
+    <ModalContainer
+      className="box"
+      style={{
+        left: dayIndex < 3 ? '100px' : '-240px',
+        position: 'absolute',
+      }}
+      onClick={stopPropagation}
     >
-      <ModalContainer
-        className="box"
-        style={{
-          left: dayIndex < 3 ? '100px' : '-240px',
-          position: 'absolute',
-        }}
-        onClick={stopPropagation}
-      >
-        <TaskName>
-          <h4>{title}</h4>
-          <Button ariaLabel="close" onClick={toggleModal}>
-            <CloseIcon />
-          </Button>
-        </TaskName>
-        <p>{new Date(day.timeStamp).toDateString()}</p>
-        <Input
-          label="Add title"
-          placeholder="Do important stuff"
-          type="text"
-          setTitle={setTitle}
-          value={title}
-          handleEnter={handleEnter}
-        />
-        <Button
-          ariaLabel="Add an hour"
-          onClick={() => setShowTimePicker(!showTimePicker)}
-        >
-          Add an hour
+      <TaskName>
+        <h4>{title}</h4>
+        <Button ariaLabel="close" onClick={toggleModal}>
+          <CloseIcon />
         </Button>
-        {showTimePicker && <TimePicker date={time} handleChange={setTime} />}
-        <div>
-          <Button ariaLabel="Save button" onClick={saveTask}>
-            Save
-          </Button>
-          <Button
-            ariaLabel="Cancel button"
-            type="is-light"
-            onClick={toggleModal}
-          >
-            cancel
-          </Button>
-        </div>
-      </ModalContainer>
-    </ReactCSSTransitionGroup>
+      </TaskName>
+      <p>{new Date(day.timeStamp).toDateString()}</p>
+      <Input
+        label="Add title"
+        placeholder="Do important stuff"
+        type="text"
+        setTitle={setTitle}
+        value={title}
+        handleEnter={handleEnter}
+      />
+      <Button
+        ariaLabel="Add an hour"
+        onClick={() => setShowTimePicker(!showTimePicker)}
+      >
+        Add an hour
+      </Button>
+      {showTimePicker && <TimePicker date={time} handleChange={setTime} />}
+      <div>
+        <Button ariaLabel="Save button" onClick={saveTask}>
+          Save
+        </Button>
+        <Button ariaLabel="Cancel button" type="is-light" onClick={toggleModal}>
+          cancel
+        </Button>
+      </div>
+    </ModalContainer>
   )
 }
 
