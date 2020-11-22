@@ -9,8 +9,10 @@
     "@types/react-dom": "16.8.4",
     "@types/styled-components": "^4.1.16",
     "bulma": "^0.7.5",
+    "customize-cra": "^1.0.0",
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",
+    "react-app-rewired": "^2.1.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
     "styled-components": "^4.3.2",
@@ -19,9 +21,9 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -42,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^16.8.22"
+    "@types/react": "^16.8.22",
+    "babel-plugin-styled-components": "^1.12.0"
   }
 }
