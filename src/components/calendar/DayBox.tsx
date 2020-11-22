@@ -72,7 +72,7 @@ const DayBox: React.FC<Props> = (props) => {
       if (mini) {
         dispatch({
           type: SET_SELECTED_DAY,
-          payload: { timestamp },
+          payload: { timestamp, currentDayIndex: index },
         })
       } else {
         dispatch({

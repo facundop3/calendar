@@ -1,7 +1,7 @@
 import React from 'react'
 import { CalendarProvider } from './state/context'
 import { Header } from './components/page'
-import { Calendar, MiniCalendar } from './components/calendar'
+import { Calendar, MiniCalendar, CreateEvent } from './components/calendar'
 import '../node_modules/bulma/css/bulma.min.css'
 import styled from 'styled-components'
 
@@ -17,8 +17,10 @@ const Container = styled.div`
 
 const LeftSide = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: baseline;
   height: 100%;
+  padding-top: 1em;
 `
 const AppContainer = styled.div`
   height: 100vh;
@@ -35,6 +37,7 @@ const App: React.FC = () => {
         <Header />
         <Container>
           <LeftSide className="is-hidden-mobile">
+            <CreateEvent />
             <MiniCalendar />
           </LeftSide>
           <Calendar />
