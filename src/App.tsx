@@ -2,6 +2,7 @@ import React from 'react'
 import { CalendarProvider } from './state/context'
 import { Header } from './components/page'
 import { Calendar, MiniCalendar, CreateEvent } from './components/calendar'
+// TODO: Remove Bulma css
 import '../node_modules/bulma/css/bulma.min.css'
 import styled from 'styled-components'
 

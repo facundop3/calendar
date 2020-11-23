@@ -9,7 +9,7 @@ const InputDescription = styled.small`
   color: gray;
 `
 const Input = (props: {
-  label: string
+  label?: string
   placeholder?: string
   type: string
   required?: boolean
@@ -37,7 +37,7 @@ const Input = (props: {
 
   return (
     <InputContainer>
-      <InputDescription>{label}</InputDescription>
+      {label && <InputDescription>{label}</InputDescription>}
       <input
         className="input"
         placeholder={placeholder}

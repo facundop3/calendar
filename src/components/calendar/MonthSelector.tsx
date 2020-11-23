@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '../elements'
 import { NavigateNext } from 'styled-icons/material/NavigateNext'
 import { NavigateBefore } from 'styled-icons/material/NavigateBefore'
-import styled, { withTheme } from 'styled-components'
+import styled from 'styled-components'
 import {
   PREV_YEAR,
   PREV_MONTH,
@@ -49,11 +49,7 @@ const NavigateBeforeIcon = styled(NavigateBefore)`
   font-weight: bold;
 `
 
-const MonthSelector = (props: {
-  mini?: boolean
-  onlyYear?: boolean
-  theme?: { mode: string }
-}) => {
+const MonthSelector = (props: { mini?: boolean; onlyYear?: boolean }) => {
   const { mini, onlyYear } = props
   const [state, dispatch] = useCalendar()
   const currentDate = mini ? state.currentDateMin : state.currentDate
@@ -92,4 +88,4 @@ const MonthSelector = (props: {
   )
 }
 
-export default withTheme(MonthSelector)
+export default MonthSelector

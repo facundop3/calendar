@@ -4,24 +4,57 @@ import { Close } from 'styled-icons/material/Close'
 import styled from 'styled-components'
 import { TOGGLE_MODAL, ADD_TASK } from '../../state/actions'
 import { useCalendar } from '../../state/context'
-const CloseIcon = styled(Close)`
-  height: 15px;
+
+const ModalOverly = styled.div`
+  position: fixed; /* Positioning and size */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.5); /* color */
 `
-const ModalContainer = styled.form`
-  min-height: 250px;
-  min-width: 200px;
+
+const ModalForm = styled.form`
+  max-height: 272px;
+  max-width: 530px;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   position: fixed;
-  background-color: #fafafa !important;
-  z-index: 3;
-  border: 0.5px solid #fafafa !important;
+  background-color: #fafafa;
+  overflow: hidden;
+  top: 35%;
+  left: 40%;
 `
-const TaskName = styled.div`
+
+const ModalHeader = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  background-color: #f2f3f4;
   button {
     background-color: transparent !important;
   }
 `
+
+const CloseIcon = styled(Close)`
+  height: 15px;
+  color: #000;
+`
+const ModalBody = styled.div`
+  padding: 1em;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+const ModalBodyItem = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 1em;
+`
+
 const Modal = () => {
   const [
     { selectedTimestamp, currentDayIndex, showModal },
@@ -69,47 +102,50 @@ const Modal = () => {
     return null
   }
   return (
-    <ModalContainer
-      className="box"
-      onClick={stopPropagation}
-      onSubmit={handleSubmit}
-    >
-      <TaskName>
-        <h4>{title}</h4>
-        <Button ariaLabel="close" onClick={toggleModal} type="button">
-          <CloseIcon />
-        </Button>
-      </TaskName>
-      <p>{new Date(selectedTimestamp).toDateString()}</p>
-      <Input
-        label="Add title"
-        placeholder="Do important stuff"
-        type="text"
-        setTitle={setTitle}
-        value={title}
-      />
-      <Button
-        type="button"
-        ariaLabel="Add an hour"
-        onClick={() => setShowTimePicker(!showTimePicker)}
-      >
-        Add an hour
-      </Button>
-      {showTimePicker && <TimePicker date={time} handleChange={setTime} />}
-      <div>
-        <Button ariaLabel="Save button" type="submit">
-          Save
-        </Button>
-        <Button
-          type="button"
-          ariaLabel="Cancel button"
-          className="is-light"
-          onClick={toggleModal}
-        >
-          cancel
-        </Button>
-      </div>
-    </ModalContainer>
+    <ModalOverly onClick={toggleModal}>
+      <ModalForm onClick={stopPropagation} onSubmit={handleSubmit}>
+        <ModalHeader>
+          <Button ariaLabel="close" onClick={toggleModal} type="button">
+            <CloseIcon />
+          </Button>
+        </ModalHeader>
+        <ModalBody>
+          <Input
+            placeholder="Add a title"
+            type="text"
+            setTitle={setTitle}
+            value={title}
+          />
+          <ModalBodyItem>
+            <p>{new Date(selectedTimestamp).toDateString()}</p>
+            {/* TODO: FIX the ugly add an hour UI */}
+            <Button
+              type="button"
+              ariaLabel="Add an hour"
+              onClick={() => setShowTimePicker(!showTimePicker)}
+            >
+              Add an hour
+            </Button>
+            {showTimePicker && (
+              <TimePicker date={time} handleChange={setTime} />
+            )}
+          </ModalBodyItem>
+          <div>
+            <Button ariaLabel="Save button" type="submit">
+              Save
+            </Button>
+            <Button
+              type="button"
+              ariaLabel="Cancel button"
+              className="is-light"
+              onClick={toggleModal}
+            >
+              cancel
+            </Button>
+          </div>
+        </ModalBody>
+      </ModalForm>
+    </ModalOverly>
   )
 }
 
