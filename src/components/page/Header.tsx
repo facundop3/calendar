@@ -3,7 +3,7 @@ import { Select } from '../elements'
 import { MonthSelector } from '../calendar'
 import styled from 'styled-components'
 import { CalendarAlt } from 'styled-icons/fa-solid/CalendarAlt'
-import { CHANGE_CALENDAR_MODE } from '../../state/actions'
+import { changeCalendarMode } from '../../state/actionCreators'
 import { useCalendar } from '../../state/context'
 
 const CalendarIcon = styled(CalendarAlt)`
@@ -55,7 +55,7 @@ const Header: React.FC = () => {
   const [state, dispatch] = useCalendar()
   const calendarMode = state.calendarMode
   const handleChange = (calendarMode: string) => {
-    dispatch({ type: CHANGE_CALENDAR_MODE, payload: { calendarMode } })
+    dispatch(changeCalendarMode(calendarMode as 'Month' | 'Year'))
   }
   return (
     <NavBar className="navbar">

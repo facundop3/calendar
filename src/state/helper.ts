@@ -33,7 +33,7 @@ export const toggleModal = (state: CalendarState, action: Action) => {
   const newState: CalendarState = {
     ...state,
     selectedTimestamp: action.payload.timestamp,
-    showModal: action.payload.showModal,
+    showModal: !state.showModal,
     currentDayIndex: action.payload.currentDayIndex,
   }
 

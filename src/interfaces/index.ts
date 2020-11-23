@@ -3,7 +3,7 @@ export interface CalendarState {
   currentDateMin: number
   selectedDayMini: number
   selectedTimestamp: number
-  calendarMode: string
+  calendarMode: 'Month' | 'Year'
   currentDayIdMin: number
   calendarModeMin: string
   tasks: Task[]

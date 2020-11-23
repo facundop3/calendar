@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Input, TimePicker } from '../elements'
 import { Close } from 'styled-icons/material/Close'
 import styled from 'styled-components'
-import { TOGGLE_MODAL, ADD_TASK } from '../../state/actions'
+import { toggleModal, addTask } from '../../state/actionCreators'
 import { useCalendar } from '../../state/context'
 
 const ModalOverly = styled.div`
@@ -56,6 +56,7 @@ const ModalBodyItem = styled.div`
 `
 
 const Modal = () => {
+  // TODO: use `currentDayIndex` to place the modal near the day the user clicked
   const [
     { selectedTimestamp, currentDayIndex, showModal },
     dispatch,
@@ -63,32 +64,21 @@ const Modal = () => {
   const [showTimePicker, setShowTimePicker] = useState<boolean>(false)
   const [time, setTime] = useState<Date>(new Date())
   const [title, setTitle] = useState<string>('')
-  const toggleModal = () => {
-    dispatch({ type: TOGGLE_MODAL, payload: '' })
+  const closeModal = () => {
+    dispatch(toggleModal(selectedTimestamp, currentDayIndex))
   }
   const stopPropagation = (ev: React.MouseEvent) => {
     ev.stopPropagation()
   }
   const saveTask = () => {
-    dispatch({
-      type: ADD_TASK,
-      payload: {
-        task: {
-          title,
-          time,
-          day: { timestamp: selectedTimestamp, disabled: false },
-        },
-      },
-    })
+    const task = {
+      title,
+      time,
+      day: { timestamp: selectedTimestamp, disabled: false },
+    }
+    dispatch(addTask(task))
     setTitle('')
-    dispatch({
-      type: TOGGLE_MODAL,
-      payload: {
-        timestamp: selectedTimestamp,
-        showModal: false,
-        currentDayIndex,
-      },
-    })
+    closeModal()
   }
 
   const handleSubmit = (ev: React.FormEvent) => {
@@ -102,10 +92,10 @@ const Modal = () => {
     return null
   }
   return (
-    <ModalOverly onClick={toggleModal}>
+    <ModalOverly onClick={closeModal}>
       <ModalForm onClick={stopPropagation} onSubmit={handleSubmit}>
         <ModalHeader>
-          <Button ariaLabel="close" onClick={toggleModal} type="button">
+          <Button ariaLabel="close" onClick={closeModal} type="button">
             <CloseIcon />
           </Button>
         </ModalHeader>
@@ -138,7 +128,7 @@ const Modal = () => {
               type="button"
               ariaLabel="Cancel button"
               className="is-light"
-              onClick={toggleModal}
+              onClick={closeModal}
             >
               cancel
             </Button>

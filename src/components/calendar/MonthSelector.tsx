@@ -4,11 +4,11 @@ import { NavigateNext } from 'styled-icons/material/NavigateNext'
 import { NavigateBefore } from 'styled-icons/material/NavigateBefore'
 import styled from 'styled-components'
 import {
-  PREV_YEAR,
-  PREV_MONTH,
-  NEXT_YEAR,
-  NEXT_MONTH,
-} from '../../state/actions'
+  prevYear,
+  prevMonth,
+  nextMonth,
+  nextYear,
+} from '../../state/actionCreators'
 import { useCalendar } from '../../state/context'
 
 const MonthSelectorContainer = styled.div`
@@ -58,26 +58,22 @@ const MonthSelector = (props: { mini?: boolean; onlyYear?: boolean }) => {
     .split(' ')
   const month = stringDateArr[1]
   const year = stringDateArr[3]
-  const previusDate = onlyYear ? PREV_YEAR : PREV_MONTH
-  const nextDate = onlyYear ? NEXT_YEAR : NEXT_MONTH
+  const previousDate = onlyYear ? prevYear : prevMonth
+  const nextDate = onlyYear ? nextYear : nextMonth
 
   return (
     <MonthSelectorContainer style={{ zoom: mini ? 0.7 : 1 }}>
       <Button
         ariaLabel="Previus month"
         size={50}
-        onClick={() =>
-          dispatch && dispatch({ type: previusDate, payload: { mini } })
-        }
+        onClick={() => dispatch(previousDate(Boolean(mini)))}
       >
         <NavigateBeforeIcon />
       </Button>
       <Button
         size={50}
         ariaLabel="Next month"
-        onClick={() =>
-          dispatch && dispatch({ type: nextDate, payload: { mini } })
-        }
+        onClick={() => dispatch(nextDate(Boolean(mini)))}
       >
         <NavigateNextIcon />
       </Button>

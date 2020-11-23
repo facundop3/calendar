@@ -8,7 +8,7 @@ const defaultValues = {
   currentDateMin: new Date().getTime(),
   currentDayIdMin: 0,
   selectedDayMini: new Date().getTime(),
-  calendarMode: '',
+  calendarMode: 'Month',
   tasks: [],
   showModal: false,
   currentDayIndex: 0,
