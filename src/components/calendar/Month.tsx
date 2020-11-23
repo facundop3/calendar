@@ -18,7 +18,8 @@ const MonthContainer = styled.div`
 const Month = (props: { mini?: boolean; currentDate?: number }) => {
   const { mini } = props
   const [state] = useCalendar()
-  const currentDate = props.currentDate || state.currentDate
+  const currentDate =
+    props.currentDate || (mini ? state.currentDateMin : state.currentDate)
   const monthDays: Day[] = getDaysOnMonth(new Date(currentDate))
   const [{ timestamp: firstDay }] = monthDays.slice(0, 1)
   const [{ timestamp: lastDay }] = monthDays.slice(-1)
