@@ -5,7 +5,6 @@ export interface CalendarState {
   selectedTimestamp: number
   calendarMode: 'Month' | 'Year'
   currentDayIdMin: number
-  calendarModeMin: string
   tasks: Task[]
   showModal: boolean
   currentDayIndex: number

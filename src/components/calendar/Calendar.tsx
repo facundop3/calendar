@@ -18,11 +18,11 @@ const Calendar = () => {
       {calendarMode === 'Month' ? (
         <>
           <Month mini={false} />
-          <Modal />
         </>
       ) : (
         <Year />
       )}
+      <Modal />
     </CalendarContainer>
   )
 }
