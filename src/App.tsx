@@ -2,8 +2,6 @@ import React from 'react'
 import { CalendarProvider } from './state/context'
 import { Header } from './components/page'
 import { Calendar, MiniCalendar, CreateEvent } from './components/calendar'
-// TODO: Remove Bulma css
-import '../node_modules/bulma/css/bulma.min.css'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -22,6 +20,10 @@ const LeftSide = styled.div`
   align-items: baseline;
   height: 100%;
   padding-top: 1em;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `
 const AppContainer = styled.div`
   height: 100vh;
@@ -37,7 +39,7 @@ const App: React.FC = () => {
       <AppContainer>
         <Header />
         <Container>
-          <LeftSide className="is-hidden-mobile">
+          <LeftSide>
             <CreateEvent />
             <MiniCalendar />
           </LeftSide>

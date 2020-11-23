@@ -17,32 +17,33 @@ const SelectedOption = styled.a`
 `
 
 const OptionList = styled.div`
-  background-color: #fafafa !important;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  background-color: #fafafa;
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  background-color: #fafafa;
+  top: 3em;
+  right: 1em;
+  padding: 1em;
+  z-index: 3;
+  border-radius: 4px;
+  &:hover {
+    display: flex;
+  }
 `
 const OptionItem = styled.a`
+  padding: 0.5em;
+  border-radius: 6px;
   &:hover {
-    background-color: #fafafa !important;
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   }
 `
 
 const SelectContainer = styled.div`
-  /* Shame-css */
-  @media (max-width: 768px) {
-    height: 40px !important;
-    overflow: hidden;
-
-    &:hover {
-      height: 115px !important;
-    }
-    &:hover div {
-      position: absolute;
-    }
-    &:active {
-      height: 115px !important;
-    }
-    &:active div {
-      position: absolute;
-    }
+  padding: 1em;
+  &:hover div {
+    display: flex;
   }
 `
 
@@ -62,23 +63,20 @@ const Select: React.FC<Props> = (props) => {
   }
 
   useEffect(() => {
-    // TODO: check how to solve the warning asking to add `handleChange` to the dependencies list
     handleChange(selected)
-  }, [selected])
+  }, [selected, handleChange])
 
   const handleClick = () => setShowOptions(!showOptions)
   return (
     <SelectContainer
-      className="navbar-item has-dropdown is-hoverable"
       onClick={() => handleClick()}
       tabIndex={0}
       onKeyPress={(ev) => handleEnterPress(ev, handleClick)}
     >
-      <SelectedOption className="navbar-link">{selected}</SelectedOption>
-      <OptionList className="navbar-dropdown">
+      <SelectedOption>{selected}</SelectedOption>
+      <OptionList>
         {options.map((option) => (
           <OptionItem
-            className="navbar-item"
             key={uuidv1()}
             onClick={handleSelect}
             onKeyPress={(ev) => handleEnterPress(ev, handleSelect)}

@@ -121,16 +121,16 @@ const Modal = () => {
             )}
           </ModalBodyItem>
           <div>
-            <Button ariaLabel="Save button" type="submit">
+            <Button ariaLabel="Save button" type="submit" btnType="info">
               Save
             </Button>
             <Button
               type="button"
               ariaLabel="Cancel button"
-              className="is-light"
               onClick={closeModal}
+              btnType="light"
             >
-              cancel
+              Cancel
             </Button>
           </div>
         </ModalBody>

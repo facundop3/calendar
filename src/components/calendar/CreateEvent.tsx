@@ -12,7 +12,7 @@ const CreateEvent = () => {
 
   return (
     <form onSubmit={createEventHandler}>
-      <Button type="submit" ariaLabel="Create new event">
+      <Button type="submit" ariaLabel="Create new event" btnType="info">
         + Create
       </Button>
     </form>

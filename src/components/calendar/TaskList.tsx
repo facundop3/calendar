@@ -6,8 +6,13 @@ const Task = styled.li`
   list-style-type: none;
   border-radius: 6px;
   color: white;
-  padding: 0.5em;
+  padding: 0.25em 0.5em;
   width: 100%;
+  background-color: #3273dc;
+  color: #fff;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0.1em;
 `
 const Container = styled.ul`
   position: absolute;
@@ -22,9 +27,7 @@ const TaskList = (props: { tasks: TaskI[] }) => {
   return (
     <Container>
       {tasks.map((task) => (
-        <Task className="tag is-link" key={uuidv1()}>
-          {task.title}
-        </Task>
+        <Task key={uuidv1()}>{task.title}</Task>
       ))}
     </Container>
   )

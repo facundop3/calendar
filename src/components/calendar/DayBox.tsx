@@ -7,9 +7,9 @@ import { toggleModal, selectDay } from '../../state/actionCreators'
 import { useCalendar } from '../../state/context'
 
 const DayBoxContainer = styled.div`
+  box-sizing: border-box;
   padding: 0.5em;
   position: relative;
-  margin: 0 !important;
   width: 100%;
   background-color: #fafafa !important;
   ${({ mini }: { mini?: boolean }) =>
@@ -84,22 +84,17 @@ const DayBox: React.FC<Props> = (props) => {
       aria-disabled={disabled}
       {...tabIndex}
     >
-      <article className="media">
-        <div className="media-content">
-          <DayContent className="content">
-            {!mini && weekDay}
-            <DateContainer
-              today={day.timestamp === todayTimeStamp}
-              selectedDay={selectedDayMini === day.timestamp}
-              aria-label={!disabled ? new Date(timestamp).toDateString() : ''}
-              className={mini ? 'hover-date' : ''}
-            >
-              {disabled ? timestamp : new Date(timestamp).getDate()}
-            </DateContainer>
-            {!mini && <TaskList tasks={todayTasks} />}
-          </DayContent>
-        </div>
-      </article>
+      <DayContent>
+        {!mini && weekDay}
+        <DateContainer
+          today={day.timestamp === todayTimeStamp}
+          selectedDay={selectedDayMini === day.timestamp}
+          aria-label={!disabled ? new Date(timestamp).toDateString() : ''}
+        >
+          {disabled ? timestamp : new Date(timestamp).getDate()}
+        </DateContainer>
+        {!mini && <TaskList tasks={todayTasks} />}
+      </DayContent>
     </DayBoxContainer>
   )
 }

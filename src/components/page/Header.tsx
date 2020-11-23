@@ -2,34 +2,8 @@ import React from 'react'
 import { Select } from '../elements'
 import { MonthSelector } from '../calendar'
 import styled from 'styled-components'
-import { CalendarAlt } from 'styled-icons/fa-solid/CalendarAlt'
 import { changeCalendarMode } from '../../state/actionCreators'
 import { useCalendar } from '../../state/context'
-
-const CalendarIcon = styled(CalendarAlt)`
-  height: 40px;
-  color: #3866d0;
-  margin-right: 0.5em;
-  @media (max-width: 768px) {
-    margin-right: 0;
-  }
-`
-const HeaderTitle = styled.div`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const Title = styled.h2`
-  margin: 0;
-  font-family: sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  @media (max-width: 768px) {
-    display: none;
-  }
-`
 
 const NavBar = styled.nav`
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
@@ -37,9 +11,13 @@ const NavBar = styled.nav`
   background-color: #fafafa !important;
   display: flex;
   align-items: center !important;
-  justify-content: center;
+  justify-content: space-between;
   padding-left: 0.5em;
   max-height: 55px;
+  min-height: 3.25rem;
+  position: relative;
+  z-index- 2;
+
   @media (max-width: 768px) {
     padding-left: 0;
     .button {
@@ -54,28 +32,20 @@ const NavBar = styled.nav`
 const Header: React.FC = () => {
   const [state, dispatch] = useCalendar()
   const calendarMode = state.calendarMode
-  const handleChange = (calendarMode: string) => {
-    dispatch(changeCalendarMode(calendarMode as 'Month' | 'Year'))
-  }
+  const handleChange = React.useCallback(
+    (calendarMode: string) => {
+      dispatch(changeCalendarMode(calendarMode as 'Month' | 'Year'))
+    },
+    [dispatch]
+  )
   return (
-    <NavBar className="navbar">
-      <div className="navbar-brand">
-        <HeaderTitle>
-          <CalendarIcon />
-          <Title>Calendar</Title>
-        </HeaderTitle>
-      </div>
-
+    <NavBar>
       <MonthSelector onlyYear={calendarMode === 'Year'} mini={false} />
-      <div className="navbar-end">
-        <div className="navbar-item">
-          <Select
-            defaultValue={calendarMode || 'Month'}
-            options={['Month', 'Year']}
-            handleChange={handleChange}
-          />
-        </div>
-      </div>
+      <Select
+        defaultValue={calendarMode || 'Month'}
+        options={['Month', 'Year']}
+        handleChange={handleChange}
+      />
     </NavBar>
   )
 }
