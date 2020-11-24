@@ -22,6 +22,7 @@ const MonthTitle = styled.p`
 
 const MonthCalendar = styled.div`
   width: 320px;
+  height: fit-content;
 `
 
 const Year: React.FC = () => {
