@@ -10,6 +10,11 @@ const CalendarContainer = styled.div`
   width: 100%;
   flex-direction: column;
   height: 100%;
+
+  @media screen and (max-width: 768px) {
+    align-items: center;
+    overflow-y: scroll;
+  }
 `
 const Calendar = () => {
   const [{ calendarMode }] = useCalendar()

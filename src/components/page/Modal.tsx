@@ -25,6 +25,10 @@ const ModalForm = styled.form`
   overflow: hidden;
   top: 35%;
   left: 40%;
+
+  @media screen and (max-width: 768px) {
+    left: 0;
+  }
 `
 
 const ModalHeader = styled.div`

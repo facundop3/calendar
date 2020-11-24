@@ -10,9 +10,12 @@ const YearContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   zoom: 0.8;
   padding-bottom: 5em;
-  padding-left: 7em;
   padding-top: 1em;
   height: 100%;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
 
 const MonthTitle = styled.p`

@@ -16,7 +16,7 @@ const NavBar = styled.nav`
   max-height: 55px;
   min-height: 3.25rem;
   position: relative;
-  z-index- 2;
+  z-index: 2;
 
   @media (max-width: 768px) {
     padding-left: 0;
