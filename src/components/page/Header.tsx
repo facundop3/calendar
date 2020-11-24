@@ -3,7 +3,7 @@ import { Select } from '../elements'
 import { MonthSelector } from '../calendar'
 import styled from 'styled-components'
 import { changeCalendarMode } from '../../state/actionCreators'
-import { useCalendar } from '../../state/context'
+import { useCalendar } from '../../state/contexts'
 
 const NavBar = styled.nav`
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);

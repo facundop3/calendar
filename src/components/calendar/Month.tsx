@@ -2,7 +2,7 @@ import React from 'react'
 import { getDaysOnMonth } from '../../utils/dates'
 import { Day } from '../../interfaces'
 import styled from 'styled-components'
-import { useCalendar } from '../../state/context'
+import { useCalendar } from '../../state/contexts'
 import DayBox from './DayBox'
 const uuidv1 = require('uuid/v1')
 

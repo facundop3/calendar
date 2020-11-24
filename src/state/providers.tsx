@@ -1,6 +1,7 @@
-import React, { Dispatch } from 'react'
-import { CalendarState, Action } from '../interfaces'
+import React from 'react'
+import { CalendarState } from '../interfaces'
 import { calendarReducer } from './reducer'
+import { CalendarContext } from './contexts'
 
 const defaultValues = {
   currentDate: new Date().getTime(),
@@ -18,18 +19,6 @@ const stateFromLocalStore = localStorage.getItem('calendarState')
 
 const calendarInitialState: CalendarState = {
   ...(stateFromLocalStore ? JSON.parse(stateFromLocalStore) : defaultValues),
-}
-
-export const CalendarContext = React.createContext<
-  [CalendarState, Dispatch<Action>] | null
->(null)
-
-export const useCalendar = (): any => {
-  const value = React.useContext(CalendarContext)
-  if (!value) {
-    throw new Error('useCalendar must be used within a CalendarProvider')
-  }
-  return value
 }
 
 export const CalendarProvider = ({

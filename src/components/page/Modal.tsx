@@ -3,7 +3,7 @@ import { Button, Input, TimePicker } from '../elements'
 import { Close } from 'styled-icons/material/Close'
 import styled from 'styled-components'
 import { toggleModal, addTask } from '../../state/actionCreators'
-import { useCalendar } from '../../state/context'
+import { useCalendar } from '../../state/contexts'
 
 const ModalOverly = styled.div`
   position: fixed; /* Positioning and size */

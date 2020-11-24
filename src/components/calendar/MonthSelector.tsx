@@ -9,7 +9,7 @@ import {
   nextMonth,
   nextYear,
 } from '../../state/actionCreators'
-import { useCalendar } from '../../state/context'
+import { useCalendar } from '../../state/contexts'
 
 const MonthSelectorContainer = styled.div`
   display: flex;

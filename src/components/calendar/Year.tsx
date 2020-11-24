@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Month from './Month'
 import WeekHeader from './WeekHeader'
-import { useCalendar } from '../../state/context'
+import { useCalendar } from '../../state/contexts'
 const uuidv1 = require('uuid/v1')
 
 const YearContainer = styled.div`

@@ -1,6 +1,6 @@
 import React from 'react'
 import Month from './Month'
-import { useCalendar } from '../../state/context'
+import { useCalendar } from '../../state/contexts'
 import Year from './Year'
 import styled from 'styled-components'
 import { Modal } from '../page'

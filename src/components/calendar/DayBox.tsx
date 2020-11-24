@@ -4,7 +4,7 @@ import { handleEnterPress } from '../../utils/a11y'
 import TaskList from './TaskList'
 import styled from 'styled-components'
 import { toggleModal, selectDay } from '../../state/actionCreators'
-import { useCalendar } from '../../state/context'
+import { useCalendar } from '../../state/contexts'
 
 const DayBoxContainer = styled.div`
   box-sizing: border-box;

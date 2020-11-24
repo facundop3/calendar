@@ -1,5 +1,5 @@
 import React from 'react'
-import { CalendarProvider } from './state/context'
+import { CalendarProvider } from './state/providers'
 import { Header } from './components/page'
 import { Calendar, MiniCalendar, CreateEvent } from './components/calendar'
 import styled from 'styled-components'

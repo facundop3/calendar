@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../elements'
-import { useCalendar } from '../../state/context'
+import { useCalendar } from '../../state/contexts'
 import { toggleModal } from '../../state/actionCreators'
 
 const CreateEvent = () => {
