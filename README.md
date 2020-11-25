@@ -1,8 +1,16 @@
 # Calendar
 
+## Month 
+
 ![image](https://user-images.githubusercontent.com/29029506/100166690-10689f80-2e9c-11eb-9a88-9022b2569810.png)
+
+## Year 
+
 ![image](https://user-images.githubusercontent.com/29029506/100166740-2b3b1400-2e9c-11eb-9ca6-88ee17d002b9.png)
 
+## TODO:
+	- Add Day view
+	- Add Week view
 
 
 ## How to run it?
