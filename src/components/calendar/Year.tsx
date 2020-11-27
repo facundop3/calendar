@@ -11,7 +11,6 @@ const YearContainer = styled.div`
   zoom: 0.8;
   padding-bottom: 5em;
   padding-top: 1em;
-  height: 100%;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
