@@ -1,6 +1,7 @@
 {
   "short_name": "Calendar PWA",
   "name": "Sample Calendar PWA",
+  "description": "Simple Calendar pwa",
   "icons": [
     {
       "src": "favicon.ico",
