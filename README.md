@@ -21,10 +21,11 @@
 # Web:
 
 #### Month 
-![image](https://user-images.githubusercontent.com/29029506/105272532-4ebacc00-5b78-11eb-920a-714eb0ac34f5.png)
+![image](https://user-images.githubusercontent.com/29029506/105392156-a6e5e280-5bf9-11eb-9fd8-33eb388ba1ca.png)
 
 #### Year 
-![image](https://user-images.githubusercontent.com/29029506/105272582-6a25d700-5b78-11eb-98de-0075c02c049f.png)
+
+![image](https://user-images.githubusercontent.com/29029506/105392344-dd236200-5bf9-11eb-8b74-b9c72e098be6.png)
 
 ## TODO:
 	- Add Day view
