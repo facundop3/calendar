@@ -4,8 +4,8 @@
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/calendar/",
+  "start_url": "/calendar/",
   "icons": [
     {
       "src": "images/icons/icon-16x16.png",
