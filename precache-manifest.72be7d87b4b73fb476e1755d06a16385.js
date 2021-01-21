@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f15e51dda921f510e9331a74e436aaf2",
+    "revision": "a2bb9380dedeec4cbe0708fe83631b17",
     "url": "/calendar/index.html"
   },
   {
-    "revision": "aa8175890f5c8de7557c",
+    "revision": "34764b14f9caf378f95a",
     "url": "/calendar/static/css/main.34de6062.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/calendar/static/js/2.80a3dd6e.chunk.js"
   },
   {
-    "revision": "aa8175890f5c8de7557c",
-    "url": "/calendar/static/js/main.5f940cae.chunk.js"
+    "revision": "34764b14f9caf378f95a",
+    "url": "/calendar/static/js/main.54826f06.chunk.js"
   },
   {
     "revision": "70cd18d5f6522f88cc6f",
