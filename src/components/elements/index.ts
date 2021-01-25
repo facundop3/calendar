@@ -1,6 +1,5 @@
-import Button from "./Button";
-import Input from "./Input";
-import Select from "./Select";
-import TimePicker from "./TimePicker";
+import Button from './Button'
+import Input from './Input'
+import Select from './Select'
 
-export { Button, Input, Select, TimePicker };
+export { Button, Input, Select }

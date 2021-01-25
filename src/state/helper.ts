@@ -13,9 +13,15 @@ export const changeCalendarMode = (
 
 export const addTask = (state: CalendarState, action: Action) => {
   const { title, time, day } = action.payload.task
+  const newTasks = [...state.tasks, { title, time, day }]
+  const sortedTasks = newTasks.sort(({ time: timeA }, { time: timeB }) => {
+    const numberA = Number(timeA.replace(':', ''))
+    const numberB = Number(timeB.replace(':', ''))
+    return numberA - numberB
+  })
   const newState: CalendarState = {
     ...state,
-    tasks: [...state.tasks, { title, time, day }],
+    tasks: sortedTasks,
     selectedTimestamp: 0,
   }
   return newState

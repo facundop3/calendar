@@ -1,3 +1,5 @@
+import { TimePickerValue } from 'react-time-picker'
+
 export interface CalendarState {
   currentDate: number
   currentDateMin: number
@@ -23,5 +25,5 @@ export interface Day {
 export interface Task {
   title: string
   day: Day
-  time: Date
+  time: TimePickerValue
 }

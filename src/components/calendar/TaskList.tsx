@@ -26,8 +26,10 @@ const TaskList = (props: { tasks: TaskI[] }) => {
   const { tasks } = props
   return (
     <Container>
-      {tasks.map((task) => (
-        <Task key={uuidv1()}>{task.title}</Task>
+      {tasks.map(({ title, time }) => (
+        <Task key={uuidv1()}>
+          <small>{`${time} -`}</small> {title}
+        </Task>
       ))}
     </Container>
   )

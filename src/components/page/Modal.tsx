@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Button, Input, TimePicker } from '../elements'
+import { Button, Input } from '../elements'
+import TimePicker, { TimePickerValue } from 'react-time-picker'
 import { Close } from 'styled-icons/material/Close'
 import styled from 'styled-components'
 import { toggleModal, addTask } from '../../state/actionCreators'
@@ -22,7 +23,6 @@ const ModalForm = styled.form`
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   position: fixed;
   background-color: #fafafa;
-  overflow: hidden;
   top: 35%;
   left: 40%;
 
@@ -55,8 +55,21 @@ const ModalBody = styled.div`
 
 const ModalBodyItem = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   padding: 1em;
+`
+
+const CustomTimePicker = styled(TimePicker)`
+  .react-time-picker__wrapper {
+    border: none;
+    box-shadow: 0px 1px 3px 1px rgba(10, 10, 10, 0.1);
+    border-radius: 4px;
+  }
+  .react-time-picker__clock {
+    box-shadow: 0px 1px 3px 1px rgba(10, 10, 10, 0.1);
+    border-radius: 4px;
+  }
 `
 
 const Modal = () => {
@@ -65,8 +78,7 @@ const Modal = () => {
     { selectedTimestamp, currentDayIndex, showModal },
     dispatch,
   ] = useCalendar()
-  const [showTimePicker, setShowTimePicker] = useState<boolean>(false)
-  const [time, setTime] = useState<Date>(new Date())
+  const [taskTime, setTaskTime] = useState<TimePickerValue>('10:00')
   const [title, setTitle] = useState<string>('')
   const closeModal = () => {
     dispatch(toggleModal(selectedTimestamp, currentDayIndex))
@@ -77,7 +89,7 @@ const Modal = () => {
   const saveTask = () => {
     const task = {
       title,
-      time,
+      time: taskTime,
       day: { timestamp: selectedTimestamp, disabled: false },
     }
     dispatch(addTask(task))
@@ -112,17 +124,7 @@ const Modal = () => {
           />
           <ModalBodyItem>
             <p>{new Date(selectedTimestamp).toDateString()}</p>
-            {/* TODO: FIX the ugly add an hour UI */}
-            <Button
-              type="button"
-              ariaLabel="Add an hour"
-              onClick={() => setShowTimePicker(!showTimePicker)}
-            >
-              Add an hour
-            </Button>
-            {showTimePicker && (
-              <TimePicker date={time} handleChange={setTime} />
-            )}
+            <CustomTimePicker value={taskTime} onChange={setTaskTime} />
           </ModalBodyItem>
           <div>
             <Button ariaLabel="Save button" type="submit" btnType="info">
