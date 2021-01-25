@@ -22,7 +22,7 @@ export const addTask = (state: CalendarState, action: Action) => {
   const newState: CalendarState = {
     ...state,
     tasks: sortedTasks,
-    selectedTimestamp: 0,
+    showModal: false,
   }
   return newState
 }
@@ -35,15 +35,22 @@ export const setSelectedDay = (state: CalendarState, action: Action) => {
   return newState
 }
 
-export const toggleModal = (state: CalendarState, action: Action) => {
+export const openModal = (state: CalendarState, action: Action) => {
   const newState: CalendarState = {
     ...state,
     selectedTimestamp: action.payload.timestamp,
-    showModal: !state.showModal,
+    showModal: true,
     currentDayIndex: action.payload.currentDayIndex,
   }
 
   return newState
+}
+export const closeModal = (state: CalendarState) => {
+  console.log('close the modal dude')
+  return {
+    ...state,
+    showModal: false,
+  }
 }
 
 export const nextMonth = (state: CalendarState, action: Action) => {

@@ -3,7 +3,7 @@ import { Day } from '../../interfaces'
 import { handleEnterPress } from '../../utils/a11y'
 import TaskList from './TaskList'
 import styled from 'styled-components'
-import { toggleModal, selectDay } from '../../state/actionCreators'
+import { openModal, selectDay } from '../../state/actionCreators'
 import { useCalendar } from '../../state/contexts'
 
 const DayBoxContainer = styled.div`
@@ -67,20 +67,20 @@ const DayBox: React.FC<Props> = (props) => {
   )
   const todayTimeStamp: number = new Date().setHours(0, 0, 0, 0)
 
-  const openModal = () => {
+  const handleDayClick = () => {
     if (!disabled) {
       if (mini) {
         dispatch(selectDay(timestamp, index))
       } else {
-        dispatch(toggleModal(timestamp, index))
+        dispatch(openModal(timestamp, index))
       }
     }
   }
   return (
     <DayBoxContainer
       mini={mini}
-      onClick={openModal}
-      onKeyPress={(ev) => handleEnterPress(ev, openModal)}
+      onClick={handleDayClick}
+      onKeyPress={(ev) => handleEnterPress(ev, handleDayClick)}
       aria-disabled={disabled}
       {...tabIndex}
     >

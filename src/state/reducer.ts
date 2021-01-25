@@ -3,7 +3,8 @@ import {
   CHANGE_CALENDAR_MODE,
   ADD_TASK,
   SET_SELECTED_DAY,
-  TOGGLE_MODAL,
+  OPEN_MODAL,
+  CLOSE_MODAL,
   NEXT_MONTH,
   PREV_MONTH,
   PREV_YEAR,
@@ -13,8 +14,9 @@ import {
   changeCalendarMode,
   persist,
   addTask,
+  openModal,
+  closeModal,
   setSelectedDay,
-  toggleModal,
   nextMonth,
   prevMonth,
   prevYear,
@@ -25,30 +27,38 @@ export const calendarReducer = (
   state: CalendarState,
   action: Action
 ): CalendarState => {
+  console.groupCollapsed(`[${new Date().toTimeString()}] calendarReducer`)
+  console.log(`State before the changes:`, state)
+  console.log(`Action to perform:`, action)
+  console.groupEnd()
+
   switch (action.type) {
     case CHANGE_CALENDAR_MODE: {
-      return persist(changeCalendarMode(state, action))
+      return changeCalendarMode(state, action)
     }
     case ADD_TASK: {
       return persist(addTask(state, action))
     }
     case SET_SELECTED_DAY: {
-      return persist(setSelectedDay(state, action))
+      return setSelectedDay(state, action)
     }
-    case TOGGLE_MODAL: {
-      return persist(toggleModal(state, action))
+    case OPEN_MODAL: {
+      return openModal(state, action)
+    }
+    case CLOSE_MODAL: {
+      return closeModal(state)
     }
     case NEXT_MONTH: {
-      return persist(nextMonth(state, action))
+      return nextMonth(state, action)
     }
     case PREV_MONTH: {
-      return persist(prevMonth(state, action))
+      return prevMonth(state, action)
     }
     case PREV_YEAR: {
-      return persist(prevYear(state, action))
+      return prevYear(state, action)
     }
     case NEXT_YEAR: {
-      return persist(nextYear(state, action))
+      return nextYear(state, action)
     }
     default:
       return state

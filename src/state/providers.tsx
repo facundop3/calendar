@@ -5,7 +5,7 @@ import { CalendarContext } from './contexts'
 
 const defaultValues = {
   currentDate: new Date().getTime(),
-  selectedTimestamp: 0,
+  selectedTimestamp: new Date().getTime(),
   currentDateMin: new Date().getTime(),
   currentDayIdMin: 0,
   selectedDayMini: new Date().getTime(),

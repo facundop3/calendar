@@ -16,3 +16,8 @@ export const getDaysOnMonth = (date: Date): Day[] => {
     })
   return days
 }
+
+export const getHHMM = (date: Date) => {
+  const [HHMMSS] = date.toTimeString().split(' ')
+  return HHMMSS.replace(/:\d\d$/, '')
+}

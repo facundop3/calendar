@@ -3,8 +3,9 @@ import { Button, Input } from '../elements'
 import TimePicker, { TimePickerValue } from 'react-time-picker'
 import { Close } from 'styled-icons/material/Close'
 import styled from 'styled-components'
-import { toggleModal, addTask } from '../../state/actionCreators'
+import { closeModal, addTask } from '../../state/actionCreators'
 import { useCalendar } from '../../state/contexts'
+import { getHHMM } from '../../utils/dates'
 
 const ModalOverly = styled.div`
   position: fixed; /* Positioning and size */
@@ -74,17 +75,14 @@ const CustomTimePicker = styled(TimePicker)`
 
 const Modal = () => {
   // TODO: use `currentDayIndex` to place the modal near the day the user clicked
-  const [
-    { selectedTimestamp, currentDayIndex, showModal },
-    dispatch,
-  ] = useCalendar()
-  const [taskTime, setTaskTime] = useState<TimePickerValue>('10:00')
+  const [{ selectedTimestamp, showModal }, dispatch] = useCalendar()
+  const [taskTime, setTaskTime] = useState<TimePickerValue>(getHHMM(new Date()))
   const [title, setTitle] = useState<string>('')
-  const closeModal = () => {
-    dispatch(toggleModal(selectedTimestamp, currentDayIndex))
-  }
   const stopPropagation = (ev: React.MouseEvent) => {
     ev.stopPropagation()
+  }
+  const handleClose = () => {
+    dispatch(closeModal())
   }
   const saveTask = () => {
     const task = {
@@ -94,13 +92,11 @@ const Modal = () => {
     }
     dispatch(addTask(task))
     setTitle('')
-    closeModal()
+    dispatch(closeModal())
   }
 
   const handleSubmit = (ev: React.FormEvent) => {
     ev.preventDefault()
-    console.log(ev)
-    console.log(title)
     title && saveTask()
   }
 
@@ -108,10 +104,10 @@ const Modal = () => {
     return null
   }
   return (
-    <ModalOverly onClick={closeModal}>
+    <ModalOverly onClick={handleClose}>
       <ModalForm onClick={stopPropagation} onSubmit={handleSubmit}>
         <ModalHeader>
-          <Button ariaLabel="close" onClick={closeModal} type="button">
+          <Button ariaLabel="close" onClick={handleClose} type="button">
             <CloseIcon />
           </Button>
         </ModalHeader>
@@ -133,7 +129,7 @@ const Modal = () => {
             <Button
               type="button"
               ariaLabel="Cancel button"
-              onClick={closeModal}
+              onClick={handleClose}
               btnType="light"
             >
               Cancel

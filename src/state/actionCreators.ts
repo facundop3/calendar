@@ -1,5 +1,6 @@
 import {
-  TOGGLE_MODAL,
+  OPEN_MODAL,
+  CLOSE_MODAL,
   ADD_TASK,
   SET_SELECTED_DAY,
   CHANGE_CALENDAR_MODE,
@@ -46,13 +47,19 @@ export const nextMonth = (mini: boolean) => {
   }
 }
 
-export const toggleModal = (timestamp: number, currentDayIndex: number) => {
+export const openModal = (timestamp: number, currentDayIndex: number) => {
   return {
-    type: TOGGLE_MODAL,
+    type: OPEN_MODAL,
     payload: {
       timestamp,
       currentDayIndex,
     },
+  }
+}
+
+export const closeModal = () => {
+  return {
+    type: CLOSE_MODAL,
   }
 }
 

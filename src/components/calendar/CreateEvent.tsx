@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button } from '../elements'
 import { useCalendar } from '../../state/contexts'
-import { toggleModal } from '../../state/actionCreators'
+import { openModal } from '../../state/actionCreators'
 
 const CreateEvent = () => {
   const [{ selectedDayMini, currentDayIndex }, dispatch] = useCalendar()
   const createEventHandler = (ev: React.FormEvent) => {
     ev.preventDefault()
-    dispatch(toggleModal(selectedDayMini, currentDayIndex))
+    dispatch(openModal(selectedDayMini, currentDayIndex))
   }
 
   return (
