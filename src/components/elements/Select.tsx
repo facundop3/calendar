@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { handleEnterPress } from '../../utils/a11y'
 const uuidv1 = require('uuid/v1')
@@ -57,13 +57,18 @@ const Select: React.FC<Props> = (props) => {
   const { defaultValue, options, handleChange } = props
   const [showOptions, setShowOptions] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>(defaultValue)
+  const prevSelectedValue = useRef(selected)
   const handleSelect = (ev: React.MouseEvent) => {
     const target = ev.target as HTMLElement
     setSelected(target.innerText)
   }
 
   useEffect(() => {
-    handleChange(selected)
+    // Prevents first load handleChange change
+    if (prevSelectedValue.current !== selected) {
+      prevSelectedValue.current = selected
+      handleChange(selected)
+    }
   }, [selected, handleChange])
 
   const handleClick = () => setShowOptions(!showOptions)

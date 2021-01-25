@@ -42,7 +42,7 @@ const Header: React.FC = () => {
     <NavBar>
       <MonthSelector onlyYear={calendarMode === 'Year'} mini={false} />
       <Select
-        defaultValue={calendarMode || 'Month'}
+        defaultValue={calendarMode}
         options={['Month', 'Year']}
         handleChange={handleChange}
       />

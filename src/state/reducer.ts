@@ -27,7 +27,9 @@ export const calendarReducer = (
   state: CalendarState,
   action: Action
 ): CalendarState => {
-  console.groupCollapsed(`[${new Date().toTimeString()}] calendarReducer`)
+  console.groupCollapsed(
+    `[${new Date().toTimeString()}] calendarReducer ${action.type}`
+  )
   console.log(`State before the changes:`, state)
   console.log(`Action to perform:`, action)
   console.groupEnd()
