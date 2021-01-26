@@ -35,6 +35,16 @@ export const setSelectedDay = (state: CalendarState, action: Action) => {
   return newState
 }
 
+export const setCurrentDate = (
+  state: CalendarState,
+  action: Action
+): CalendarState => {
+  return {
+    ...state,
+    currentDate: action.payload.timestamp,
+  }
+}
+
 export const openModal = (state: CalendarState, action: Action) => {
   const newState: CalendarState = {
     ...state,

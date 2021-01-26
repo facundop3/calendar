@@ -1,6 +1,7 @@
 export const CHANGE_CALENDAR_MODE = 'CHANGE_CALENDAR_MODE'
 export const ADD_TASK = 'ADD_TASK'
 export const SET_SELECTED_DAY = 'SET_SELECTED_DAY'
+export const SET_CURRENT_DATE = 'SET_CURRENT_DATE'
 export const OPEN_MODAL = 'OPEN_MODAL'
 export const CLOSE_MODAL = 'CLOSE_MODAL'
 export const NEXT_MONTH = 'NEXT_MONTH'

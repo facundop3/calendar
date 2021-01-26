@@ -3,6 +3,7 @@ import {
   CLOSE_MODAL,
   ADD_TASK,
   SET_SELECTED_DAY,
+  SET_CURRENT_DATE,
   CHANGE_CALENDAR_MODE,
   PREV_YEAR,
   PREV_MONTH,
@@ -78,6 +79,15 @@ export const selectDay = (timestamp: number, currentDayIndex: number) => {
     payload: {
       timestamp,
       currentDayIndex,
+    },
+  }
+}
+
+export const setCurrentDate = (timestamp: number) => {
+  return {
+    type: SET_CURRENT_DATE,
+    payload: {
+      timestamp,
     },
   }
 }

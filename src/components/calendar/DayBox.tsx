@@ -3,7 +3,12 @@ import { Day } from '../../interfaces'
 import { handleEnterPress } from '../../utils/a11y'
 import TaskList from './TaskList'
 import styled from 'styled-components'
-import { openModal, selectDay } from '../../state/actionCreators'
+import {
+  openModal,
+  selectDay,
+  changeCalendarMode,
+  setCurrentDate,
+} from '../../state/actionCreators'
 import { useCalendar } from '../../state/contexts'
 import { FlexColumn } from '../elements'
 
@@ -68,7 +73,13 @@ const DayBox: React.FC<Props> = (props) => {
   const handleDayClick = () => {
     if (!disabled) {
       if (mini) {
-        dispatch(selectDay(timestamp, index))
+        if (selectedDayMini === timestamp) {
+          dispatch(changeCalendarMode('Month'))
+          dispatch(setCurrentDate(timestamp))
+          dispatch(openModal(timestamp, index))
+        } else {
+          dispatch(selectDay(timestamp, index))
+        }
       } else {
         dispatch(openModal(timestamp, index))
       }

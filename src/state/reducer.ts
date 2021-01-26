@@ -3,6 +3,7 @@ import {
   CHANGE_CALENDAR_MODE,
   ADD_TASK,
   SET_SELECTED_DAY,
+  SET_CURRENT_DATE,
   OPEN_MODAL,
   CLOSE_MODAL,
   NEXT_MONTH,
@@ -17,6 +18,7 @@ import {
   openModal,
   closeModal,
   setSelectedDay,
+  setCurrentDate,
   nextMonth,
   prevMonth,
   prevYear,
@@ -43,6 +45,9 @@ export const calendarReducer = (
     }
     case SET_SELECTED_DAY: {
       return setSelectedDay(state, action)
+    }
+    case SET_CURRENT_DATE: {
+      return setCurrentDate(state, action)
     }
     case OPEN_MODAL: {
       return openModal(state, action)
