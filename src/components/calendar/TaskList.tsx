@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Task as TaskI } from '../../interfaces'
+import ReactTooltip from 'react-tooltip'
 const uuidv1 = require('uuid/v1')
 const Task = styled.li`
   list-style-type: none;
@@ -22,15 +23,29 @@ const Container = styled.ul`
   width: 100%;
   display: contents;
 `
+const TitleSpan = styled.span`
+  @media (max-width: 768px) {
+    display: none;
+  }
+  @media (max-height: 500px) {
+    display: none;
+  }
+`
+
 const TaskList = (props: { tasks: TaskI[] }) => {
   const { tasks } = props
   return (
     <Container>
-      {tasks.map(({ title, time }) => (
-        <Task key={uuidv1()}>
-          <small>{`${time} -`}</small> {title}
+      {tasks.map(({ title, time }, i) => (
+        <Task
+          key={uuidv1()}
+          data-tip={`${i + 1} - ${title}`}
+          data-iscapture="true"
+        >
+          {time} <TitleSpan>{title}</TitleSpan>
         </Task>
       ))}
+      <ReactTooltip place="top" type="dark" effect="float" />
     </Container>
   )
 }

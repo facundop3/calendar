@@ -17,8 +17,6 @@ const LeftSide = styled(FlexColumn)`
   align-items: baseline;
   height: 100%;
   padding-top: 1em;
-  margin-right: 7em;
-
   @media screen and (max-width: 768px) {
     display: none;
   }
