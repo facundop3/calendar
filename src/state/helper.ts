@@ -46,7 +46,6 @@ export const openModal = (state: CalendarState, action: Action) => {
   return newState
 }
 export const closeModal = (state: CalendarState) => {
-  console.log('close the modal dude')
   return {
     ...state,
     showModal: false,

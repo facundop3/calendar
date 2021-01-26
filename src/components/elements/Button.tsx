@@ -1,17 +1,18 @@
 import React, { MouseEvent } from 'react'
 import styled from 'styled-components'
 
+type BtnType =
+  | 'primary'
+  | 'link'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'light'
 interface Props {
   children: any
   type?: 'button' | 'reset' | 'submit' | undefined
-  btnType?:
-    | 'primary'
-    | 'link'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'danger'
-    | 'light'
+  btnType?: BtnType
   ariaLabel: string
   style?: {}
   size?: number
@@ -42,20 +43,7 @@ const Btn = styled.button`
   border-radius: 4px;
   font-weight: bold;
   border: 0;
-  ${({
-    size,
-    btnType,
-  }: {
-    size?: number
-    btnType?:
-      | 'primary'
-      | 'link'
-      | 'info'
-      | 'success'
-      | 'warning'
-      | 'danger'
-      | 'light'
-  }) => {
+  ${({ size, btnType }: { size?: number; btnType?: BtnType }) => {
     return `
     background-color: ${btnType ? mapTypeToColor[btnType] : 'transparent'};
     color: ${btnType === 'light' ? '#000' : '#fff'};

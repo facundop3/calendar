@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { handleEnterPress } from '../../utils/a11y'
+import { FlexColumn } from './FlexContainers'
 const uuidv1 = require('uuid/v1')
 
 const SelectedOption = styled.a`
@@ -16,12 +17,11 @@ const SelectedOption = styled.a`
   }
 `
 
-const OptionList = styled.div`
+const OptionList = styled(FlexColumn)`
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   background-color: #fafafa;
   display: none;
   position: absolute;
-  flex-direction: column;
   background-color: #fafafa;
   top: 3em;
   right: 1em;

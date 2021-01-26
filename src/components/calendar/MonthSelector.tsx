@@ -10,11 +10,9 @@ import {
   nextYear,
 } from '../../state/actionCreators'
 import { useCalendar } from '../../state/contexts'
+import { FlexRow } from '../elements'
 
-const MonthSelectorContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const MonthSelectorContainer = styled(FlexRow.center)`
   button {
     background-color: transparent !important;
   }
@@ -64,7 +62,7 @@ const MonthSelector = (props: { mini?: boolean; onlyYear?: boolean }) => {
   return (
     <MonthSelectorContainer style={{ zoom: mini ? 0.7 : 1 }}>
       <Button
-        ariaLabel="Previus month"
+        ariaLabel="Previous month"
         size={50}
         onClick={() => dispatch(previousDate(Boolean(mini)))}
       >

@@ -2,11 +2,10 @@ import React from 'react'
 import { CalendarProvider } from './state/providers'
 import { Header } from './components/page'
 import { Calendar, MiniCalendar, CreateEvent } from './components/calendar'
+import { FlexColumn, FlexRow } from './components/elements'
 import styled from 'styled-components'
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
+const Container = styled(FlexRow.centerVertically)`
   width: 100%;
   height: 100%;
   @media (max-width: 768px) {
@@ -14,9 +13,7 @@ const Container = styled.div`
   }
 `
 
-const LeftSide = styled.div`
-  display: flex;
-  flex-direction: column;
+const LeftSide = styled(FlexColumn)`
   align-items: baseline;
   height: 100%;
   padding-top: 1em;
@@ -26,10 +23,8 @@ const LeftSide = styled.div`
     display: none;
   }
 `
-const AppContainer = styled.div`
+const AppContainer = styled(FlexColumn)`
   height: 100vh;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   background-color: #fafafa;
 `

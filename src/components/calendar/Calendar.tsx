@@ -4,11 +4,10 @@ import { useCalendar } from '../../state/contexts'
 import Year from './Year'
 import styled from 'styled-components'
 import { Modal } from '../page'
+import { FlexColumn } from '../elements'
 
-const CalendarContainer = styled.div`
-  display: flex;
+const CalendarContainer = styled(FlexColumn)`
   width: 100%;
-  flex-direction: column;
   height: 100%;
 
   @media screen and (max-width: 768px) {

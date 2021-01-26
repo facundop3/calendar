@@ -6,14 +6,15 @@ import styled from 'styled-components'
 import { closeModal, addTask } from '../../state/actionCreators'
 import { useCalendar } from '../../state/contexts'
 import { getHHMM } from '../../utils/dates'
+import { FlexColumn } from '../elements'
 
 const ModalOverly = styled.div`
-  position: fixed; /* Positioning and size */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(128, 128, 128, 0.5); /* color */
+  background-color: rgba(128, 128, 128, 0.5);
 `
 
 const ModalForm = styled.form`
@@ -45,19 +46,14 @@ const CloseIcon = styled(Close)`
   height: 15px;
   color: #000;
 `
-const ModalBody = styled.div`
+const ModalBody = styled(FlexColumn)`
   padding: 1em;
   height: 100%;
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
 `
 
-const ModalBodyItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+const ModalBodyItem = styled(FlexColumn.centerHorizontally)`
   padding: 1em;
 `
 

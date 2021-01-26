@@ -5,6 +5,7 @@ import TaskList from './TaskList'
 import styled from 'styled-components'
 import { openModal, selectDay } from '../../state/actionCreators'
 import { useCalendar } from '../../state/contexts'
+import { FlexColumn } from '../elements'
 
 const DayBoxContainer = styled.div`
   box-sizing: border-box;
@@ -20,11 +21,8 @@ const DayBoxContainer = styled.div`
   }
 `
 
-const DayContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
+const DayContent = FlexColumn.centerVertically
+
 const DateContainer = styled.p`
   color: ${({ today, selectedDay }: { today: boolean; selectedDay: boolean }) =>
     today ? 'white' : selectedDay ? '#185abc' : '#000'};
