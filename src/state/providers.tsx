@@ -1,5 +1,5 @@
 import React from 'react'
-import { CalendarState } from '../interfaces'
+import { CalendarState, Action } from '../interfaces'
 import { calendarReducer } from './reducer'
 import { CalendarContext } from './contexts'
 
@@ -26,10 +26,13 @@ export const CalendarProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const value = React.useReducer(calendarReducer, calendarInitialState)
-
+  const [state, dispatch] = React.useReducer(
+    calendarReducer,
+    calendarInitialState
+  )
+  const multipleDispatch = (...actions: Action[]) => dispatch(actions)
   return (
-    <CalendarContext.Provider value={value}>
+    <CalendarContext.Provider value={[state, multipleDispatch]}>
       {children}
     </CalendarContext.Provider>
   )

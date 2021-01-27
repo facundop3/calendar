@@ -78,6 +78,7 @@ const Modal = () => {
     ev.stopPropagation()
   }
   const handleClose = () => {
+    setTitle('')
     dispatch(closeModal())
   }
   const saveTask = () => {
@@ -86,9 +87,8 @@ const Modal = () => {
       time: taskTime,
       day: { timestamp: selectedTimestamp, disabled: false },
     }
-    dispatch(addTask(task))
     setTitle('')
-    dispatch(closeModal())
+    dispatch(addTask(task), closeModal())
   }
 
   const handleSubmit = (ev: React.FormEvent) => {

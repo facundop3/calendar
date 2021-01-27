@@ -74,9 +74,11 @@ const DayBox: React.FC<Props> = (props) => {
     if (!disabled) {
       if (mini) {
         if (selectedDayMini === timestamp) {
-          dispatch(changeCalendarMode('Month'))
-          dispatch(setCurrentDate(timestamp))
-          dispatch(openModal(timestamp, index))
+          dispatch(
+            changeCalendarMode('Month'),
+            setCurrentDate(timestamp),
+            openModal(timestamp, index)
+          )
         } else {
           dispatch(selectDay(timestamp, index))
         }
